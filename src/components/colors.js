@@ -1,0 +1,11 @@
+export const palestprimary = '#E1ECCC'
+export const paleprimary = '#CCE1A8'
+export const brightprimary = '#78b61d'
+export const darkerprimary = '#578910'
+export const darkestprimary = '#428714'
+
+export const palestsecondary = '#FFCDC3'
+export const palesecondary = '#FFB5A5'
+export const brightsecondary = '#D5350E'
+export const darkersecondary = '#831F08'
+export const darkestsecondary = '#541A04'
