@@ -1,8 +1,8 @@
 {
-  "name": "to-do-list",
+  "name": "katzenhaus-digital",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://freyaelisabeth.github.io/to-do-list/",
+  "homepage": "https://freyaelisabeth.github.io/katzenhaus-digital/",
   "dependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
