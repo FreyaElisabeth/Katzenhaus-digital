@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import { darkestprimary } from './colors'
-import CardHead from './CardHead'
-import CardDescription from './CardDescription'
+import CatCard from './CatCard'
 
-const CardWrapper = styled.main`
-  border: 1px solid ${darkestprimary};
-  border-radius: 15px;
-  padding: 20px;
-`
-
-export default class CatCard extends Component {
+export default class DataScreen extends Component {
   render() {
     const {
       acuteDiseases,
@@ -41,25 +32,35 @@ export default class CatCard extends Component {
     } = this.props
 
     return (
-      <CardWrapper>
-        <CardHead
+      <React.Fragment>
+        <CatCard
+          acuteDiseases={acuteDiseases}
           adoptable={adoptable}
+          aggressive={aggressive}
+          assertive={assertive}
+          chronicDiseases={chronicDiseases}
+          color={color}
+          dateOfBirth={dateOfBirth}
+          escapologist={escapologist}
+          freeTextInfo={freeTextInfo}
           house={house}
           HTVNr={HTVNr}
           inShelterSince={inShelterSince}
           kennel={kennel}
+          medication={medication}
           name={name}
-          room={room}
-          transponderNr={transponderNr}
-        />
-        <CardDescription
-          color={color}
-          dateOfBirth={dateOfBirth}
+          nervous={nervous}
+          nutrition={nutrition}
+          otherTreatments={otherTreatments}
+          outdoorCat={outdoorCat}
           race={race}
+          room={room}
           sex={sex}
           spayedOrNeutered={spayedOrNeutered}
+          toiletTrained={toiletTrained}
+          transponderNr={transponderNr}
         />
-      </CardWrapper>
+      </React.Fragment>
     )
   }
 }

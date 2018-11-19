@@ -10,7 +10,7 @@ import { palestprimary } from '../src/components/colors'
 addDecorator(withKnobs)
 
 addDecorator(story => (
-  <Wrapper p="20px 25%" m="0 0 20px 0" bg={palestprimary}>
+  <Wrapper p="20px 10%" m="0 0 20px 0" bg={palestprimary}>
     <GlobalStyles />
     {story()}
   </Wrapper>
