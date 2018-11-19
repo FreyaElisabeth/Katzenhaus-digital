@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import { darkestprimary } from './colors'
 import CardHead from './CardHead'
 import CardDescription from './CardDescription'
+import CardBehavior from './CardBehavior'
+import CardMedCond from './CardMedCond'
+import CardFreeText from './CardFreeText'
+import Separator from './Separator'
 
 const CardWrapper = styled.main`
   border: 1px solid ${darkestprimary};
@@ -52,6 +56,7 @@ export default class CatCard extends Component {
           room={room}
           transponderNr={transponderNr}
         />
+        <Separator text="Beschreibung" />
         <CardDescription
           color={color}
           dateOfBirth={dateOfBirth}
@@ -59,6 +64,25 @@ export default class CatCard extends Component {
           sex={sex}
           spayedOrNeutered={spayedOrNeutered}
         />
+        <Separator text="Verhalten" />
+        <CardBehavior
+          toiletTrained={toiletTrained}
+          nervous={nervous}
+          aggressive={aggressive}
+          escapologist={escapologist}
+          assertive={assertive}
+          outdoorCat={outdoorCat}
+        />
+        <Separator text="Gesundheitszustand" />
+        <CardMedCond
+          acuteDiseases={acuteDiseases}
+          chronicDiseases={chronicDiseases}
+          medication={medication}
+          nutrition={nutrition}
+          otherTreatments={otherTreatments}
+        />
+        <Separator text="Sonstiges" />
+        <CardFreeText freeTextInfo={freeTextInfo} />
       </CardWrapper>
     )
   }

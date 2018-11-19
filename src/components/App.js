@@ -41,7 +41,9 @@ export default class App extends Component {
     chronicDiseases: 'Übergewicht',
     nutrition: 'nur Trockenfutter',
     medication: '',
-    otherTreatments: ''
+    otherTreatments: '',
+    freeTextInfo:
+      'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
   }
 
   render() {

@@ -11,9 +11,18 @@ const Line = styled.div`
   width: 100%;
   margin: 0.75em 0;
   border-bottom: 1px solid ${darkestprimary};
+
+  &.left {
+    margin-left: 80px;
+  }
+
+  &.right {
+    margin-right: 80px;
+  }
 `
 
 const Text = styled.span`
+  color: ${darkestprimary};
   white-space: nowrap;
   margin: 0.75em 1em;
 `
@@ -22,9 +31,9 @@ export default class Separator extends Component {
   render() {
     return (
       <Wrapper>
-        <Line />
+        <Line className="left" />
         <Text>{this.props.text}</Text>
-        <Line />
+        <Line className="right" />
       </Wrapper>
     )
   }

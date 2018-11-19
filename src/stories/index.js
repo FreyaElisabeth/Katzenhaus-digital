@@ -6,6 +6,10 @@ import { text, boolean, number, date } from '@storybook/addon-knobs'
 
 import Input from '../components/Input'
 import CardHead from '../components/CardHead'
+import CardDescription from '../components/CardDescription'
+import CardBehavior from '../components/CardBehavior'
+import CardMedCond from '../components/CardMedCond'
+import CardFreeText from '../components/CardFreeText'
 import Separator from '../components/Separator'
 
 function dateKnob(name, defaultValue) {
@@ -23,6 +27,42 @@ storiesOf('CardHead', module).add('CardHead', () => (
     room={number('Room nr.:', '6')}
     kennel={number('Kennel nr.:', '7')}
     adoptable={boolean('adoptable', true)}
+  />
+))
+
+storiesOf('CardDescription', module).add('CardDescription', () => (
+  <CardDescription
+    race={text('Race:', 'European Shorthair')}
+    color={text('Color:', 'brown tabby')}
+    sex={text('Sex:', 'female')}
+    spayedOrNeutered={boolean('spayed/neutered', false)}
+    dateOfBirth={dateKnob('Date of birth:', new Date('2015.03.15'))}
+  />
+))
+
+storiesOf('CardBehavior', module).add('CardBehavior', () => (
+  <CardBehavior
+    escapologist={boolean('escapologist', true)}
+    aggressive={boolean('aggressive', false)}
+    assertive={boolean('assertive', true)}
+    toiletTrained={boolean('toiletTrained', true)}
+    nervous={boolean('nervous', false)}
+  />
+))
+
+storiesOf('CardMedCond', module).add('CardMedCond', () => (
+  <CardMedCond
+    acuteDiseases={text('Acute diseases:', 'sneezing')}
+    chronicDiseases={text('Chronic diseases:', 'overweight')}
+    medication={text('Medication:', 'Lysimun 1ml 2x/day')}
+    nutrition={text('Nutrition:', 'Kibble only')}
+    otherTreatments={text('Other treatmens:', 'frequent snuggles')}
+  />
+))
+
+storiesOf('CardFreeText', module).add('CardFreeText', () => (
+  <CardFreeText
+    freeTextInfo={text('Free text info:', 'Sir Mau is a very playful catster.')}
   />
 ))
 
