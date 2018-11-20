@@ -32,7 +32,6 @@ export default class DataScreen extends Component {
     } = this.props
 
     return (
-      <React.Fragment>
         <CatCard
           acuteDiseases={acuteDiseases}
           adoptable={adoptable}
@@ -60,7 +59,6 @@ export default class DataScreen extends Component {
           toiletTrained={toiletTrained}
           transponderNr={transponderNr}
         />
-      </React.Fragment>
     )
   }
 }
