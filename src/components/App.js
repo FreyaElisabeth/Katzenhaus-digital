@@ -1,49 +1,99 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import {
-  palestprimary,
-  paleprimary,
-  brightprimary,
-  darkerprimary,
-  darkestprimary,
-  palestsecondary,
-  palesecondary,
-  brightsecondary,
-  darkersecondary,
-  darkestsecondary
-} from './colors'
+import { palestprimary } from './colors'
 
 import DataScreen from './DataScreen'
+import SearchScreen from './SearchScreen'
 
 export default class App extends Component {
   state = {
-    name: 'Nimue',
-    HTVNr: '848_A_17',
-    transponderNr: 276097200023868,
-    house: 'Neues Katzenhaus',
-    room: 9,
-    kennel: 7,
-    sex: 'weiblich',
-    spayedOrNeutered: true,
-    adoptable: true,
-    race: 'Europäisch Kurzhaar',
-    color: 'braun-schwarz getigert',
-    dateOfBirth: new Date('2005.04.29'),
-    inShelterSince: new Date('2017.03.01'),
-    aggressive: false,
-    assertive: true,
-    nervous: false,
-    escapologist: true,
-    outdoorCat: false,
-    toiletTrained: true,
-    acuteDiseases: 'Schnupfen',
-    chronicDiseases: 'Übergewicht',
-    nutrition: 'nur Trockenfutter',
-    medication: '',
-    otherTreatments: '',
-    freeTextInfo:
-      'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
+    dataSets: [
+      {
+        name: 'Nimue',
+        HTVNr: '848_A_17',
+        transponderNr: 276097200023868,
+        house: 'Neues Katzenhaus',
+        room: 9,
+        kennel: 7,
+        sex: 'weiblich',
+        spayedOrNeutered: true,
+        adoptable: true,
+        race: 'Europäisch Kurzhaar',
+        color: 'braun-schwarz getigert',
+        dateOfBirth: new Date('2005.04.29'),
+        inShelterSince: new Date('2017.03.01'),
+        aggressive: false,
+        assertive: true,
+        nervous: false,
+        escapologist: true,
+        outdoorCat: false,
+        toiletTrained: true,
+        acuteDiseases: 'Schnupfen',
+        chronicDiseases: 'Übergewicht',
+        nutrition: 'nur Trockenfutter',
+        medication: '',
+        otherTreatments: '',
+        freeTextInfo:
+          'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
+      },
+      {
+        name: 'Sir Maunzelot',
+        HTVNr: '849_A_17',
+        transponderNr: 276097200023869,
+        house: 'Neues Katzenhaus',
+        room: 9,
+        kennel: 7,
+        sex: 'männlich',
+        spayedOrNeutered: true,
+        adoptable: true,
+        race: 'Norwegische Waldkatze x Sibirer x Europäisch Kurzhaar',
+        color: 'silbergrau getigert',
+        dateOfBirth: new Date('2008.03.21'),
+        inShelterSince: new Date('2017.03.01'),
+        aggressive: false,
+        assertive: false,
+        nervous: true,
+        escapologist: true,
+        outdoorCat: false,
+        toiletTrained: true,
+        acuteDiseases: 'Schnupfen',
+        chronicDiseases: 'leichtes Übergewicht',
+        nutrition: 'nur Trockenfutter',
+        medication: '',
+        otherTreatments: '',
+        freeTextInfo:
+          'Sir Maunzelot braucht viel Zuneigung, aber auch viel Zeit, um Vertrauen zu fassen.'
+      },
+      {
+        name: 'Elvis',
+        HTVNr: '849_F_01',
+        transponderNr: 276097200023855,
+        house: 'Neues Katzenhaus',
+        room: 6,
+        kennel: 7,
+        sex: 'männlich',
+        spayedOrNeutered: false,
+        adoptable: true,
+        race: 'Europäisch Kurzhaar',
+        color: 'rot getigert, weiße Brust',
+        dateOfBirth: new Date('2001.07.01'),
+        inShelterSince: new Date('2001.08.01'),
+        aggressive: false,
+        assertive: true,
+        nervous: false,
+        escapologist: true,
+        outdoorCat: true,
+        toiletTrained: false,
+        acuteDiseases: 'Schnupfen, Flöhe',
+        chronicDiseases: '',
+        nutrition: 'Aufbaufütterung',
+        medication: 'Flohmittel',
+        otherTreatments: 'Wärmelampe',
+        freeTextInfo:
+          'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
+      }
+    ]
   }
 
   render() {
@@ -73,7 +123,7 @@ export default class App extends Component {
       spayedOrNeutered,
       toiletTrained,
       transponderNr
-    } = this.state
+    } = this.state.dataSets[0]
 
     return (
       <Router>
@@ -111,11 +161,10 @@ export default class App extends Component {
               />
             )}
           />
-          {/* <nav>
-            <NavLink exact to="/">
-              CatCard
-            </NavLink>
-          </nav> */}
+          <Route path="/search" exact render={() => <SearchScreen />} />
+          <nav>
+            <NavLink to="/search">Search</NavLink>
+          </nav>
         </Wrapper>
       </Router>
     )

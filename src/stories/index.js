@@ -11,6 +11,7 @@ import CardBehavior from '../components/CardBehavior'
 import CardMedCond from '../components/CardMedCond'
 import CardFreeText from '../components/CardFreeText'
 import Separator from '../components/Separator'
+import Button from '../components/Button'
 
 function dateKnob(name, defaultValue) {
   const stringTimestamp = date(name, defaultValue)
@@ -68,11 +69,14 @@ storiesOf('CardFreeText', module).add('CardFreeText', () => (
 
 storiesOf('Input', module).add('Input', () => (
   <Input
-    onSubmit={action('addInputToArray')}
     placeholder={text('Your placeholder here:', 'Sir Maunzelot')}
     name="input-storybook"
     label={text('Your label here:', 'Name: ')}
   />
+))
+
+storiesOf('Button', module).add('Button', () => (
+  <Button text={text('Text', 'Submit')} onClick={action('clicked')} />
 ))
 
 storiesOf('Separator', module).add('several states', () => (

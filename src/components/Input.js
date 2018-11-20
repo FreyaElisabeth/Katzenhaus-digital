@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { darkestprimary, palesecondary } from './colors'
+import { palesecondary } from './colors'
 
 const InputField = styled.input`
   margin: 0.5em 0 1em 0;
-  font-size: 22px;
-  caret-color: ${darkestprimary};
-  color: ${darkestprimary};
-  width: 80%;
+  font-size: 16px;
+  padding: 1%;
   border: none;
 
   &:focus {
@@ -25,18 +23,15 @@ export default class Input extends Component {
         <InputField
           name={name}
           placeholder={placeholder}
-          onKeyUp={event =>
-            event.key === 'Enter' ? this.handleSubmit(event) : ''
-          }
+          onSubmit={event => event.key === 'Enter' && this.handleSubmit(event)}
         />
       </label>
     )
   }
 
   handleSubmit(event) {
-    if (event.key === 'Enter') {
-      this.props.onSubmit(event)
-      event.target.value = ''
-    }
+    // this.props.onSubmit(event)
+    console.log('submit')
+    event.target.value = ''
   }
 }
