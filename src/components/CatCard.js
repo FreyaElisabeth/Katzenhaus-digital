@@ -8,7 +8,7 @@ import CardMedCond from './CardMedCond'
 import CardFreeText from './CardFreeText'
 import Separator from './Separator'
 
-const CardWrapper = styled.main`
+const CardWrapper = styled.div`
   border: 1px solid ${darkestprimary};
   border-radius: 15px;
   padding: 20px;

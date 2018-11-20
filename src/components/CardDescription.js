@@ -2,9 +2,21 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
   display: grid;
-  grid-template-columns: 140px auto;
+  grid-gap: 5px;
+  margin: 10px 0;
+
+  div {
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-gap: 10px;
+
+    span {
+      display: flex;
+      align-items: flex-end;
+      word-break: break-all;
+    }
+  }
 `
 
 export default class CardHead extends Component {
@@ -13,14 +25,24 @@ export default class CardHead extends Component {
 
     return (
       <SectionWrapper>
-        <span>Rasse:</span> <span>{race}</span>
-        <span>Farbe:</span> <span>{color}</span>
-        <span>Geschlecht:</span>
-        <span>
-          {sex}, {spayedOrNeutered ? 'kastriert' : 'unkastriert'}
-        </span>
-        <span>Geburtsdatum:</span>{' '}
-        <span>{dateOfBirth.toLocaleDateString('de')}</span>
+        <div>
+          <span>Rasse: </span>
+          <span>{race}</span>
+        </div>
+        <div>
+          <span>Farbe: </span>
+          <span>{color}</span>
+        </div>
+        <div>
+          <span>Geschlecht: </span>
+          <span>
+            {sex}, {spayedOrNeutered ? 'kastriert' : 'unkastriert'}
+          </span>
+        </div>
+        <div>
+          <span>Geburts&shy;datum:</span>
+          <span>{dateOfBirth.toLocaleDateString('de')}</span>
+        </div>
       </SectionWrapper>
     )
   }

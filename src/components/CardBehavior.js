@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { paleprimary } from './colors'
+import { darkerprimary } from './colors'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
+  margin: 10px 0;
 
   div.false {
-    color: ${paleprimary};
+    color: ${darkerprimary};
     text-decoration: line-through;
   }
 `

@@ -13,11 +13,11 @@ const Line = styled.div`
   border-bottom: 1px solid ${darkestprimary};
 
   &.left {
-    margin-left: 80px;
+    margin-left: 5%;
   }
 
   &.right {
-    margin-right: 80px;
+    margin-right: 5%;
   }
 `
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
+  margin: 10px 0;
 `
 
 export default class CardFreeText extends Component {

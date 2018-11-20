@@ -2,11 +2,17 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 
   div {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+
+    &.right {
+      text-align: right;
+    }
   }
 `
 
@@ -24,27 +30,27 @@ export default class CardHead extends Component {
     } = this.props
 
     return (
-      <SectionWrapper>
+      <React.Fragment>
         <h3>{name}</h3>
-        <div>
-          <span>
-            im Tierheim seit {inShelterSince.toLocaleDateString('de')}
-          </span>
-          <span>HTV-Nr.: {HTVNr}</span>
-        </div>
-        <div>
-          <span>
-            {adoptable ? 'vermittelbar' : 'derzeit nicht vermittelbar'}
-          </span>
-          <span>Transponder: {transponderNr}</span>
-        </div>
-        <div>
-          <span />
-          <span>
-            {house}, Raum {room}, Kennel {kennel}
-          </span>
-        </div>
-      </SectionWrapper>
+        <SectionWrapper>
+          <div className="left">
+            <div>{house}</div>
+            <div>
+              Raum {room}, Kennel {kennel}
+            </div>
+            <div>
+              {adoptable ? 'vermittelbar' : 'derzeit nicht vermittelbar'}
+            </div>
+          </div>
+          <div className="right">
+            <div>HTV-Nr.: {HTVNr}</div>
+            <div>Transponder: {transponderNr}</div>
+            <div>
+              im Tierheim seit {inShelterSince.toLocaleDateString('de')}
+            </div>
+          </div>
+        </SectionWrapper>
+      </React.Fragment>
     )
   }
 }

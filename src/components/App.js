@@ -125,4 +125,5 @@ export default class App extends Component {
 const Wrapper = styled.main`
   padding: 20px;
   background: ${palestprimary};
+  min-height: 100vh;
 `

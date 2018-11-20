@@ -2,9 +2,20 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
   display: grid;
-  grid-template-columns: 220px auto;
+  grid-gap: 5px;
+  margin: 10px 0;
+
+  div {
+    display: grid;
+    grid-template-columns: 35% auto;
+    grid-gap: 10px;
+
+    span {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
 `
 
 export default class CardMedCond extends Component {
@@ -19,11 +30,26 @@ export default class CardMedCond extends Component {
 
     return (
       <SectionWrapper>
-        <span>Akute Erkrankungen:</span> <span>{acuteDiseases}</span>
-        <span>Chronische Erkrankungen:</span> <span>{chronicDiseases}</span>
-        <span>Medikamente:</span> <span>{medication}</span>
-        <span>Ernährung:</span> <span>{nutrition}</span>
-        <span>Sonstige Behandlung:</span> <span>{otherTreatments}</span>
+        <div>
+          <span>Akute Erkrankungen:</span>
+          <span>{acuteDiseases}</span>
+        </div>
+        <div>
+          <span>Chronische Erkrankungen:</span>
+          <span>{chronicDiseases}</span>
+        </div>
+        <div>
+          <span>Medikamente:</span>
+          <span>{medication}</span>
+        </div>
+        <div>
+          <span>Ernährung:</span>
+          <span>{nutrition}</span>
+        </div>
+        <div>
+          <span>Sonstige Behandlung:</span>
+          <span>{otherTreatments}</span>
+        </div>
       </SectionWrapper>
     )
   }
