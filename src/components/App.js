@@ -105,7 +105,11 @@ export default class App extends Component {
             exact
             render={() => this.renderSearchResults()}
           />
-          <Route path="/search" exact render={() => <SearchScreen />} />
+          <Route
+            path="/search"
+            exact
+            render={() => <SearchScreen onSubmit={this.onSearchSubmit} />}
+          />
           <nav>
             <NavLink to="/search">Search</NavLink>
           </nav>
@@ -114,12 +118,18 @@ export default class App extends Component {
     )
   }
 
+  onSearchSubmit = event => {
+    event.preventDefault()
+    this.renderSearchResults()
+  }
+
   renderSearchResults = () => {
     const dataSets = this.state.dataSets
+    const inputName = document.querySelector('input[name="name"]')
 
     return dataSets
-      .filter(dataSet => dataSet.name === 'Elvis')
-      .map(dataSet => this.renderSingleDataSet(dataSet))
+      .filter(dataSet => dataSet.name === inputName.value)
+      .map(this.renderSingleDataSet)
   }
 
   renderSingleDataSet = dataSet => {

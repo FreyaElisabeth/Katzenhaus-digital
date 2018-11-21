@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { darkestprimary } from './colors'
 import Input from './Input'
@@ -14,6 +15,7 @@ const SearchWrapper = styled.div`
     display: grid;
     grid-gap: 5px;
     align-items: start;
+    justify-content: start;
   }
 `
 
@@ -23,11 +25,11 @@ export default class SearchScreen extends Component {
       <SearchWrapper>
         <form>
           <Input name="name" placeholder="Kitty" label="Name: " />
-          <Button text="Suchen" onClick={this.submit} />
+          <Link to="/searchResults">
+            <Button text="Suchen" onClick={this.props.OnSearchSubmit} />
+          </Link>
         </form>
       </SearchWrapper>
     )
   }
-
-  submit = () => console.log('submit')
 }
