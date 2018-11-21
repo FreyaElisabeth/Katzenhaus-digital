@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { palestprimary } from './colors'
 
-import DataScreen from './DataScreen'
 import SearchScreen from './SearchScreen'
+import CatCard from './CatCard'
 
 export default class App extends Component {
   state = {
@@ -97,6 +97,32 @@ export default class App extends Component {
   }
 
   render() {
+    return (
+      <Router>
+        <Wrapper>
+          <Route
+            path="/searchResults"
+            exact
+            render={() => this.renderSearchResults()}
+          />
+          <Route path="/search" exact render={() => <SearchScreen />} />
+          <nav>
+            <NavLink to="/search">Search</NavLink>
+          </nav>
+        </Wrapper>
+      </Router>
+    )
+  }
+
+  renderSearchResults = () => {
+    const dataSets = this.state.dataSets
+
+    return dataSets
+      .filter(dataSet => dataSet.name === 'Elvis')
+      .map(dataSet => this.renderSingleDataSet(dataSet))
+  }
+
+  renderSingleDataSet = dataSet => {
     const {
       acuteDiseases,
       adoptable,
@@ -123,50 +149,37 @@ export default class App extends Component {
       spayedOrNeutered,
       toiletTrained,
       transponderNr
-    } = this.state.dataSets[0]
+    } = dataSet
 
     return (
-      <Router>
-        <Wrapper>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <DataScreen
-                acuteDiseases={acuteDiseases}
-                adoptable={adoptable}
-                aggressive={aggressive}
-                assertive={assertive}
-                chronicDiseases={chronicDiseases}
-                color={color}
-                dateOfBirth={dateOfBirth}
-                escapologist={escapologist}
-                freeTextInfo={freeTextInfo}
-                house={house}
-                HTVNr={HTVNr}
-                inShelterSince={inShelterSince}
-                kennel={kennel}
-                medication={medication}
-                name={name}
-                nervous={nervous}
-                nutrition={nutrition}
-                otherTreatments={otherTreatments}
-                outdoorCat={outdoorCat}
-                race={race}
-                room={room}
-                sex={sex}
-                spayedOrNeutered={spayedOrNeutered}
-                toiletTrained={toiletTrained}
-                transponderNr={transponderNr}
-              />
-            )}
-          />
-          <Route path="/search" exact render={() => <SearchScreen />} />
-          <nav>
-            <NavLink to="/search">Search</NavLink>
-          </nav>
-        </Wrapper>
-      </Router>
+      <CatCard
+        key={HTVNr}
+        acuteDiseases={acuteDiseases}
+        adoptable={adoptable}
+        aggressive={aggressive}
+        assertive={assertive}
+        chronicDiseases={chronicDiseases}
+        color={color}
+        dateOfBirth={dateOfBirth}
+        escapologist={escapologist}
+        freeTextInfo={freeTextInfo}
+        house={house}
+        HTVNr={HTVNr}
+        inShelterSince={inShelterSince}
+        kennel={kennel}
+        medication={medication}
+        name={name}
+        nervous={nervous}
+        nutrition={nutrition}
+        otherTreatments={otherTreatments}
+        outdoorCat={outdoorCat}
+        race={race}
+        room={room}
+        sex={sex}
+        spayedOrNeutered={spayedOrNeutered}
+        toiletTrained={toiletTrained}
+        transponderNr={transponderNr}
+      />
     )
   }
 }
