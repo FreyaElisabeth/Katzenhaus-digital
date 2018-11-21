@@ -76,7 +76,7 @@ export default class App extends Component {
     } = this.state
 
     return (
-      <Router>
+      <Router basename="/Katzenhaus-digital">
         <Wrapper>
           <Route
             path="/"
