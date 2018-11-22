@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
 import { palesecondary, darkestprimary } from './colors'
 
 const StyledButton = styled.button`
@@ -20,7 +22,7 @@ export default class Button extends Component {
   render() {
     return (
       <StyledButton onClick={this.props.onClick}>
-        {this.props.text}
+        <Link to={this.props.linkTo}>{this.props.text}</Link>
       </StyledButton>
     )
   }

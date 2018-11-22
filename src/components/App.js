@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { palestprimary } from './colors'
 
-import SearchScreen from './SearchScreen'
+import SearchForm from './SearchForm'
 import CatCard from './CatCard'
 
 export default class App extends Component {
@@ -93,7 +93,8 @@ export default class App extends Component {
         freeTextInfo:
           'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
       }
-    ]
+    ],
+    nameInput: null
   }
 
   render() {
@@ -106,21 +107,35 @@ export default class App extends Component {
             render={() => this.renderSearchResults()}
           />
           <Route
-            path="/search"
+            path="/"
             exact
-            render={() => <SearchScreen onSubmit={this.onSearchSubmit} />}
+            render={() => (
+              <SearchForm
+                setInputToNull={this.setInputToNull}
+                onChange={this.handleChange}
+                onSubmit={this.onSearchSubmit}
+                submitPermitted={this.state.nameInput ? true : false}
+              />
+            )}
           />
           <nav>
-            <NavLink to="/search">Search</NavLink>
+            <NavLink to="/">Search</NavLink>
           </nav>
         </Wrapper>
       </Router>
     )
   }
 
+  setInputToNull = () => {
+    this.setState({ nameInput: null })
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.name + 'Input']: event.target.value })
+  }
+
   onSearchSubmit = event => {
     event.preventDefault()
-    this.renderSearchResults()
   }
 
   renderSearchResults = () => {

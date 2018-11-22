@@ -7,6 +7,7 @@ const InputField = styled.input`
   font-size: 16px;
   padding: 1%;
   border: none;
+  display: block;
 
   &:focus {
     outline: none;
@@ -16,22 +17,13 @@ const InputField = styled.input`
 
 export default class Input extends Component {
   render() {
-    const { name, placeholder, label } = this.props
+    const { name, placeholder, label, onChange } = this.props
+
     return (
       <label htmlFor={name}>
         {label}
-        <InputField
-          name={name}
-          placeholder={placeholder}
-          onSubmit={event => event.key === 'Enter' && this.handleSubmit(event)}
-        />
+        <InputField name={name} placeholder={placeholder} onChange={onChange} />
       </label>
     )
-  }
-
-  handleSubmit(event) {
-    // this.props.onSubmit(event)
-    console.log('submit')
-    event.target.value = ''
   }
 }
