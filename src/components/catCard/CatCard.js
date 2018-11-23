@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { darkestprimary } from './colors'
+import PropType from 'prop-types'
+
+import { darkestprimary } from '../colors'
 import CardHead from './CardHead'
 import CardDescription from './CardDescription'
 import CardBehavior from './CardBehavior'
@@ -15,6 +17,34 @@ const CardWrapper = styled.div`
 `
 
 export default class CatCard extends Component {
+  static propTypes = {
+    adoptable: PropType.bool.isRequired,
+    house: PropType.string.isRequired,
+    HTVNr: PropType.string.isRequired,
+    inShelterSince: PropType.instanceOf(Date).isRequired,
+    kennel: PropType.number,
+    name: PropType.string.isRequired,
+    room: PropType.oneOfType([PropType.string, PropType.number]),
+    transponderNr: PropType.number,
+    color: PropType.string.isRequired,
+    dateOfBirth: PropType.instanceOf(Date).isRequired,
+    race: PropType.string.isRequired,
+    sex: PropType.oneOf(['männlich', 'weiblich', '?']).isRequired,
+    spayedOrNeutered: PropType.bool.isRequired,
+    aggressive: PropType.bool,
+    assertive: PropType.bool,
+    escapologist: PropType.bool,
+    nervous: PropType.bool,
+    outdoorDat: PropType.bool,
+    toiletTrained: PropType.bool,
+    acuteDiseases: PropType.string.isRequired,
+    chronicDiseases: PropType.string.isRequired,
+    medication: PropType.string.isRequired,
+    nutrition: PropType.string.isRequired,
+    otherTreatments: PropType.string.isRequired,
+    freeTextInfo: PropType.string
+  }
+
   render() {
     const {
       acuteDiseases,
@@ -45,7 +75,7 @@ export default class CatCard extends Component {
     } = this.props
 
     return (
-      <CardWrapper>
+      <CardWrapper data-cy="CatCard">
         <CardHead
           adoptable={adoptable}
           house={house}

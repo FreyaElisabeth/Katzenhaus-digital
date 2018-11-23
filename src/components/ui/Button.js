@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import { palesecondary, darkestprimary } from './colors'
+import { palesecondary, darkestprimary } from '../colors'
 
 const StyledButton = styled.button`
   font-size: 16px;
@@ -19,11 +20,14 @@ const StyledButton = styled.button`
 `
 
 export default class Button extends Component {
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired
+  }
+
   render() {
-    return (
-      <StyledButton onClick={this.props.onClick}>
-        <Link to={this.props.linkTo}>{this.props.text}</Link>
-      </StyledButton>
-    )
+    const { onClick, text } = this.props
+
+    return <StyledButton onClick={onClick}>{text}</StyledButton>
   }
 }

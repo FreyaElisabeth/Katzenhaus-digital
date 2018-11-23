@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropType from 'prop-types'
 
 const SectionWrapper = styled.section`
   display: grid;
@@ -19,6 +20,14 @@ const SectionWrapper = styled.section`
 `
 
 export default class CardMedCond extends Component {
+  static propTypes = {
+    acuteDiseases: PropType.string.isRequired,
+    chronicDiseases: PropType.string.isRequired,
+    medication: PropType.string.isRequired,
+    nutrition: PropType.string.isRequired,
+    otherTreatments: PropType.string.isRequired
+  }
+
   render() {
     const {
       acuteDiseases,
@@ -29,7 +38,7 @@ export default class CardMedCond extends Component {
     } = this.props
 
     return (
-      <SectionWrapper>
+      <SectionWrapper data-cy="CardMedCond">
         <div>
           <span>Akute Erkrankungen:</span>
           <span>{acuteDiseases}</span>

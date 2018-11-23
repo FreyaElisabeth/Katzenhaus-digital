@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropType from 'prop-types'
 
 const SectionWrapper = styled.section`
   display: flex;
@@ -17,6 +18,17 @@ const SectionWrapper = styled.section`
 `
 
 export default class CardHead extends Component {
+  static propTypes = {
+    adoptable: PropType.bool.isRequired,
+    house: PropType.string.isRequired,
+    HTVNr: PropType.string.isRequired,
+    inShelterSince: PropType.instanceOf(Date).isRequired,
+    kennel: PropType.number,
+    name: PropType.string.isRequired,
+    room: PropType.oneOfType([PropType.string, PropType.number]),
+    transponderNr: PropType.number
+  }
+
   render() {
     const {
       adoptable,
@@ -32,7 +44,7 @@ export default class CardHead extends Component {
     return (
       <React.Fragment>
         <h3>{name}</h3>
-        <SectionWrapper>
+        <SectionWrapper data-cy="CardHead">
           <div className="left">
             <div>{house}</div>
             <div>

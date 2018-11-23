@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropType from 'prop-types'
 
 const SectionWrapper = styled.section`
   display: grid;
@@ -20,11 +21,19 @@ const SectionWrapper = styled.section`
 `
 
 export default class CardHead extends Component {
+  static propTypes = {
+    color: PropType.string.isRequired,
+    dateOfBirth: PropType.instanceOf(Date).isRequired,
+    race: PropType.string.isRequired,
+    sex: PropType.oneOf(['männlich', 'weiblich', '?']).isRequired,
+    spayedOrNeutered: PropType.bool.isRequired
+  }
+
   render() {
     const { color, dateOfBirth, race, sex, spayedOrNeutered } = this.props
 
     return (
-      <SectionWrapper>
+      <SectionWrapper data-cy="CardDescription">
         <div>
           <span>Rasse: </span>
           <span>{race}</span>

@@ -1,40 +1,45 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import { darkestprimary } from './colors'
-import Input from './Input'
-import Button from './Button'
+import Input from './ui/Input'
+import Button from './ui/Button'
 
-const FormWrapper = styled.div`
+const StyledForm = styled.form`
   border: 1px solid ${darkestprimary};
   border-radius: 15px;
   padding: 20px;
-
-  form a:any-link {
-    text-decoration: none;
-    color: white;
-  }
 `
 
 export default class SearchForm extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    onSearchSubmit: PropTypes.func.isRequired,
+    submitPermitted: PropTypes.bool,
+    setInputToNull: PropTypes.func.isRequired
+  }
+
   render() {
+    const { onChange, onSearchSubmit, submitPermitted } = this.props
+
     return (
-      <FormWrapper>
-        <form>
-          <Input
-            onChange={this.props.onChange}
-            name="name"
-            placeholder="Kitty"
-            label="Name: "
-          />
-          <Button
-            text="Suchen"
-            onClick={this.props.OnSearchSubmit}
-            linkTo={this.props.submitPermitted ? '/searchResults' : '/search'}
-          />
-        </form>
-      </FormWrapper>
+      <StyledForm data-cy="SearchForm">
+        <Input
+          onChange={onChange}
+          name="name"
+          placeholder="Kitty"
+          label="Name: "
+        />
+        <div>
+          {' '}
+          <Link to={submitPermitted ? '/searchResults' : '/'}>
+            <Button text="Suchen" onClick={onSearchSubmit} />
+          </Link>
+        </div>
+        <div />
+      </StyledForm>
     )
   }
 

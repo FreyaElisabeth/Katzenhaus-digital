@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { palestprimary } from './colors'
 
 import SearchForm from './SearchForm'
-import CatCard from './CatCard'
+import CatCard from './catCard/CatCard'
 
 export default class App extends Component {
   state = {
@@ -98,6 +98,8 @@ export default class App extends Component {
   }
 
   render() {
+    const { nameInput } = this.state
+
     return (
       <Router>
         <Wrapper>
@@ -113,8 +115,8 @@ export default class App extends Component {
               <SearchForm
                 setInputToNull={this.setInputToNull}
                 onChange={this.handleChange}
-                onSubmit={this.onSearchSubmit}
-                submitPermitted={this.state.nameInput ? true : false}
+                onSearchSubmit={this.onSearchSubmit}
+                submitPermitted={nameInput ? true : false}
               />
             )}
           />
