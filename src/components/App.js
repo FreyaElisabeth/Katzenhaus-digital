@@ -210,7 +210,9 @@ export default class App extends Component {
 }
 
 const Wrapper = styled.main`
+  display: grid;
   padding: 20px;
   background: ${palestprimary};
   min-height: 100vh;
+  position: relative;
 `
