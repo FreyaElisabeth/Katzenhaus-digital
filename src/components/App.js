@@ -94,30 +94,26 @@ export default class App extends Component {
           'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
       }
     ],
-    nameInput: null
+    nameInput: ''
   }
 
   render() {
-    const { nameInput } = this.state
+    //const { nameInput } = this.state
 
     return (
       <Router>
         <Wrapper>
           <Route
-            path="/searchResults"
-            exact
-            render={() => this.renderSearchResults()}
-          />
-          <Route
             path="/"
             exact
             render={() => (
-              <SearchForm
-                setInputToNull={this.setInputToNull}
-                onChange={this.handleChange}
-                onSearchSubmit={this.onSearchSubmit}
-                submitPermitted={nameInput ? true : false}
-              />
+              <React.Fragment>
+                <SearchForm
+                  setInputToNull={this.resetInput}
+                  onChange={this.handleChange}
+                />
+                {this.renderSearchResults()}
+              </React.Fragment>
             )}
           />
           <nav>
@@ -128,12 +124,14 @@ export default class App extends Component {
     )
   }
 
-  setInputToNull = () => {
-    this.setState({ nameInput: null })
+  resetInput = () => {
+    this.setState({ nameInput: '' })
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name + 'Input']: event.target.value })
+    this.setState({
+      [event.target.name + 'Input']: event.target.value
+    })
   }
 
   onSearchSubmit = event => {
@@ -142,22 +140,21 @@ export default class App extends Component {
 
   renderSearchResults = () => {
     const dataSets = this.state.dataSets
-    const inputName = document.querySelector('input[name="name"]')
+    const nameInput = this.state.nameInput
 
     return dataSets
-      .filter(dataSet => dataSet.name === inputName.value)
+      .filter(dataSet =>
+        dataSet.name.toLowerCase().startsWith(nameInput.toLowerCase())
+      )
       .map(this.renderSingleDataSet)
   }
 
-  renderSingleDataSet = dataSet => {
-    const { HTVNr } = dataSet
-
-    return <CatCard key={HTVNr} {...dataSet} />
-  }
+  renderSingleDataSet = dataSet => <CatCard key={dataSet.HTVNr} {...dataSet} />
 }
 
 const Wrapper = styled.main`
   display: grid;
+  grid-gap: 20px;
   padding: 20px;
   background: ${palestprimary};
   min-height: 100vh;

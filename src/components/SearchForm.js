@@ -16,13 +16,13 @@ const StyledForm = styled.form`
 export default class SearchForm extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    onSearchSubmit: PropTypes.func.isRequired,
-    submitPermitted: PropTypes.bool,
+    /*  onSearchSubmit: PropTypes.func.isRequired,
+    submitPermitted: PropTypes.bool, */
     setInputToNull: PropTypes.func.isRequired
   }
 
   render() {
-    const { onChange, onSearchSubmit, submitPermitted } = this.props
+    const { onChange } = this.props
 
     return (
       <StyledForm data-cy="SearchForm">
@@ -32,14 +32,6 @@ export default class SearchForm extends Component {
           placeholder="Kitty"
           label="Name: "
         />
-
-        <Link to={submitPermitted ? '/searchResults' : '/'}>
-          <div>
-            <Button text="Suchen" onClick={onSearchSubmit} />
-          </div>
-        </Link>
-
-        <div />
       </StyledForm>
     )
   }
