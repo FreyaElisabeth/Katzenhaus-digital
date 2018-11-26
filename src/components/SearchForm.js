@@ -32,12 +32,13 @@ export default class SearchForm extends Component {
           placeholder="Kitty"
           label="Name: "
         />
-        <div>
-          {' '}
-          <Link to={submitPermitted ? '/searchResults' : '/'}>
+
+        <Link to={submitPermitted ? '/searchResults' : '/'}>
+          <div>
             <Button text="Suchen" onClick={onSearchSubmit} />
-          </Link>
-        </div>
+          </div>
+        </Link>
+
         <div />
       </StyledForm>
     )

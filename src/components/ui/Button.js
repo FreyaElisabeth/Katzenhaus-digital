@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { palesecondary, darkestprimary } from '../colors'
