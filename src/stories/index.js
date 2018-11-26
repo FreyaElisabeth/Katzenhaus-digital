@@ -1,16 +1,17 @@
 import React from 'react'
-
+import { Router, Route } from 'react-router-dom'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean, number, date } from '@storybook/addon-knobs'
 
-import Input from '../components/Input'
-import CardHead from '../components/CardHead'
-import CardDescription from '../components/CardDescription'
-import CardBehavior from '../components/CardBehavior'
-import CardMedCond from '../components/CardMedCond'
-import CardFreeText from '../components/CardFreeText'
-import Separator from '../components/Separator'
+import CardHead from '../components/catCard/CardHead'
+import CardDescription from '../components/catCard/CardDescription'
+import CardBehavior from '../components/catCard/CardBehavior'
+import CardMedCond from '../components/catCard/CardMedCond'
+import CardFreeText from '../components/catCard/CardFreeText'
+import Separator from '../components/catCard/Separator'
+import Input from '../components/ui/Input'
+import Button from '../components/ui/Button'
 
 function dateKnob(name, defaultValue) {
   const stringTimestamp = date(name, defaultValue)
@@ -34,7 +35,7 @@ storiesOf('CardDescription', module).add('CardDescription', () => (
   <CardDescription
     race={text('Race:', 'European Shorthair')}
     color={text('Color:', 'brown tabby')}
-    sex={text('Sex:', 'female')}
+    sex={text('Sex:', 'weiblich')}
     spayedOrNeutered={boolean('spayed/neutered', false)}
     dateOfBirth={dateKnob('Date of birth:', new Date('2015.03.15'))}
   />
@@ -68,11 +69,14 @@ storiesOf('CardFreeText', module).add('CardFreeText', () => (
 
 storiesOf('Input', module).add('Input', () => (
   <Input
-    onSubmit={action('addInputToArray')}
     placeholder={text('Your placeholder here:', 'Sir Maunzelot')}
     name="input-storybook"
     label={text('Your label here:', 'Name: ')}
   />
+))
+
+storiesOf('Button', module).add('Button', () => (
+  <Button text={text('Text', 'Submit')} onClick={action('clicked')} />
 ))
 
 storiesOf('Separator', module).add('several states', () => (

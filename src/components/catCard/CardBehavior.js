@@ -1,17 +1,27 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { paleprimary } from './colors'
+import PropType from 'prop-types'
+import { darkerprimary } from '../colors'
 
 const SectionWrapper = styled.section`
-  margin: 20px 0;
+  margin: 10px 0;
 
   div.false {
-    color: ${paleprimary};
+    color: ${darkerprimary};
     text-decoration: line-through;
   }
 `
 
 export default class CardHead extends Component {
+  static propTypes = {
+    aggressive: PropType.bool,
+    assertive: PropType.bool,
+    escapologist: PropType.bool,
+    nervous: PropType.bool,
+    outdoorDat: PropType.bool,
+    toiletTrained: PropType.bool
+  }
+
   render() {
     const {
       aggressive,
@@ -23,7 +33,7 @@ export default class CardHead extends Component {
     } = this.props
 
     return (
-      <SectionWrapper>
+      <SectionWrapper data-cy="CardBehavior">
         <div className={escapologist ? '' : 'false'}>Fluchtneigung</div>
         <div className={aggressive ? '' : 'false'}>aggressiv</div>
         <div className={nervous ? '' : 'false'}>ängstlich</div>

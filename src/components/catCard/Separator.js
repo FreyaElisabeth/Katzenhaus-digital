@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { darkestprimary } from './colors'
+import PropType from 'prop-types'
+
+import { darkestprimary } from '../colors'
 
 const Wrapper = styled.section`
   display: flex;
@@ -13,11 +15,11 @@ const Line = styled.div`
   border-bottom: 1px solid ${darkestprimary};
 
   &.left {
-    margin-left: 80px;
+    margin-left: 5%;
   }
 
   &.right {
-    margin-right: 80px;
+    margin-right: 5%;
   }
 `
 
@@ -28,9 +30,13 @@ const Text = styled.span`
 `
 
 export default class Separator extends Component {
+  static propTypes = {
+    text: PropType.string.isRequired
+  }
+
   render() {
     return (
-      <Wrapper>
+      <Wrapper data-cy="Separator">
         <Line className="left" />
         <Text>{this.props.text}</Text>
         <Line className="right" />
