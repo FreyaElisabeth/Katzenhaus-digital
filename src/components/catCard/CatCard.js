@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PropType from 'prop-types'
 
 import { darkestprimary } from '../colors'
 import CardHead from './CardHead'
@@ -17,102 +16,20 @@ const CardWrapper = styled.div`
 `
 
 export default class CatCard extends Component {
-  static propTypes = {
-    adoptable: PropType.bool.isRequired,
-    house: PropType.string.isRequired,
-    HTVNr: PropType.string.isRequired,
-    inShelterSince: PropType.instanceOf(Date).isRequired,
-    kennel: PropType.number,
-    name: PropType.string.isRequired,
-    room: PropType.oneOfType([PropType.string, PropType.number]),
-    transponderNr: PropType.number,
-    color: PropType.string.isRequired,
-    dateOfBirth: PropType.instanceOf(Date).isRequired,
-    race: PropType.string.isRequired,
-    sex: PropType.oneOf(['männlich', 'weiblich', '?']).isRequired,
-    spayedOrNeutered: PropType.bool.isRequired,
-    aggressive: PropType.bool,
-    assertive: PropType.bool,
-    escapologist: PropType.bool,
-    nervous: PropType.bool,
-    outdoorDat: PropType.bool,
-    toiletTrained: PropType.bool,
-    acuteDiseases: PropType.string.isRequired,
-    chronicDiseases: PropType.string.isRequired,
-    medication: PropType.string.isRequired,
-    nutrition: PropType.string.isRequired,
-    otherTreatments: PropType.string.isRequired,
-    freeTextInfo: PropType.string
-  }
-
   render() {
-    const {
-      acuteDiseases,
-      adoptable,
-      aggressive,
-      assertive,
-      chronicDiseases,
-      color,
-      dateOfBirth,
-      escapologist,
-      freeTextInfo,
-      house,
-      HTVNr,
-      inShelterSince,
-      kennel,
-      medication,
-      name,
-      nervous,
-      nutrition,
-      otherTreatments,
-      outdoorCat,
-      race,
-      room,
-      sex,
-      spayedOrNeutered,
-      toiletTrained,
-      transponderNr
-    } = this.props
+    const { ...data } = this.props
 
     return (
       <CardWrapper data-cy="CatCard">
-        <CardHead
-          adoptable={adoptable}
-          house={house}
-          HTVNr={HTVNr}
-          inShelterSince={inShelterSince}
-          kennel={kennel}
-          name={name}
-          room={room}
-          transponderNr={transponderNr}
-        />
+        <CardHead {...data} />
         <Separator text="Beschreibung" />
-        <CardDescription
-          color={color}
-          dateOfBirth={dateOfBirth}
-          race={race}
-          sex={sex}
-          spayedOrNeutered={spayedOrNeutered}
-        />
+        <CardDescription {...data} />
         <Separator text="Verhalten" />
-        <CardBehavior
-          toiletTrained={toiletTrained}
-          nervous={nervous}
-          aggressive={aggressive}
-          escapologist={escapologist}
-          assertive={assertive}
-          outdoorCat={outdoorCat}
-        />
+        <CardBehavior {...data} />
         <Separator text="Gesundheitszustand" />
-        <CardMedCond
-          acuteDiseases={acuteDiseases}
-          chronicDiseases={chronicDiseases}
-          medication={medication}
-          nutrition={nutrition}
-          otherTreatments={otherTreatments}
-        />
+        <CardMedCond {...data} />
         <Separator text="Sonstiges" />
-        <CardFreeText freeTextInfo={freeTextInfo} />
+        <CardFreeText {...data} />
       </CardWrapper>
     )
   }

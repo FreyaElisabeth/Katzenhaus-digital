@@ -22,20 +22,15 @@ describe('App', () => {
         cy.get('@label').find('[name=name]')
       })
     })
-
-    it('has a button with text Suchen', () => {
-      cy.get('button').should('contain', 'Suchen')
-    })
   })
 
-  describe('Search for dataSet', () => {
+  describe('Search for dataSet while typing, case insensitive', () => {
     beforeEach(() => {
-      cy.get('[name=name]').type('Elvis')
+      cy.get('[name=name]').type('elv')
     })
 
-    it('can search for dataSet', () => {
-      cy.get('button').click()
-      cy.get('[data-cy=CatCard]').should('have.length', 1)
+    it('shows the required dataSet', () => {
+      cy.get('[data-cy=CatCard]').should('contain', 'Elvis')
     })
   })
 })

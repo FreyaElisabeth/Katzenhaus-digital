@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { palestprimary } from './colors'
 
@@ -109,16 +109,13 @@ export default class App extends Component {
             render={() => (
               <React.Fragment>
                 <SearchForm
-                  setInputToNull={this.resetInput}
+                  resetInput={this.resetInput}
                   onChange={this.handleChange}
                 />
                 {this.renderSearchResults()}
               </React.Fragment>
             )}
           />
-          <nav>
-            <NavLink to="/">Search</NavLink>
-          </nav>
         </Wrapper>
       </Router>
     )
@@ -139,8 +136,7 @@ export default class App extends Component {
   }
 
   renderSearchResults = () => {
-    const dataSets = this.state.dataSets
-    const nameInput = this.state.nameInput
+    const { dataSets, nameInput } = this.state
 
     return dataSets
       .filter(dataSet =>
