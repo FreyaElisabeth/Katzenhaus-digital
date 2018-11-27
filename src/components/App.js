@@ -12,10 +12,10 @@ export default class App extends Component {
       {
         name: 'Nimue',
         HTVNr: '848_A_17',
-        transponderNr: 276097200023868,
+        transponderNr: '276097200023868',
         house: 'Neues Katzenhaus',
-        room: 9,
-        kennel: 7,
+        room: '9',
+        kennel: '7',
         sex: 'weiblich',
         spayedOrNeutered: true,
         adoptable: true,
@@ -40,10 +40,10 @@ export default class App extends Component {
       {
         name: 'Sir Maunzelot',
         HTVNr: '849_A_17',
-        transponderNr: 276097200023869,
+        transponderNr: '276097200023869',
         house: 'Neues Katzenhaus',
-        room: 9,
-        kennel: 7,
+        room: '9',
+        kennel: '7',
         sex: 'männlich',
         spayedOrNeutered: true,
         adoptable: true,
@@ -68,10 +68,10 @@ export default class App extends Component {
       {
         name: 'Elvis',
         HTVNr: '327_F_01',
-        transponderNr: 276097200023855,
+        transponderNr: '276097200023855',
         house: 'Neues Katzenhaus',
-        room: 6,
-        kennel: 7,
+        room: '6',
+        kennel: '7',
         sex: 'männlich',
         spayedOrNeutered: false,
         adoptable: true,
@@ -95,7 +95,8 @@ export default class App extends Component {
       }
     ],
     nameInput: '',
-    HTVNrInput: ''
+    HTVNrInput: '',
+    transponderNrInput: ''
   }
 
   render() {
@@ -110,6 +111,7 @@ export default class App extends Component {
                 <SearchForm
                   resetInput={this.resetInput}
                   onChange={this.handleChange}
+                  onSubmit={this.preventDefault}
                 />
                 {this.renderSearchResults()}
               </React.Fragment>
@@ -120,10 +122,6 @@ export default class App extends Component {
     )
   }
 
-  resetInput = () => {
-    this.setState({ nameInput: '', HTVNrInput: '' })
-  }
-
   handleChange = event => {
     this.setState({
       [event.target.name + 'Input']: event.target.value
@@ -131,7 +129,7 @@ export default class App extends Component {
   }
 
   renderSearchResults = () => {
-    const { dataSets, nameInput, HTVNrInput } = this.state
+    const { dataSets, nameInput, HTVNrInput, transponderNrInput } = this.state
 
     return dataSets
       .filter(dataSet =>
@@ -140,10 +138,19 @@ export default class App extends Component {
       .filter(dataSet =>
         dataSet.HTVNr.toLowerCase().includes(HTVNrInput.toLowerCase())
       )
+      .filter(dataSet =>
+        dataSet.transponderNr.toString().includes(transponderNrInput)
+      )
       .map(this.renderSingleDataSet)
   }
 
   renderSingleDataSet = dataSet => <CatCard key={dataSet.HTVNr} {...dataSet} />
+
+  preventDefault = event => event.preventDefault()
+
+  resetInput = () => {
+    this.setState({ nameInput: '', HTVNrInput: '' })
+  }
 }
 
 const Wrapper = styled.main`

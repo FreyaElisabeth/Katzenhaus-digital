@@ -18,10 +18,10 @@ export default class SearchForm extends Component {
   }
 
   render() {
-    const { onChange } = this.props
+    const { onChange, onSubmit } = this.props
 
     return (
-      <StyledForm data-cy="SearchForm">
+      <StyledForm data-cy="SearchForm" onSubmit={onSubmit}>
         <Input
           onChange={onChange}
           name="name"
@@ -31,8 +31,20 @@ export default class SearchForm extends Component {
         <Input
           onChange={onChange}
           name="HTVNr"
-          placeholder="987_F_..."
+          placeholder="123_F_18"
           label="HTV-Nummer: "
+        />
+        <Input
+          onChange={onChange}
+          name="transponderNr"
+          placeholder="...123"
+          label="Transponder: "
+        />
+        <Select
+          onChange={onChange}
+          name="house"
+          placeholder="Neues Katzenhaus"
+          label="Haus: "
         />
       </StyledForm>
     )

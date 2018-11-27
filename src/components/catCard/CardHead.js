@@ -23,10 +23,10 @@ export default class CardHead extends Component {
     house: PropType.string.isRequired,
     HTVNr: PropType.string.isRequired,
     inShelterSince: PropType.instanceOf(Date).isRequired,
-    kennel: PropType.number,
+    kennel: PropType.string,
     name: PropType.string.isRequired,
-    room: PropType.oneOfType([PropType.string, PropType.number]),
-    transponderNr: PropType.number
+    room: PropType.string.isRequired,
+    transponderNr: PropType.string
   }
 
   render() {
