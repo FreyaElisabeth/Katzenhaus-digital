@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import { darkestprimary } from './colors'
 import Input from './ui/Input'
+import Select from './ui/Select'
 
 const StyledForm = styled.form`
   border: 1px solid ${darkestprimary};
@@ -43,7 +44,7 @@ export default class SearchForm extends Component {
         <Select
           onChange={onChange}
           name="house"
-          placeholder="Neues Katzenhaus"
+          options={['Neues Katzenhaus', 'Altes Katzenhaus', 'Außengehege']}
           label="Haus: "
         />
       </StyledForm>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import uid from 'uid'
 
 import { palesecondary, darkerprimary } from '../colors'
 
-const StyledInput = styled.input`
+const StyledSelect = styled.select`
   margin: 0.3em 0 1em 0;
   font-size: 16px;
   display: block;
@@ -23,24 +24,31 @@ export default class Input extends Component {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
+    options: PropTypes.arrayOf(PropTypes.string).isRequired
   }
 
-  static defaultProps = {
-    placeholder: 'Type here'
+  renderOptions(options) {
+    return options.map(this.renderSingleOption)
+  }
+
+  renderSingleOption(option) {
+    return (
+      <option key={uid()} value={option.toLowerCase()}>
+        {option}
+      </option>
+    )
   }
 
   render() {
-    const { name, placeholder, label, onChange } = this.props
+    const { name, label, onChange, options } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
-        <StyledInput
-          name={name}
-          placeholder={placeholder}
-          onChange={onChange}
-        />
+        <StyledSelect name={name} onChange={onChange}>
+          <option value="">Haus auswählen</option>
+          {this.renderOptions(options)}
+        </StyledSelect>
       </label>
     )
   }
