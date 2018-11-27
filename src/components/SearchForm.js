@@ -28,6 +28,12 @@ export default class SearchForm extends Component {
           placeholder="Kitty"
           label="Name: "
         />
+        <Input
+          onChange={onChange}
+          name="HTVNumber"
+          placeholder="HTV_..."
+          label="HTV-Nummer: "
+        />
       </StyledForm>
     )
   }

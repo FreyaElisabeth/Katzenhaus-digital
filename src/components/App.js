@@ -94,7 +94,8 @@ export default class App extends Component {
           'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
       }
     ],
-    nameInput: ''
+    nameInput: '',
+    HTVNrInput: ''
   }
 
   render() {

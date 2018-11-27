@@ -72,6 +72,7 @@ storiesOf('Input', module).add('Input', () => (
     placeholder={text('Your placeholder here:', 'Sir Maunzelot')}
     name="input-storybook"
     label={text('Your label here:', 'Name: ')}
+    onChange={action('Value logged in state')}
   />
 ))
 

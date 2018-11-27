@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { palesecondary } from '../colors'
+import { palesecondary, darkerprimary } from '../colors'
 
 const StyledInput = styled.input`
-  margin: 0.5em 0 1em 0;
+  margin: 0.3em 0 1em 0;
   font-size: 16px;
-  padding: 1%;
-  border: none;
   display: block;
+  border-width: 1px;
+  border-style: inset;
+  border-color: ${darkerprimary};
 
   &:focus {
     outline: none;
