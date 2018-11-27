@@ -30,6 +30,11 @@ export default class Input extends Component {
     placeholder: 'Type here'
   }
 
+  constructor(props) {
+    super(props)
+    this.textInput = React.createRef()
+  }
+
   render() {
     const { name, placeholder, label, onChange } = this.props
 
@@ -40,6 +45,7 @@ export default class Input extends Component {
           name={name}
           placeholder={placeholder}
           onChange={onChange}
+          ref={this.textInput}
         />
       </label>
     )

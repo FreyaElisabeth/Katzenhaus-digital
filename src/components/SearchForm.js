@@ -30,8 +30,8 @@ export default class SearchForm extends Component {
         />
         <Input
           onChange={onChange}
-          name="HTVNumber"
-          placeholder="HTV_..."
+          name="HTVNr"
+          placeholder="987_F_..."
           label="HTV-Nummer: "
         />
       </StyledForm>

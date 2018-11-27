@@ -67,7 +67,7 @@ export default class App extends Component {
       },
       {
         name: 'Elvis',
-        HTVNr: '849_F_01',
+        HTVNr: '327_F_01',
         transponderNr: 276097200023855,
         house: 'Neues Katzenhaus',
         room: 6,
@@ -99,8 +99,6 @@ export default class App extends Component {
   }
 
   render() {
-    //const { nameInput } = this.state
-
     return (
       <Router>
         <Wrapper>
@@ -123,7 +121,7 @@ export default class App extends Component {
   }
 
   resetInput = () => {
-    this.setState({ nameInput: '' })
+    this.setState({ nameInput: '', HTVNrInput: '' })
   }
 
   handleChange = event => {
@@ -132,16 +130,15 @@ export default class App extends Component {
     })
   }
 
-  onSearchSubmit = event => {
-    event.preventDefault()
-  }
-
   renderSearchResults = () => {
-    const { dataSets, nameInput } = this.state
+    const { dataSets, nameInput, HTVNrInput } = this.state
 
     return dataSets
       .filter(dataSet =>
         dataSet.name.toLowerCase().startsWith(nameInput.toLowerCase())
+      )
+      .filter(dataSet =>
+        dataSet.HTVNr.toLowerCase().includes(HTVNrInput.toLowerCase())
       )
       .map(this.renderSingleDataSet)
   }
