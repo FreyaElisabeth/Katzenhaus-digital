@@ -15,7 +15,7 @@ const StyledForm = styled.form`
 export default class SearchForm extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    resetInput: PropTypes.func.isRequired
+    resetInputValues: PropTypes.func.isRequired
   }
 
   render() {
@@ -47,11 +47,30 @@ export default class SearchForm extends Component {
           options={['Neues Katzenhaus', 'Altes Katzenhaus', 'Außengehege']}
           label="Haus: "
         />
+        <Select
+          onChange={onChange}
+          name="room"
+          options={[
+            'Spielzimmer',
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            'Krankenzimmer',
+            'Büro',
+            'Pausenraum'
+          ]}
+          label="Raum: "
+        />
       </StyledForm>
     )
   }
 
   componentDidMount() {
-    this.props.resetInput()
+    this.props.resetInputValues()
   }
 }

@@ -33,7 +33,7 @@ export default class Input extends Component {
 
   renderSingleOption(option) {
     return (
-      <option key={uid()} value={option.toLowerCase()}>
+      <option value={option.toString().toLowerCase()} key={uid()}>
         {option}
       </option>
     )
@@ -46,7 +46,8 @@ export default class Input extends Component {
       <label htmlFor={name}>
         {label}
         <StyledSelect name={name} onChange={onChange}>
-          <option value="">Haus auswählen</option>
+          <option value="">Bitte wählen</option>
+          <option value="2. Select">2. Wert</option>
           {this.renderOptions(options)}
         </StyledSelect>
       </label>

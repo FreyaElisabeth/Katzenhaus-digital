@@ -14,7 +14,7 @@ export default class App extends Component {
         HTVNr: '848_A_17',
         transponderNr: '276097200023868',
         house: 'Neues Katzenhaus',
-        room: '9',
+        room: '7',
         kennel: '7',
         sex: 'weiblich',
         spayedOrNeutered: true,
@@ -42,7 +42,7 @@ export default class App extends Component {
         HTVNr: '849_A_17',
         transponderNr: '276097200023869',
         house: 'Neues Katzenhaus',
-        room: '9',
+        room: '7',
         kennel: '7',
         sex: 'männlich',
         spayedOrNeutered: true,
@@ -69,7 +69,7 @@ export default class App extends Component {
         name: 'Elvis',
         HTVNr: '327_F_01',
         transponderNr: '276097200023855',
-        house: 'Neues Katzenhaus',
+        house: 'Altes Katzenhaus',
         room: '6',
         kennel: '7',
         sex: 'männlich',
@@ -96,7 +96,10 @@ export default class App extends Component {
     ],
     nameInput: '',
     HTVNrInput: '',
-    transponderNrInput: ''
+    transponderNrInput: '',
+    houseInput: '',
+    roomInput: '',
+    kennelInput: ''
   }
 
   render() {
@@ -109,7 +112,7 @@ export default class App extends Component {
             render={() => (
               <React.Fragment>
                 <SearchForm
-                  resetInput={this.resetInput}
+                  resetInputValues={this.resetInputValues}
                   onChange={this.handleChange}
                   onSubmit={this.preventDefault}
                 />
@@ -129,17 +132,33 @@ export default class App extends Component {
   }
 
   renderSearchResults = () => {
-    const { dataSets, nameInput, HTVNrInput, transponderNrInput } = this.state
+    const {
+      dataSets,
+      nameInput,
+      HTVNrInput,
+      transponderNrInput,
+      houseInput,
+      roomInput
+    } = this.state
 
     return dataSets
       .filter(dataSet =>
-        dataSet.name.toLowerCase().startsWith(nameInput.toLowerCase())
+        dataSet.name.toLowerCase().includes(nameInput.toLowerCase())
       )
       .filter(dataSet =>
         dataSet.HTVNr.toLowerCase().includes(HTVNrInput.toLowerCase())
       )
       .filter(dataSet =>
         dataSet.transponderNr.toString().includes(transponderNrInput)
+      )
+      .filter(dataSet =>
+        dataSet.house.toLowerCase().includes(houseInput.toLowerCase())
+      )
+      .filter(dataSet =>
+        dataSet.room
+          .toString()
+          .toLowerCase()
+          .includes(roomInput.toLowerCase())
       )
       .map(this.renderSingleDataSet)
   }
@@ -148,8 +167,14 @@ export default class App extends Component {
 
   preventDefault = event => event.preventDefault()
 
-  resetInput = () => {
-    this.setState({ nameInput: '', HTVNrInput: '' })
+  resetInputValues = () => {
+    this.setState({
+      nameInput: '',
+      HTVNrInput: '',
+      houseInput: '',
+      roomInput: '',
+      kennelInput: ''
+    })
   }
 }
 
