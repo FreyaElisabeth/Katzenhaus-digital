@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { palestprimary } from './colors'
+import { palestprimary, brightprimary, darkestprimary } from './colors'
 
 import SearchForm from './ui/SearchForm'
+import DataSetCreationForm from './ui/DataSetCreationForm'
 import CatCard from './catCard/CatCard'
 
 export default class App extends Component {
@@ -115,14 +116,33 @@ export default class App extends Component {
                   resetInputValues={this.resetInputValues}
                   onChange={this.handleChange}
                   onSubmit={this.preventDefault}
-                  displayValueSelectRoom={this.state.roomInput}
                   displayValueSelectHouse={this.state.houseInput}
+                  displayValueSelectRoom={this.state.roomInput}
                   displayValueSelectKennel={this.state.kennelInput}
                 />
                 {this.renderSearchResults()}
               </React.Fragment>
             )}
           />
+          <Route
+            path="/dataSetCreation"
+            render={() => (
+              <DataSetCreationForm
+                onChange={this.handleChange}
+                onSubmit={this.sendDataSetToServer}
+                preventDefault={this.preventDefault}
+                displayValueSelectHouse={this.state.houseInput}
+                displayValueSelectRoom={this.state.roomInput}
+                displayValueSelectKennel={this.state.kennelInput}
+              />
+            )}
+          />
+          <nav>
+            <NavLink exact to="/">
+              Search
+            </NavLink>
+            <NavLink to="/dataSetCreation">Create</NavLink>
+          </nav>
         </Wrapper>
       </Router>
     )
@@ -183,13 +203,31 @@ export default class App extends Component {
       kennelInput: ''
     })
   }
+  sendDataSetToServer = () => console.log('sendDataSetToServer')
 }
 
 const Wrapper = styled.main`
   display: grid;
+  grid-template-rows: min-content;
   grid-gap: 20px;
   padding: 20px;
   background: ${palestprimary};
   min-height: 100vh;
   position: relative;
+
+  nav {
+    display: flex;
+
+    a {
+      text-decoration: none;
+      color: white;
+      background: ${brightprimary};
+      border: 1px solid ${darkestprimary};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 50%;
+    }
+  }
 `

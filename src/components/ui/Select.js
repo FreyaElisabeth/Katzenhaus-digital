@@ -33,7 +33,7 @@ export default class Input extends Component {
 
   renderSingleOption(option) {
     return (
-      <option value={option.toString().toLowerCase()} key={uid()}>
+      <option value={option.toString()} key={uid()}>
         {option}
       </option>
     )

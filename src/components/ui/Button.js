@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   color: white;
   border-radius: 5px;
   border: none;
-  padding: 1%;
+  padding: 0.5em;
 
   &:focus {
     outline: none;
