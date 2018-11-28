@@ -21,7 +21,7 @@ export default class CardHead extends Component {
   static propTypes = {
     adoptable: PropType.bool.isRequired,
     house: PropType.string.isRequired,
-    HTVNr: PropType.string.isRequired,
+    id: PropType.string.isRequired,
     inShelterSince: PropType.instanceOf(Date).isRequired,
     kennel: PropType.string,
     name: PropType.string.isRequired,
@@ -33,7 +33,7 @@ export default class CardHead extends Component {
     const {
       adoptable,
       house,
-      HTVNr,
+      id,
       inShelterSince,
       kennel,
       name,
@@ -55,7 +55,7 @@ export default class CardHead extends Component {
             </div>
           </div>
           <div className="right">
-            <div>HTV-Nr.: {HTVNr}</div>
+            <div>HTV-Nr.: {id}</div>
             <div>Transponder: {transponderNr}</div>
             <div>
               im Tierheim seit {inShelterSince.toLocaleDateString('de')}

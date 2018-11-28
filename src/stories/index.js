@@ -1,8 +1,7 @@
 import React from 'react'
-import { Router, Route } from 'react-router-dom'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { text, boolean, number, date } from '@storybook/addon-knobs'
+import { text, boolean, number, date, array } from '@storybook/addon-knobs'
 
 import CardHead from '../components/catCard/CardHead'
 import CardDescription from '../components/catCard/CardDescription'
@@ -11,6 +10,7 @@ import CardMedCond from '../components/catCard/CardMedCond'
 import CardFreeText from '../components/catCard/CardFreeText'
 import Separator from '../components/catCard/Separator'
 import Input from '../components/ui/Input'
+import Select from '../components/ui/Select'
 import Button from '../components/ui/Button'
 
 function dateKnob(name, defaultValue) {
@@ -67,6 +67,13 @@ storiesOf('CardFreeText', module).add('CardFreeText', () => (
   />
 ))
 
+storiesOf('Separator', module).add('several states', () => (
+  <React.Fragment>
+    <Separator text={text('Your text here:', 'this is a separator')} />
+    <Separator text="separator" />
+  </React.Fragment>
+))
+
 storiesOf('Input', module).add('Input', () => (
   <Input
     placeholder={text('Your placeholder here:', 'Sir Maunzelot')}
@@ -76,13 +83,19 @@ storiesOf('Input', module).add('Input', () => (
   />
 ))
 
-storiesOf('Button', module).add('Button', () => (
-  <Button text={text('Text', 'Submit')} onClick={action('clicked')} />
+storiesOf('Select', module).add('Select', () => (
+  <Select
+    options={array('Array of options:', [
+      1,
+      2,
+      'Krankenstation',
+      'Spielzimmer'
+    ])}
+    onChange={action('onChange')}
+    label={text('Label:', 'Raum: ')}
+  />
 ))
 
-storiesOf('Separator', module).add('several states', () => (
-  <React.Fragment>
-    <Separator text={text('Your text here:', 'this is a separator')} />
-    <Separator text="separator" />
-  </React.Fragment>
+storiesOf('Button', module).add('Button', () => (
+  <Button text={text('Text', 'Submit')} onClick={action('clicked')} />
 ))

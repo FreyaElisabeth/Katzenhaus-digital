@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { palestprimary } from './colors'
 
-import SearchForm from './SearchForm'
+import SearchForm from './ui/SearchForm'
 import CatCard from './catCard/CatCard'
 
 export default class App extends Component {
@@ -11,7 +11,7 @@ export default class App extends Component {
     dataSets: [
       {
         name: 'Nimue',
-        HTVNr: '848_A_17',
+        id: '848_A_17',
         transponderNr: '276097200023868',
         house: 'Neues Katzenhaus',
         room: '7',
@@ -39,7 +39,7 @@ export default class App extends Component {
       },
       {
         name: 'Sir Maunzelot',
-        HTVNr: '849_A_17',
+        id: '849_A_17',
         transponderNr: '276097200023869',
         house: 'Neues Katzenhaus',
         room: '7',
@@ -67,7 +67,7 @@ export default class App extends Component {
       },
       {
         name: 'Elvis',
-        HTVNr: '327_F_01',
+        id: '327_F_01',
         transponderNr: '276097200023855',
         house: 'Altes Katzenhaus',
         room: '6',
@@ -95,7 +95,7 @@ export default class App extends Component {
       }
     ],
     nameInput: '',
-    HTVNrInput: '',
+    idInput: '',
     transponderNrInput: '',
     houseInput: '',
     roomInput: '',
@@ -138,10 +138,11 @@ export default class App extends Component {
     const {
       dataSets,
       nameInput,
-      HTVNrInput,
+      idInput,
       transponderNrInput,
       houseInput,
-      roomInput
+      roomInput,
+      kennelInput
     } = this.state
 
     return dataSets
@@ -149,7 +150,7 @@ export default class App extends Component {
         dataSet.name.toLowerCase().includes(nameInput.toLowerCase())
       )
       .filter(dataSet =>
-        dataSet.HTVNr.toLowerCase().includes(HTVNrInput.toLowerCase())
+        dataSet.id.toLowerCase().includes(idInput.toLowerCase())
       )
       .filter(dataSet =>
         dataSet.transponderNr.toString().includes(transponderNrInput)
@@ -163,17 +164,20 @@ export default class App extends Component {
           .toLowerCase()
           .includes(roomInput.toLowerCase())
       )
+      .filter(dataSet =>
+        dataSet.kennel.toString().includes(kennelInput.toString())
+      )
       .map(this.renderSingleDataSet)
   }
 
-  renderSingleDataSet = dataSet => <CatCard key={dataSet.HTVNr} {...dataSet} />
+  renderSingleDataSet = dataSet => <CatCard key={dataSet.id} {...dataSet} />
 
   preventDefault = event => event.preventDefault()
 
   resetInputValues = () => {
     this.setState({
       nameInput: '',
-      HTVNrInput: '',
+      idInput: '',
       houseInput: '',
       roomInput: '',
       kennelInput: ''
