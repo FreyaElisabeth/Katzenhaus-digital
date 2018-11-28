@@ -115,6 +115,9 @@ export default class App extends Component {
                   resetInputValues={this.resetInputValues}
                   onChange={this.handleChange}
                   onSubmit={this.preventDefault}
+                  displayValueSelectRoom={this.state.roomInput}
+                  displayValueSelectHouse={this.state.houseInput}
+                  displayValueSelectKennel={this.state.kennelInput}
                 />
                 {this.renderSearchResults()}
               </React.Fragment>

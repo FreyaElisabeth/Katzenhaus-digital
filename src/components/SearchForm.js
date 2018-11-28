@@ -15,11 +15,27 @@ const StyledForm = styled.form`
 export default class SearchForm extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    resetInputValues: PropTypes.func.isRequired
+    resetInputValues: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    displayValueSelectHouse: PropTypes.string.isRequired,
+    displayValueSelectRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    displayValueSelectKennel: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired
   }
 
   render() {
-    const { onChange, onSubmit } = this.props
+    const {
+      onChange,
+      onSubmit,
+      displayValueSelectHouse,
+      displayValueSelectRoom,
+      displayValueSelectKennel
+    } = this.props
 
     return (
       <StyledForm data-cy="SearchForm" onSubmit={onSubmit}>
@@ -46,6 +62,7 @@ export default class SearchForm extends Component {
           name="house"
           options={['Neues Katzenhaus', 'Altes Katzenhaus', 'Außengehege']}
           label="Haus: "
+          displayValue={displayValueSelectHouse}
         />
         <Select
           onChange={onChange}
@@ -65,6 +82,14 @@ export default class SearchForm extends Component {
             'Pausenraum'
           ]}
           label="Raum: "
+          displayValue={displayValueSelectRoom}
+        />
+        <Select
+          onChange={onChange}
+          name="kennel"
+          options={[1, 2, 3, 4, 5, 6, 7, 8]}
+          label="Kennel: "
+          displayValue={displayValueSelectKennel}
         />
       </StyledForm>
     )

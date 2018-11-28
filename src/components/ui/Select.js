@@ -24,7 +24,7 @@ export default class Input extends Component {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.arrayOf(PropTypes.string).isRequired
+    options: PropTypes.array.isRequired
   }
 
   renderOptions(options) {
@@ -40,14 +40,13 @@ export default class Input extends Component {
   }
 
   render() {
-    const { name, label, onChange, options } = this.props
+    const { name, label, onChange, options, displayValue } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
-        <StyledSelect name={name} onChange={onChange}>
+        <StyledSelect name={name} onChange={onChange} value={displayValue}>
           <option value="">Bitte wählen</option>
-          <option value="2. Select">2. Wert</option>
           {this.renderOptions(options)}
         </StyledSelect>
       </label>
