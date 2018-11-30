@@ -100,7 +100,8 @@ export default class App extends Component {
     transponderNrInput: '',
     houseInput: '',
     roomInput: '',
-    kennelInput: ''
+    kennelInput: '',
+    adoptableCheckbox: false
   }
 
   render() {
@@ -130,6 +131,7 @@ export default class App extends Component {
               <DataSetCreationForm
                 onChange={this.handleChange}
                 onSubmit={this.createNewDataSet}
+                onCheck={this.handleCheck}
                 preventDefault={this.preventDefault}
                 displayValueSelectHouse={this.state.houseInput}
                 displayValueSelectRoom={this.state.roomInput}
@@ -152,6 +154,16 @@ export default class App extends Component {
     this.setState({
       [event.target.name + 'Input']: event.target.value
     })
+  }
+
+  handleCheck = event => {
+    const checkBoxChecked = event.target.checked ? true : false
+
+    this.setState({
+      [event.target.name + 'Checkbox']: checkBoxChecked
+    })
+
+    console.log(event.target.checked)
   }
 
   renderSearchResults = () => {
@@ -200,7 +212,9 @@ export default class App extends Component {
       idInput: '',
       houseInput: '',
       roomInput: '',
-      kennelInput: ''
+      kennelInput: '',
+      transponderNrInput: '',
+      adoptableCheckbox: false
     })
   }
 

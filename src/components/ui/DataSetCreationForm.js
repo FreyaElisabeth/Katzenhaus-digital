@@ -6,6 +6,7 @@ import { darkestprimary } from '../colors'
 import Input from './Input'
 import Select from './Select'
 import Button from './Button'
+import Checkbox from './Checkbox'
 
 export default class DataSetCreationForm extends Component {
   static propTypes = {
@@ -28,12 +29,13 @@ export default class DataSetCreationForm extends Component {
     this.nameInputRef = React.createRef()
     this.idInputRef = React.createRef()
     this.transponderNrInputRef = React.createRef()
+    this.adoptableCheckboxRef = React.createRef()
   }
 
   render() {
     const {
       onChange,
-      onSubmit,
+      onCheck,
       preventDefault,
       displayValueSelectHouse,
       displayValueSelectRoom,
@@ -63,6 +65,12 @@ export default class DataSetCreationForm extends Component {
             placeholder="276097200023868"
             label="Transponder: "
             inputRef={this.transponderNrInputRef}
+          />
+          <Checkbox
+            onCheck={onCheck}
+            name="adoptable"
+            label="vermittelbar"
+            inputRef={this.adoptableCheckboxRef}
           />
         </div>
         <div>

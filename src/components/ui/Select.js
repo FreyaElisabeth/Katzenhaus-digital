@@ -9,9 +9,7 @@ const StyledSelect = styled.select`
   margin: 0.3em 0 1em 0;
   font-size: 16px;
   display: block;
-  border-width: 1px;
-  border-style: inset;
-  border-color: ${darkerprimary};
+  border: 1px inset ${darkerprimary};
 
   &:focus {
     outline: none;

@@ -8,9 +8,9 @@ const StyledInput = styled.input`
   margin: 0.3em 0 1em 0;
   font-size: 16px;
   display: block;
-  border-width: 1px;
-  border-style: inset;
-  border-color: ${darkerprimary};
+  border: 1px inset ${darkerprimary};
+  border-radius: 3px;
+  padding: 1px 0.4em 2px 0.4em;
 
   &:focus {
     outline: none;
