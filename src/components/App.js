@@ -96,7 +96,7 @@ const dataSets = [
 
 export default class App extends Component {
   state = {
-    dataSets: this.loadFromLocalStorage || dataSets,
+    dataSets: this.loadFromLocalStorage() || dataSets,
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -261,7 +261,7 @@ export default class App extends Component {
     )
   }
 
-  loadFromLocalStorage = () => {
+  loadFromLocalStorage() {
     try {
       return JSON.parse(localStorage.getItem('Katzenhaus-digital'))
     } catch (err) {
