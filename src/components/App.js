@@ -7,94 +7,96 @@ import SearchForm from './ui/SearchForm'
 import DataSetCreationForm from './ui/DataSetCreationForm'
 import CatCard from './catCard/CatCard'
 
+const dataSets = [
+  {
+    name: 'Nimue',
+    id: '848_A_17',
+    transponderNr: '276097200023868',
+    house: 'Neues Katzenhaus',
+    room: '7',
+    kennel: '7',
+    sex: 'weiblich',
+    spayedOrNeutered: true,
+    adoptable: true,
+    race: 'Europäisch Kurzhaar',
+    color: 'braun-schwarz getigert',
+    dateOfBirth: new Date('2005.04.29'),
+    inShelterSince: new Date('2017.03.01'),
+    aggressive: false,
+    assertive: true,
+    nervous: false,
+    escapologist: true,
+    outdoorCat: false,
+    toiletTrained: true,
+    acuteDiseases: 'Schnupfen',
+    chronicDiseases: 'Übergewicht',
+    nutrition: 'nur Trockenfutter',
+    medication: '',
+    otherTreatments: '',
+    freeTextInfo:
+      'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
+  },
+  {
+    name: 'Sir Maunzelot',
+    id: '849_A_17',
+    transponderNr: '276097200023869',
+    house: 'Neues Katzenhaus',
+    room: '7',
+    kennel: '7',
+    sex: 'männlich',
+    spayedOrNeutered: true,
+    adoptable: true,
+    race: 'Norwegische Waldkatze x Sibirer x Europäisch Kurzhaar',
+    color: 'silbergrau getigert',
+    dateOfBirth: new Date('2008.03.21'),
+    inShelterSince: new Date('2017.03.01'),
+    aggressive: false,
+    assertive: false,
+    nervous: true,
+    escapologist: true,
+    outdoorCat: false,
+    toiletTrained: true,
+    acuteDiseases: 'Schnupfen',
+    chronicDiseases: 'leichtes Übergewicht',
+    nutrition: 'nur Trockenfutter',
+    medication: '',
+    otherTreatments: '',
+    freeTextInfo:
+      'Sir Maunzelot braucht viel Zuneigung, aber auch viel Zeit, um Vertrauen zu fassen.'
+  },
+  {
+    name: 'Elvis',
+    id: '327_F_01',
+    transponderNr: '276097200023855',
+    house: 'Altes Katzenhaus',
+    room: '6',
+    kennel: '7',
+    sex: 'männlich',
+    spayedOrNeutered: false,
+    adoptable: true,
+    race: 'Europäisch Kurzhaar',
+    color: 'rot getigert, weiße Brust',
+    dateOfBirth: new Date('2001.07.01'),
+    inShelterSince: new Date('2001.08.01'),
+    aggressive: false,
+    assertive: true,
+    nervous: false,
+    escapologist: true,
+    outdoorCat: true,
+    toiletTrained: false,
+    acuteDiseases: 'Schnupfen, Flöhe',
+    chronicDiseases: '',
+    nutrition: 'Aufbaufütterung',
+    medication: 'Flohmittel',
+    otherTreatments: 'Wärmelampe',
+    freeTextInfo:
+      'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
+  }
+]
+
 export default class App extends Component {
   state = {
-    dataSets: [
-      {
-        name: 'Nimue',
-        id: '848_A_17',
-        transponderNr: '276097200023868',
-        house: 'Neues Katzenhaus',
-        room: '7',
-        kennel: '7',
-        sex: 'weiblich',
-        spayedOrNeutered: true,
-        adoptable: true,
-        race: 'Europäisch Kurzhaar',
-        color: 'braun-schwarz getigert',
-        dateOfBirth: new Date('2005.04.29'),
-        inShelterSince: new Date('2017.03.01'),
-        aggressive: false,
-        assertive: true,
-        nervous: false,
-        escapologist: true,
-        outdoorCat: false,
-        toiletTrained: true,
-        acuteDiseases: 'Schnupfen',
-        chronicDiseases: 'Übergewicht',
-        nutrition: 'nur Trockenfutter',
-        medication: '',
-        otherTreatments: '',
-        freeTextInfo:
-          'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
-      },
-      {
-        name: 'Sir Maunzelot',
-        id: '849_A_17',
-        transponderNr: '276097200023869',
-        house: 'Neues Katzenhaus',
-        room: '7',
-        kennel: '7',
-        sex: 'männlich',
-        spayedOrNeutered: true,
-        adoptable: true,
-        race: 'Norwegische Waldkatze x Sibirer x Europäisch Kurzhaar',
-        color: 'silbergrau getigert',
-        dateOfBirth: new Date('2008.03.21'),
-        inShelterSince: new Date('2017.03.01'),
-        aggressive: false,
-        assertive: false,
-        nervous: true,
-        escapologist: true,
-        outdoorCat: false,
-        toiletTrained: true,
-        acuteDiseases: 'Schnupfen',
-        chronicDiseases: 'leichtes Übergewicht',
-        nutrition: 'nur Trockenfutter',
-        medication: '',
-        otherTreatments: '',
-        freeTextInfo:
-          'Sir Maunzelot braucht viel Zuneigung, aber auch viel Zeit, um Vertrauen zu fassen.'
-      },
-      {
-        name: 'Elvis',
-        id: '327_F_01',
-        transponderNr: '276097200023855',
-        house: 'Altes Katzenhaus',
-        room: '6',
-        kennel: '7',
-        sex: 'männlich',
-        spayedOrNeutered: false,
-        adoptable: true,
-        race: 'Europäisch Kurzhaar',
-        color: 'rot getigert, weiße Brust',
-        dateOfBirth: new Date('2001.07.01'),
-        inShelterSince: new Date('2001.08.01'),
-        aggressive: false,
-        assertive: true,
-        nervous: false,
-        escapologist: true,
-        outdoorCat: true,
-        toiletTrained: false,
-        acuteDiseases: 'Schnupfen, Flöhe',
-        chronicDiseases: '',
-        nutrition: 'Aufbaufütterung',
-        medication: 'Flohmittel',
-        otherTreatments: 'Wärmelampe',
-        freeTextInfo:
-          'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
-      }
-    ],
+    dataSets: this.loadFromLocalStorage || dataSets,
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -105,6 +107,8 @@ export default class App extends Component {
   }
 
   render() {
+    const { houseInput, roomInput, kennelInput, adoptableCheckbox } = this.state
+
     return (
       <Router>
         <Wrapper>
@@ -117,9 +121,9 @@ export default class App extends Component {
                   resetInputValues={this.resetInputValues}
                   onChange={this.handleChange}
                   onSubmit={this.preventDefault}
-                  displayValueSelectHouse={this.state.houseInput}
-                  displayValueSelectRoom={this.state.roomInput}
-                  displayValueSelectKennel={this.state.kennelInput}
+                  displayValueSelectHouse={houseInput}
+                  displayValueSelectRoom={roomInput}
+                  displayValueSelectKennel={kennelInput}
                 />
                 {this.renderSearchResults()}
               </React.Fragment>
@@ -129,13 +133,15 @@ export default class App extends Component {
             path="/dataSetCreation"
             render={() => (
               <DataSetCreationForm
+                resetInputValues={this.resetInputValues}
                 onChange={this.handleChange}
-                onSubmit={this.createNewDataSet}
                 onCheck={this.handleCheck}
+                onSubmit={this.createNewDataSet}
                 preventDefault={this.preventDefault}
-                displayValueSelectHouse={this.state.houseInput}
-                displayValueSelectRoom={this.state.roomInput}
-                displayValueSelectKennel={this.state.kennelInput}
+                displayValueCheckboxAdoptable={adoptableCheckbox}
+                displayValueSelectHouse={houseInput}
+                displayValueSelectRoom={roomInput}
+                displayValueSelectKennel={kennelInput}
               />
             )}
           />
@@ -162,8 +168,6 @@ export default class App extends Component {
     this.setState({
       [event.target.name + 'Checkbox']: checkBoxChecked
     })
-
-    console.log(event.target.checked)
   }
 
   renderSearchResults = () => {
@@ -206,6 +210,38 @@ export default class App extends Component {
 
   preventDefault = event => event.preventDefault()
 
+  createNewDataSet = () => {
+    const {
+      nameInput,
+      idInput,
+      transponderNrInput,
+      houseInput,
+      roomInput,
+      kennelInput,
+      adoptableCheckbox
+    } = this.state
+
+    const newDataSet = {
+      name: nameInput,
+      id: idInput,
+      transponderNr: transponderNrInput,
+      adoptable: adoptableCheckbox,
+      house: houseInput,
+      room: roomInput,
+      kennel: kennelInput
+    }
+
+    this.setState({
+      dataSets: [newDataSet, ...this.state.dataSets]
+    })
+
+    this.resetInputValues()
+  }
+
+  componentDidUpdate() {
+    this.saveToLocalStorage()
+  }
+
   resetInputValues = () => {
     this.setState({
       nameInput: '',
@@ -218,33 +254,19 @@ export default class App extends Component {
     })
   }
 
-  createNewDataSet = () => {
-    const {
-      nameInput,
-      idInput,
-      transponderNrInput,
-      houseInput,
-      roomInput,
-      kennelInput
-    } = this.state
-
-    const newDataSet = {
-      name: nameInput,
-      id: idInput,
-      transponderNr: transponderNrInput,
-      house: houseInput,
-      room: roomInput,
-      kennel: kennelInput
-    }
-
-    this.addNewDataSetToArray(newDataSet)
+  saveToLocalStorage = () => {
+    localStorage.setItem(
+      'Katzenhaus-digital',
+      JSON.stringify(this.state.dataSets)
+    )
   }
 
-  addNewDataSetToArray = newDataSet => {
-    this.setState({
-      dataSets: [newDataSet, ...this.state.dataSets]
-    })
-    this.resetInputValues()
+  loadFromLocalStorage = () => {
+    try {
+      return JSON.parse(localStorage.getItem('Katzenhaus-digital'))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 

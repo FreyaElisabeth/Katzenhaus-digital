@@ -32,11 +32,16 @@ export default class DataSetCreationForm extends Component {
     this.adoptableCheckboxRef = React.createRef()
   }
 
+  componentDidMount() {
+    this.props.resetInputValues()
+  }
+
   render() {
     const {
       onChange,
       onCheck,
       preventDefault,
+      displayValueCheckboxAdoptable,
       displayValueSelectHouse,
       displayValueSelectRoom,
       displayValueSelectKennel
@@ -71,6 +76,7 @@ export default class DataSetCreationForm extends Component {
             name="adoptable"
             label="vermittelbar"
             inputRef={this.adoptableCheckboxRef}
+            displayValue={displayValueCheckboxAdoptable}
           />
         </div>
         <div>

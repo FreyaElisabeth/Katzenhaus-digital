@@ -8,15 +8,21 @@ export default class Checkbox extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired
+    onCheck: PropTypes.func.isRequired
   }
 
   render() {
-    const { name, label, onCheck, inputRef } = this.props
+    const { name, label, onCheck, inputRef, displayValue } = this.props
 
     return (
       <StyledLabel htmlFor={name}>
-        <input type="checkbox" ref={inputRef} name={name} onInput={onCheck} />
+        <input
+          type="checkbox"
+          ref={inputRef}
+          name={name}
+          onChange={onCheck}
+          checked={displayValue}
+        />
         {label}
       </StyledLabel>
     )
@@ -45,17 +51,16 @@ const StyledLabel = styled.label`
     &:after {
       content: '';
       position: absolute;
-      top: 7px;
-      left: 6px;
-      color: #09ad7e;
+      bottom: 6px;
+      right: 6px;
       transition: all 0.2s;
-      width: 0;
-      height: 4px;
+      width: 4px;
+      height: 0;
       border-bottom: 2px solid black;
-      border-left: 2px solid black;
+      border-right: 2px solid black;
       border-radius: 2px;
       transform-origin: bottom left;
-      transform: rotate(-45deg);
+      transform: rotate(40deg);
       opacity: 0;
       transition: all ease-out 0.1s;
     }
@@ -63,7 +68,7 @@ const StyledLabel = styled.label`
     &:checked {
       &:after {
         opacity: 1;
-        width: 10px;
+        height: 10px;
       }
     }
 
