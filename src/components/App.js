@@ -129,7 +129,7 @@ export default class App extends Component {
             render={() => (
               <DataSetCreationForm
                 onChange={this.handleChange}
-                onSubmit={this.sendDataSetToServer}
+                onSubmit={this.createNewDataSet}
                 preventDefault={this.preventDefault}
                 displayValueSelectHouse={this.state.houseInput}
                 displayValueSelectRoom={this.state.roomInput}
@@ -203,7 +203,35 @@ export default class App extends Component {
       kennelInput: ''
     })
   }
-  sendDataSetToServer = () => console.log('sendDataSetToServer')
+
+  createNewDataSet = () => {
+    const {
+      nameInput,
+      idInput,
+      transponderNrInput,
+      houseInput,
+      roomInput,
+      kennelInput
+    } = this.state
+
+    const newDataSet = {
+      name: nameInput,
+      id: idInput,
+      transponderNr: transponderNrInput,
+      house: houseInput,
+      room: roomInput,
+      kennel: kennelInput
+    }
+
+    this.addNewDataSetToArray(newDataSet)
+  }
+
+  addNewDataSetToArray = newDataSet => {
+    this.setState({
+      dataSets: [newDataSet, ...this.state.dataSets]
+    })
+    this.resetInputValues()
+  }
 }
 
 const Wrapper = styled.main`

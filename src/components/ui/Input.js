@@ -31,12 +31,13 @@ export default class Input extends Component {
   }
 
   render() {
-    const { name, placeholder, label, onChange } = this.props
+    const { name, placeholder, label, onChange, inputRef } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
         <StyledInput
+          ref={inputRef}
           name={name}
           placeholder={placeholder}
           onChange={onChange}

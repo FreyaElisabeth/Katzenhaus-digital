@@ -7,19 +7,6 @@ import Input from './Input'
 import Select from './Select'
 import Button from './Button'
 
-const StyledForm = styled.form`
-  border: 1px solid ${darkestprimary};
-  border-radius: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: min-content;
-  padding: 20px;
-
-  button {
-    margin: 1em;
-  }
-`
-
 export default class DataSetCreationForm extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -34,6 +21,13 @@ export default class DataSetCreationForm extends Component {
       PropTypes.string,
       PropTypes.number
     ]).isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    this.nameInputRef = React.createRef()
+    this.idInputRef = React.createRef()
+    this.transponderNrInputRef = React.createRef()
   }
 
   render() {
@@ -54,18 +48,21 @@ export default class DataSetCreationForm extends Component {
             name="name"
             placeholder="Mieze"
             label="Name: "
+            inputRef={this.nameInputRef}
           />
           <Input
             onChange={onChange}
             name="id"
             placeholder="123_F_18"
             label="HTV-Nummer: "
+            inputRef={this.idInputRef}
           />
           <Input
             onChange={onChange}
             name="transponderNr"
             placeholder="276097200023868"
             label="Transponder: "
+            inputRef={this.transponderNrInputRef}
           />
         </div>
         <div>
@@ -105,9 +102,29 @@ export default class DataSetCreationForm extends Component {
           />
         </div>
         <div>
-          <Button onClick={onSubmit} text="Anlegen" />
+          <Button onClick={this.handleSubmit} text="Anlegen" />
         </div>
       </StyledForm>
     )
   }
+
+  handleSubmit = () => {
+    this.props.onSubmit()
+    this.nameInputRef.current.value = ''
+    this.idInputRef.current.value = ''
+    this.transponderNrInputRef.current.value = ''
+  }
 }
+
+const StyledForm = styled.form`
+  border: 1px solid ${darkestprimary};
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content;
+  padding: 20px;
+
+  button {
+    margin: 1em;
+  }
+`
