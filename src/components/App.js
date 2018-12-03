@@ -228,7 +228,9 @@ export default class App extends Component {
       adoptable: adoptableCheckbox,
       house: houseInput,
       room: roomInput,
-      kennel: kennelInput
+      kennel: kennelInput,
+      inShelterSince: new Date('2018.12.01'),
+      dateOfBirth: new Date('2017.01.01')
     }
 
     this.setState({
@@ -277,6 +279,7 @@ const Wrapper = styled.main`
   padding: 20px;
   background: ${palestprimary};
   min-height: 100vh;
+  min-width: 100vw;
   position: relative;
 
   nav {
