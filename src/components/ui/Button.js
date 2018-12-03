@@ -27,6 +27,10 @@ export default class Button extends Component {
   render() {
     const { onClick, text } = this.props
 
-    return <StyledButton onClick={onClick}>{text}</StyledButton>
+    return (
+      <StyledButton onClick={onClick} name={text}>
+        {text}
+      </StyledButton>
+    )
   }
 }

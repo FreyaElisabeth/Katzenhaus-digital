@@ -85,4 +85,21 @@ describe('App', () => {
       })
     })
   })
+
+  describe('Create new data set', () => {
+    beforeEach(() => {
+      cy.visit('http://localhost:3000/dataSetCreation')
+      cy.clearLocalStorage()
+    })
+
+    it('creates a new dataSet', () => {
+      cy.get('[name=name]').type('Leo')
+      cy.get('[name=id]').type('123_F_18')
+      cy.get('[name=transponderNr]').type('276097200123123')
+      cy.get('[name=adoptable]').check()
+      cy.get('[name=house]').select('Neues Katzenhaus')
+      cy.get('[name=room]').select('Spielzimmer')
+      cy.get('[name=Anlegen]').click()
+    })
+  })
 })
