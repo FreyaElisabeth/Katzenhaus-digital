@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { darkestprimary } from '../colors'
 import Input from '../ui/Input'
 import Select from '../ui/Select'
 import Button from '../ui/Button'
 import Checkbox from '../ui/Checkbox'
+import FormWrapper from '../Wrappers/FormWrapper'
 
 export default class DataSetCreationForm extends Component {
   static propTypes = {
@@ -48,7 +47,7 @@ export default class DataSetCreationForm extends Component {
     } = this.props
 
     return (
-      <StyledForm data-cy="DataSetCreationForm" onSubmit={preventDefault}>
+      <FormWrapper data-cy="DataSetCreationForm" onSubmit={preventDefault}>
         <div>
           <Input
             onChange={onChange}
@@ -70,13 +69,6 @@ export default class DataSetCreationForm extends Component {
             placeholder="276097200023868"
             label="Transponder: "
             inputRef={this.transponderNrInputRef}
-          />
-          <Checkbox
-            onCheck={onCheck}
-            name="adoptable"
-            label="vermittelbar"
-            inputRef={this.adoptableCheckboxRef}
-            displayValue={displayValueCheckboxAdoptable}
           />
         </div>
         <div>
@@ -116,9 +108,18 @@ export default class DataSetCreationForm extends Component {
           />
         </div>
         <div>
+          <Checkbox
+            onCheck={onCheck}
+            name="adoptable"
+            label="vermittelbar"
+            inputRef={this.adoptableCheckboxRef}
+            displayValue={displayValueCheckboxAdoptable}
+          />
+        </div>
+        <div>
           <Button onClick={this.handleSubmit} text="Anlegen" />
         </div>
-      </StyledForm>
+      </FormWrapper>
     )
   }
 
@@ -129,16 +130,3 @@ export default class DataSetCreationForm extends Component {
     this.transponderNrInputRef.current.value = ''
   }
 }
-
-const StyledForm = styled.form`
-  border: 1px solid ${darkestprimary};
-  border-radius: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: min-content;
-  padding: 20px;
-
-  button {
-    margin: 1em;
-  }
-`

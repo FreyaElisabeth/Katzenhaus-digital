@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { palestprimary, brightprimary, darkestprimary } from './colors'
+import {
+  palestprimary,
+  brightprimary,
+  darkerprimary,
+  darkestprimary
+} from './colors'
 
-import SearchForm from './screens/SearchForm'
-import DataSetCreationForm from './screens/DataSetCreationForm'
+import SearchScreen from './screens/SearchScreen'
+import DataSetCreationScreen from './screens/DataSetCreationScreen'
 import CatCard from './catCard/CatCard'
 
 const dataSets = [
@@ -116,23 +121,21 @@ export default class App extends Component {
             path="/"
             exact
             render={() => (
-              <React.Fragment>
-                <SearchForm
-                  resetInputValues={this.resetInputValues}
-                  onChange={this.handleChange}
-                  onSubmit={this.preventDefault}
-                  displayValueSelectHouse={houseInput}
-                  displayValueSelectRoom={roomInput}
-                  displayValueSelectKennel={kennelInput}
-                />
-                {this.renderSearchResults()}
-              </React.Fragment>
+              <SearchScreen
+                resetInputValues={this.resetInputValues}
+                onChange={this.handleChange}
+                onSubmit={this.preventDefault}
+                displayValueSelectHouse={houseInput}
+                displayValueSelectRoom={roomInput}
+                displayValueSelectKennel={kennelInput}
+                searchResults={this.renderSearchResults}
+              />
             )}
           />
           <Route
             path="/dataSetCreation"
             render={() => (
-              <DataSetCreationForm
+              <DataSetCreationScreen
                 resetInputValues={this.resetInputValues}
                 onChange={this.handleChange}
                 onCheck={this.handleCheck}
@@ -147,10 +150,10 @@ export default class App extends Component {
           />
           <nav>
             <NavLink exact to="/" data-cy="navHome">
-              Search
+              Suche
             </NavLink>
             <NavLink to="/dataSetCreation" data-cy="navCreate">
-              Create
+              Datensatz anlegen
             </NavLink>
           </nav>
         </Wrapper>
@@ -280,27 +283,38 @@ export default class App extends Component {
 
 const Wrapper = styled.main`
   display: grid;
-  grid-template-rows: min-content;
-  grid-gap: 20px;
-  padding: 20px;
+  grid-template-rows: auto 60px;
   background: ${palestprimary};
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   position: relative;
 
   nav {
     display: flex;
+    border-top: 1px solid ${palestprimary};
 
-    a {
+    a:any-link {
       text-decoration: none;
       color: white;
-      background: ${brightprimary};
+      background: ${darkerprimary};
       border: 1px solid ${darkestprimary};
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 50px;
-      width: 50%;
+      height: 60px;
+      width: 100%;
+      &:first-child {
+        border-right: 1px solid ${palestprimary};
+      }
+
+      &.active {
+        background: ${brightprimary};
+        color: white;
+      }
+
+      img {
+        height: 30px;
+      }
     }
   }
 `

@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import { palesecondary, darkerprimary } from '../colors'
 
 const StyledInput = styled.input`
-  margin: 0.3em 0 1em 0;
+  margin: 0.3em 0;
   font-size: 16px;
   display: block;
   border: 1px inset ${darkerprimary};
   border-radius: 3px;
-  padding: 1px 0.4em 2px 0.4em;
+  padding: 1px 0.4em 1px 0.4em;
 
   &:focus {
     outline: none;

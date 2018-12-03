@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { darkestprimary } from '../colors'
 import Input from '../ui/Input'
 import Select from '../ui/Select'
-
-const StyledForm = styled.form`
-  border: 1px solid ${darkestprimary};
-  border-radius: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
-`
+import FormWrapper from '../Wrappers/FormWrapper'
 
 export default class SearchForm extends Component {
   static propTypes = {
@@ -40,7 +31,7 @@ export default class SearchForm extends Component {
     } = this.props
 
     return (
-      <StyledForm data-cy="SearchForm" onSubmit={onSubmit}>
+      <FormWrapper data-cy="SearchForm" onSubmit={onSubmit}>
         <div>
           <Input
             onChange={onChange}
@@ -97,7 +88,7 @@ export default class SearchForm extends Component {
             displayValue={displayValueSelectKennel}
           />
         </div>
-      </StyledForm>
+      </FormWrapper>
     )
   }
 
