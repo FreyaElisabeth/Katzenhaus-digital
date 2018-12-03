@@ -3,22 +3,16 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { darkestprimary } from '../colors'
-import Input from './Input'
-import Select from './Select'
+import Input from '../ui/Input'
+import Select from '../ui/Select'
+import Button from '../ui/Button'
+import Checkbox from '../ui/Checkbox'
 
-const StyledForm = styled.form`
-  border: 1px solid ${darkestprimary};
-  border-radius: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
-`
-
-export default class SearchForm extends Component {
+export default class DataSetCreationForm extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    resetInputValues: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    preventDefault: PropTypes.func.isRequired,
     displayValueSelectHouse: PropTypes.string.isRequired,
     displayValueSelectRoom: PropTypes.oneOfType([
       PropTypes.string,
@@ -30,35 +24,59 @@ export default class SearchForm extends Component {
     ]).isRequired
   }
 
+  constructor(props) {
+    super(props)
+    this.nameInputRef = React.createRef()
+    this.idInputRef = React.createRef()
+    this.transponderNrInputRef = React.createRef()
+    this.adoptableCheckboxRef = React.createRef()
+  }
+
+  componentDidMount() {
+    this.props.resetInputValues()
+  }
+
   render() {
     const {
       onChange,
-      onSubmit,
+      onCheck,
+      preventDefault,
+      displayValueCheckboxAdoptable,
       displayValueSelectHouse,
       displayValueSelectRoom,
       displayValueSelectKennel
     } = this.props
 
     return (
-      <StyledForm data-cy="SearchForm" onSubmit={onSubmit}>
+      <StyledForm data-cy="DataSetCreationForm" onSubmit={preventDefault}>
         <div>
           <Input
             onChange={onChange}
             name="name"
-            placeholder="Kitty"
+            placeholder="Mieze"
             label="Name: "
+            inputRef={this.nameInputRef}
           />
           <Input
             onChange={onChange}
             name="id"
             placeholder="123_F_18"
             label="HTV-Nummer: "
+            inputRef={this.idInputRef}
           />
           <Input
             onChange={onChange}
             name="transponderNr"
-            placeholder="...123"
+            placeholder="276097200023868"
             label="Transponder: "
+            inputRef={this.transponderNrInputRef}
+          />
+          <Checkbox
+            onCheck={onCheck}
+            name="adoptable"
+            label="vermittelbar"
+            inputRef={this.adoptableCheckboxRef}
+            displayValue={displayValueCheckboxAdoptable}
           />
         </div>
         <div>
@@ -97,11 +115,30 @@ export default class SearchForm extends Component {
             displayValue={displayValueSelectKennel}
           />
         </div>
+        <div>
+          <Button onClick={this.handleSubmit} text="Anlegen" />
+        </div>
       </StyledForm>
     )
   }
 
-  componentDidMount() {
-    this.props.resetInputValues()
+  handleSubmit = () => {
+    this.props.onSubmit()
+    this.nameInputRef.current.value = ''
+    this.idInputRef.current.value = ''
+    this.transponderNrInputRef.current.value = ''
   }
 }
+
+const StyledForm = styled.form`
+  border: 1px solid ${darkestprimary};
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content;
+  padding: 20px;
+
+  button {
+    margin: 1em;
+  }
+`

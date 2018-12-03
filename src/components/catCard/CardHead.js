@@ -22,7 +22,7 @@ export default class CardHead extends Component {
     adoptable: PropType.bool.isRequired,
     house: PropType.string.isRequired,
     id: PropType.string.isRequired,
-    inShelterSince: PropType.instanceOf(Date).isRequired,
+    inShelterSince: PropType.string.isRequired,
     kennel: PropType.string,
     name: PropType.string.isRequired,
     room: PropType.string.isRequired,
@@ -58,7 +58,8 @@ export default class CardHead extends Component {
             <div>HTV-Nr.: {id}</div>
             <div>Transponder: {transponderNr}</div>
             <div>
-              im Tierheim seit {inShelterSince.toLocaleDateString('de')}
+              im Tierheim seit
+              {new Date(inShelterSince).toLocaleDateString('de')}
             </div>
           </div>
         </SectionWrapper>

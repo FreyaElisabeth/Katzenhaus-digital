@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { palestprimary, brightprimary, darkestprimary } from './colors'
 
-import SearchForm from './ui/SearchForm'
-import DataSetCreationForm from './ui/DataSetCreationForm'
+import SearchForm from './screens/SearchForm'
+import DataSetCreationForm from './screens/DataSetCreationForm'
 import CatCard from './catCard/CatCard'
 
 const dataSets = [
@@ -146,10 +146,12 @@ export default class App extends Component {
             )}
           />
           <nav>
-            <NavLink exact to="/">
+            <NavLink exact to="/" data-cy="navHome">
               Search
             </NavLink>
-            <NavLink to="/dataSetCreation">Create</NavLink>
+            <NavLink to="/dataSetCreation" data-cy="navCreate">
+              Create
+            </NavLink>
           </nav>
         </Wrapper>
       </Router>
@@ -241,6 +243,10 @@ export default class App extends Component {
   }
 
   componentDidUpdate() {
+    this.saveToLocalStorage()
+  }
+
+  componentWillUnmount() {
     this.saveToLocalStorage()
   }
 

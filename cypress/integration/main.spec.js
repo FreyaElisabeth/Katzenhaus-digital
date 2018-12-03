@@ -1,7 +1,6 @@
 describe('App', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000')
-    cy.clearLocalStorage()
   })
 
   describe('Home Screen has all elements', () => {
@@ -9,17 +8,27 @@ describe('App', () => {
       cy.title().should('equal', 'Katzenhaus digital')
     })
 
-    describe('labelled Input', () => {
-      beforeEach(() => {
-        cy.get('[for=name]').as('label')
-      })
-
+    describe('Search mask', () => {
       it('exists', () => {
-        cy.get('@label').should('have.length', 1)
+        cy.get('[data-cy=SearchForm]').should('have.length', 1)
       })
 
-      it('includes name input', () => {
-        cy.get('@label').find('[name=name]')
+      it('includes all required inputs', () => {
+        cy.get('[name=name]').should('have.length', 1)
+        cy.get('[name=id]').should('have.length', 1)
+        cy.get('[name=transponderNr]').should('have.length', 1)
+        cy.get('[name=house]').should('have.length', 1)
+        cy.get('[name=room]').should('have.length', 1)
+        cy.get('[name=kennel]').should('have.length', 1)
+      })
+    })
+  })
+
+  describe('Navigation', () => {
+    it('navigates to data-set creation screen', () => {
+      cy.get('[data-cy=navCreate]').click()
+      cy.location().should(location => {
+        expect(location.href).to.eq('http://localhost:3000/dataSetCreation')
       })
     })
   })
@@ -87,19 +96,24 @@ describe('App', () => {
   })
 
   describe('Create new data set', () => {
-    beforeEach(() => {
-      cy.visit('http://localhost:3000/dataSetCreation')
-      cy.clearLocalStorage()
-    })
-
-    it('creates a new dataSet', () => {
+    it('creates a new dataSet that can be found via Home screen', () => {
+      cy.get('[data-cy=navCreate]').click()
       cy.get('[name=name]').type('Leo')
       cy.get('[name=id]').type('123_F_18')
       cy.get('[name=transponderNr]').type('276097200123123')
       cy.get('[name=adoptable]').check()
       cy.get('[name=house]').select('Neues Katzenhaus')
       cy.get('[name=room]').select('Spielzimmer')
-      cy.get('[name=Anlegen]').click()
+      cy.get('[name=Anlegen]')
+        .click()
+        .should(() => {
+          expect(
+            JSON.parse(localStorage.getItem('Katzenhaus-digital'))[0].name
+          ).to.contain('Leo')
+        })
+      cy.get('[data-cy=navHome]').click()
+      cy.get('[name=name]').type('Leo')
+      cy.get('[data-cy=CatCard]').should('contain', 'Leo')
     })
   })
 })

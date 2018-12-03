@@ -23,7 +23,7 @@ const SectionWrapper = styled.section`
 export default class CardHead extends Component {
   static propTypes = {
     color: PropType.string.isRequired,
-    dateOfBirth: PropType.instanceOf(Date).isRequired,
+    dateOfBirth: PropType.string.isRequired,
     race: PropType.string.isRequired,
     sex: PropType.oneOf(['männlich', 'weiblich', '?']).isRequired,
     spayedOrNeutered: PropType.bool.isRequired
@@ -50,7 +50,7 @@ export default class CardHead extends Component {
         </div>
         <div>
           <span>Geburts&shy;datum:</span>
-          <span>{dateOfBirth.toLocaleDateString('de')}</span>
+          <span>{new Date(dateOfBirth).toLocaleDateString('de')}</span>
         </div>
       </SectionWrapper>
     )
