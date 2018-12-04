@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Input from '../ui/Input'
-import Select from '../ui/Select'
-import Button from '../ui/Button'
-import Checkbox from '../ui/Checkbox'
+import Input from './Input'
+import Select from './Select'
+import Button from './Button'
+import Checkbox from './Checkbox'
 import FormWrapper from '../Wrappers/FormWrapper'
 
 export default class DataSetCreationForm extends Component {

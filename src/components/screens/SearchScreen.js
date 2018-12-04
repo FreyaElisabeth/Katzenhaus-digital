@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 import ScreenWrapper from '../Wrappers/ScreenWrapper'
-import SearchForm from './SearchForm'
+import SearchForm from '../ui/SearchForm'
 import CardsWrapper from '../Wrappers/CardsWrapper'
-import Header from './Header'
+import Header from '../ui/Header'
 
 export default class SearchScreen extends Component {
   render() {

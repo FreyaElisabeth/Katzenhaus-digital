@@ -99,6 +99,35 @@ const dataSets = [
   }
 ]
 
+const locationData = {
+  'Bitte wählen': { '-': ['-'] },
+  'Altes Katzenhaus': {
+    'Bitte wählen': '-',
+    'Raum 1': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 2': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 3': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 4': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 5': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 6': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    Außengehege: { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    Küche: { '-': '-' }
+  },
+  'Neues Katzenhaus': {
+    'Bitte wählen': '-',
+    'Raum 1': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 2': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 3': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 4': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 5': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 6': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 7': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 8': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    Spielzimmer: { '-': '-' },
+    Büro: { '-': '-' },
+    Umkleide: { '-': '-' }
+  }
+}
+
 export default class App extends Component {
   state = {
     dataSets: this.loadFromLocalStorage() || dataSets,
@@ -106,13 +135,20 @@ export default class App extends Component {
     idInput: '',
     transponderNrInput: '',
     houseInput: '',
+    house2Input: '',
     roomInput: '',
     kennelInput: '',
     adoptableCheckbox: false
   }
 
   render() {
-    const { houseInput, roomInput, kennelInput, adoptableCheckbox } = this.state
+    const {
+      houseInput,
+      house2Input,
+      roomInput,
+      kennelInput,
+      adoptableCheckbox
+    } = this.state
 
     return (
       <Router>
@@ -128,7 +164,9 @@ export default class App extends Component {
                 displayValueSelectHouse={houseInput}
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
+                displayValueSelectHouse2={house2Input}
                 searchResults={this.renderSearchResults}
+                locationOptions={locationData}
               />
             )}
           />
@@ -174,6 +212,8 @@ export default class App extends Component {
       [event.target.name + 'Checkbox']: checkBoxChecked
     })
   }
+
+  handleSelect = event => {}
 
   renderSearchResults = () => {
     const {

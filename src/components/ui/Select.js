@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import uid from 'uid'
 
 import { palesecondary, darkerprimary } from '../colors'
 
@@ -17,24 +16,12 @@ const StyledSelect = styled.select`
   }
 `
 
-export default class Input extends Component {
+export default class Select extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.array.isRequired
-  }
-
-  renderOptions(options) {
-    return options.map(this.renderSingleOption)
-  }
-
-  renderSingleOption(option) {
-    return (
-      <option value={option.toString()} key={uid()}>
-        {option}
-      </option>
-    )
+    options: PropTypes.object.isRequired
   }
 
   render() {
@@ -44,10 +31,21 @@ export default class Input extends Component {
       <label htmlFor={name}>
         {label}
         <StyledSelect name={name} onChange={onChange} value={displayValue}>
-          <option value="">Bitte wählen</option>
           {this.renderOptions(options)}
         </StyledSelect>
       </label>
+    )
+  }
+
+  renderOptions(options) {
+    return Object.keys(options).map(this.renderSingleOption)
+  }
+
+  renderSingleOption(text) {
+    return (
+      <option value={text} key={text}>
+        {text}
+      </option>
     )
   }
 }
