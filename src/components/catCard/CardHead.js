@@ -46,20 +46,20 @@ export default class CardHead extends Component {
         <h3>{name}</h3>
         <SectionWrapper data-cy="CardHead">
           <div className="left">
+            <div>HTV-Nr.: {id}</div>
+            <div>Transponder: {transponderNr}</div>
+            <div>
+              im Tierheim seit{' '}
+              {new Date(inShelterSince).toLocaleDateString('de')}
+            </div>
+          </div>
+          <div className="right">
             <div>{house}</div>
             <div>
               Raum {room}, Kennel {kennel}
             </div>
             <div>
               {adoptable ? 'vermittelbar' : 'derzeit nicht vermittelbar'}
-            </div>
-          </div>
-          <div className="right">
-            <div>HTV-Nr.: {id}</div>
-            <div>Transponder: {transponderNr}</div>
-            <div>
-              im Tierheim seit
-              {new Date(inShelterSince).toLocaleDateString('de')}
             </div>
           </div>
         </SectionWrapper>

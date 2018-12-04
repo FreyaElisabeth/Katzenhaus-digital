@@ -7,7 +7,7 @@ import CardDescription from './CardDescription'
 import CardBehavior from './CardBehavior'
 import CardMedCond from './CardMedCond'
 import CardFreeText from './CardFreeText'
-import Separator from './Separator'
+import Separator from '../ui/Separator'
 
 const CardWrapper = styled.div`
   border: 1px solid ${darkestprimary};

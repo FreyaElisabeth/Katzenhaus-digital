@@ -135,16 +135,27 @@ export default class App extends Component {
     houseInput: '',
     roomInput: '',
     kennelInput: '',
-    adoptableCheckbox: false
+    adoptableCheckbox: false,
+    escapologistCheckbox: false,
+    aggressiveCheckbox: false,
+    assertiveCheckbox: false,
+    nervousCheckbox: false,
+    outdoorCatCheckbox: false,
+    toiletTrainedCheckbox: false
   }
 
   render() {
     const {
       houseInput,
-      house2Input,
       roomInput,
       kennelInput,
-      adoptableCheckbox
+      adoptableCheckbox,
+      escapologistCheckbox,
+      aggressiveCheckbox,
+      assertiveCheckbox,
+      nervousCheckbox,
+      outdoorCatCheckbox,
+      toiletTrainedCheckbox
     } = this.state
 
     return (
@@ -161,7 +172,6 @@ export default class App extends Component {
                 displayValueSelectHouse={houseInput}
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
-                displayValueSelectHouse2={house2Input}
                 searchResults={this.renderSearchResults}
                 locationOptions={locationData}
               />
@@ -181,6 +191,12 @@ export default class App extends Component {
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
                 locationOptions={locationData}
+                displayValueCheckboxEscapologist={escapologistCheckbox}
+                displayValueCheckboxAggressive={aggressiveCheckbox}
+                displayValueCheckboxAssertive={assertiveCheckbox}
+                displayValueCheckboxNervous={nervousCheckbox}
+                displayValueCheckboxOutdoorCat={outdoorCatCheckbox}
+                displayValueCheckboxToiletTrained={toiletTrainedCheckbox}
               />
             )}
           />

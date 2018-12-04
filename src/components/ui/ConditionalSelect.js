@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { darkerprimary, palesecondary } from '../colors'
 
 export default class ConditionalSelect extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.object,
+    displayValue: PropTypes.string.isRequired,
+    subset: PropTypes.string
+  }
+
   render() {
     const { name, label, onChange, options, displayValue, subset } = this.props
 

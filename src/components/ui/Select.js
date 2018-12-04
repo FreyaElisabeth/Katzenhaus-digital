@@ -21,7 +21,8 @@ export default class Select extends Component {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.object.isRequired
+    options: PropTypes.object.isRequired,
+    displayValue: PropTypes.string.isRequired
   }
 
   render() {

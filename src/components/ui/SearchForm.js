@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Input from './Input'
 import Select from './Select'
+import SeparatorAlignLeft from './SeparatorAlignLeft'
 import FormWrapper from '../Wrappers/FormWrapper'
 import ConditionalSelect from './ConditionalSelect'
 
@@ -34,7 +35,8 @@ export default class SearchForm extends Component {
 
     return (
       <FormWrapper data-cy="SearchForm" onSubmit={onSubmit}>
-        <div>
+        <section>
+          <SeparatorAlignLeft text="Kopfdaten" />
           <Input
             onChange={onChange}
             name="name"
@@ -53,8 +55,9 @@ export default class SearchForm extends Component {
             placeholder="...123"
             label="Transponder: "
           />
-        </div>
-        <div>
+        </section>
+        <section>
+          <SeparatorAlignLeft text="Unterbringung" />
           <Select
             onChange={onChange}
             name="house"
@@ -78,7 +81,7 @@ export default class SearchForm extends Component {
             options={locationOptions[displayValueSelectHouse]}
             subset={displayValueSelectRoom}
           />
-        </div>
+        </section>
       </FormWrapper>
     )
   }

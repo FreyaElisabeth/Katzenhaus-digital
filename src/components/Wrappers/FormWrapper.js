@@ -7,14 +7,13 @@ const FormWrapper = styled.form`
   border-radius: 15px;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 
-  div {
+  section {
     padding: 20px 40px 20px 20px;
     display: grid;
-
-    button {
-      margin: 1em;
-    }
+    grid-template-rows: 2em;
+    min-width: calc(50vw - 40px);
   }
 `
 
