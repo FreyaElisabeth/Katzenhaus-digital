@@ -31,6 +31,7 @@ export default class Select extends Component {
       <label htmlFor={name}>
         {label}
         <StyledSelect name={name} onChange={onChange} value={displayValue}>
+          <option value="">Bitte wählen</option>
           {this.renderOptions(options)}
         </StyledSelect>
       </label>

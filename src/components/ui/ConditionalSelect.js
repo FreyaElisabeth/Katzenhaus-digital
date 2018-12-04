@@ -11,6 +11,7 @@ export default class ConditionalSelect extends Component {
       <label htmlFor={name}>
         {label}
         <StyledSelect name={name} onChange={onChange} value={displayValue}>
+          <option value="">Bitte wählen</option>
           {subset && this.renderOptions(options[subset])}
         </StyledSelect>
       </label>

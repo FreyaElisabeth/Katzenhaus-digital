@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Input from './Input'
 import Select from './Select'
+import ConditionalSelect from './ConditionalSelect'
 import Button from './Button'
 import Checkbox from './Checkbox'
 import FormWrapper from '../Wrappers/FormWrapper'
@@ -43,7 +44,8 @@ export default class DataSetCreationForm extends Component {
       displayValueCheckboxAdoptable,
       displayValueSelectHouse,
       displayValueSelectRoom,
-      displayValueSelectKennel
+      displayValueSelectKennel,
+      locationOptions
     } = this.props
 
     return (
@@ -75,36 +77,25 @@ export default class DataSetCreationForm extends Component {
           <Select
             onChange={onChange}
             name="house"
-            options={['Neues Katzenhaus', 'Altes Katzenhaus', 'Außengehege']}
+            options={locationOptions}
             label="Haus: "
             displayValue={displayValueSelectHouse}
           />
-          <Select
-            onChange={onChange}
+          <ConditionalSelect
             name="room"
-            options={[
-              'Spielzimmer',
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              'Krankenzimmer',
-              'Büro',
-              'Pausenraum'
-            ]}
             label="Raum: "
-            displayValue={displayValueSelectRoom}
-          />
-          <Select
             onChange={onChange}
+            displayValue={displayValueSelectRoom}
+            options={locationOptions}
+            subset={displayValueSelectHouse}
+          />
+          <ConditionalSelect
             name="kennel"
-            options={[1, 2, 3, 4, 5, 6, 7, 8]}
             label="Kennel: "
+            onChange={onChange}
             displayValue={displayValueSelectKennel}
+            options={locationOptions[displayValueSelectHouse]}
+            subset={displayValueSelectRoom}
           />
         </div>
         <div>

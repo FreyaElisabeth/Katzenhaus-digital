@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import {
+  paleprimary,
   palestprimary,
   brightprimary,
   darkerprimary,
@@ -100,28 +101,25 @@ const dataSets = [
 ]
 
 const locationData = {
-  'Bitte wählen': { '-': ['-'] },
   'Altes Katzenhaus': {
-    'Bitte wählen': '-',
-    'Raum 1': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 2': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 3': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 4': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 5': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 6': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    Außengehege: { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 1': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 2': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 3': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 4': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 5': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 6': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    Außengehege: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
     Küche: { '-': '-' }
   },
   'Neues Katzenhaus': {
-    'Bitte wählen': '-',
-    'Raum 1': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 2': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 3': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 4': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 5': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 6': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 7': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 8': { 'Bitte wählen': '', 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 1': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 2': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 3': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 4': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 5': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 6': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 7': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 8': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
     Spielzimmer: { '-': '-' },
     Büro: { '-': '-' },
     Umkleide: { '-': '-' }
@@ -135,7 +133,6 @@ export default class App extends Component {
     idInput: '',
     transponderNrInput: '',
     houseInput: '',
-    house2Input: '',
     roomInput: '',
     kennelInput: '',
     adoptableCheckbox: false
@@ -183,6 +180,7 @@ export default class App extends Component {
                 displayValueSelectHouse={houseInput}
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
+                locationOptions={locationData}
               />
             )}
           />
@@ -331,7 +329,7 @@ const Wrapper = styled.main`
 
   nav {
     display: flex;
-    border-top: 1px solid ${palestprimary};
+    border-top: 1px solid ${paleprimary};
 
     a:any-link {
       text-decoration: none;
@@ -344,7 +342,7 @@ const Wrapper = styled.main`
       height: 60px;
       width: 100%;
       &:first-child {
-        border-right: 1px solid ${palestprimary};
+        border-right: 1px solid ${paleprimary};
       }
 
       &.active {
