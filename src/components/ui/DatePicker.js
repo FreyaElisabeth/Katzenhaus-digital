@@ -30,12 +30,20 @@ export default class DatePicker extends Component {
   }
 
   render() {
-    const { name, placeholder, label, onChange, inputRef } = this.props
+    const {
+      name,
+      placeholder,
+      label,
+      onChange,
+      inputRef,
+      displayValue
+    } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
         <StyledInput
+          value={displayValue}
           ref={inputRef}
           type="date"
           name={name}

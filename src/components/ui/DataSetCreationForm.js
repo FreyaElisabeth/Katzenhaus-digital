@@ -36,14 +36,13 @@ export default class DataSetCreationForm extends Component {
     this.nutritionInputRef = React.createRef()
     this.medicationInputRef = React.createRef()
     this.otherTreatmentsInputRef = React.createRef()
+    this.textAreaInputRef = React.createRef()
     this.idInputRef = React.createRef()
     this.transponderNrInputRef = React.createRef()
-    this.adoptableCheckboxRef = React.createRef()
     this.raceInputRef = React.createRef()
     this.colorInputRef = React.createRef()
     this.dateOfBirthInputRef = React.createRef()
     this.sexInputRef = React.createRef()
-    this.spayedOrNeuteredCheckboxRef = React.createRef()
   }
 
   render() {
@@ -51,12 +50,14 @@ export default class DataSetCreationForm extends Component {
       onChange,
       onCheck,
       preventDefault,
+      locationOptions,
       displayValueCheckboxAdoptable,
       displayValueSelectHouse,
       displayValueSelectRoom,
       displayValueSelectKennel,
-      locationOptions,
+      displayValueInShelterSince,
       displayValueCheckboxSpayedOrNeutered,
+      displayValueDateOfBirth,
       displayValueCheckboxAggressive,
       displayValueCheckboxEscapologist,
       displayValueCheckboxAssertive,
@@ -124,6 +125,7 @@ export default class DataSetCreationForm extends Component {
             subset={displayValueSelectRoom}
           />
           <DatePicker
+            displayValue={displayValueInShelterSince}
             onChange={onChange}
             name="inShelterSince"
             label="Im Tierheim seit: "
@@ -147,6 +149,7 @@ export default class DataSetCreationForm extends Component {
             inputRef={this.colorInputRef}
           />
           <DatePicker
+            displayValue={displayValueDateOfBirth}
             onChange={onChange}
             name="dateOfBirth"
             label="Geburtsdatum: "
@@ -271,7 +274,7 @@ export default class DataSetCreationForm extends Component {
             name="freeTextInfo"
             placeholder="..."
             label="Sonstiges: "
-            inputRef={this.transponderNrInputRef}
+            inputRef={this.textAreaInputRef}
           />
         </section>
         <Button onClick={this.handleSubmit} text="Anlegen" />
@@ -286,7 +289,13 @@ export default class DataSetCreationForm extends Component {
     this.transponderNrInputRef.current.value = ''
     this.raceInputRef.current.value = ''
     this.colorInputRef.current.value = ''
-    this.sexInputRef.current.checked = false
+    this.acuteDiseasesInputRef.current.value = ''
+    this.chronicDiseasesInputRef.current.value = ''
+    this.nutritionInputRef.current.value = ''
+    this.medicationInputRef.current.value = ''
+    this.otherTreatmentsInputRef.current.value = ''
+    this.textAreaInputRef.current.value = ''
+    //this.sexInputRef.current.checked = false
   }
 
   componentDidMount() {

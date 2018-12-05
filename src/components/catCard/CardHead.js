@@ -56,7 +56,8 @@ export default class CardHead extends Component {
           <div className="right">
             <div>{house}</div>
             <div>
-              Raum {room}, Kennel {kennel}
+              {room}
+              {kennel && ', ' + kennel}
             </div>
             <div>
               {adoptable ? 'vermittelbar' : 'derzeit nicht vermittelbar'}

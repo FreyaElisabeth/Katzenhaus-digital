@@ -17,13 +17,13 @@ export default class TextArea extends Component {
   }
 
   render() {
-    const { name, placeholder, label, onChange, textAreaRef } = this.props
+    const { name, placeholder, label, onChange, inputRef } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
         <StyledTextArea
-          ref={textAreaRef}
+          ref={inputRef}
           name={name}
           rows="10"
           placeholder={placeholder}

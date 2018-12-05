@@ -19,8 +19,8 @@ const dataSets = [
     id: '848_A_17',
     transponderNr: '276097200023868',
     house: 'Neues Katzenhaus',
-    room: '7',
-    kennel: '7',
+    room: 'Raum 7',
+    kennel: 'Kennel 7',
     sex: 'weiblich',
     spayedOrNeutered: true,
     adoptable: true,
@@ -47,8 +47,8 @@ const dataSets = [
     id: '849_A_17',
     transponderNr: '276097200023869',
     house: 'Neues Katzenhaus',
-    room: '7',
-    kennel: '7',
+    room: 'Raum 7',
+    kennel: 'Kennel 7',
     sex: 'männlich',
     spayedOrNeutered: true,
     adoptable: true,
@@ -75,8 +75,8 @@ const dataSets = [
     id: '327_F_01',
     transponderNr: '276097200023855',
     house: 'Altes Katzenhaus',
-    room: '6',
-    kennel: '7',
+    room: 'Raum 6',
+    kennel: 'Kennel 5',
     sex: 'männlich',
     spayedOrNeutered: false,
     adoptable: true,
@@ -102,24 +102,129 @@ const dataSets = [
 
 const locationData = {
   'Altes Katzenhaus': {
-    'Raum 1': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 2': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 3': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 4': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 5': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 6': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    Außengehege: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 1': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 2': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 3': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 4': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 5': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 6': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    Außengehege: {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
     Küche: { '-': '-' }
   },
   'Neues Katzenhaus': {
-    'Raum 1': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 2': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 3': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 4': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 5': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 6': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 7': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
-    'Raum 8': { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
+    'Raum 1': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 2': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 3': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 4': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 5': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 6': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 7': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
+    'Raum 8': {
+      'Kennel 1': 'Kennel 1',
+      'Kennel 2': 'Kennel 2',
+      'Kennel 3': 'Kennel 3',
+      'Kennel 4': 'Kennel 4',
+      'Kennel 5': 'Kennel 5',
+      'Kennel 6': 'Kennel 6'
+    },
     Spielzimmer: { '-': '-' },
     Büro: { '-': '-' },
     Umkleide: { '-': '-' }
@@ -132,16 +237,28 @@ export default class App extends Component {
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
+    adoptableCheckbox: false,
     houseInput: '',
     roomInput: '',
     kennelInput: '',
-    adoptableCheckbox: false,
+    inShelterSinceInput: '',
+    raceInput: '',
+    colorInput: '',
+    dateOfBirthInput: '',
+    sexInput: '',
+    spayedOrNeuteredCheckbox: false,
     escapologistCheckbox: false,
     aggressiveCheckbox: false,
     assertiveCheckbox: false,
     nervousCheckbox: false,
     outdoorCatCheckbox: false,
-    toiletTrainedCheckbox: false
+    toiletTrainedCheckbox: false,
+    acuteDiseasesInput: '',
+    chronicDiseasesInput: '',
+    medicationInput: '',
+    nutritionInput: '',
+    otherTreatmentsInput: '',
+    freeTextInfoInput: ''
   }
 
   render() {
@@ -149,7 +266,10 @@ export default class App extends Component {
       houseInput,
       roomInput,
       kennelInput,
+      inShelterSinceInput,
       adoptableCheckbox,
+      spayedOrNeuteredCheckbox,
+      dateOfBirthInput,
       escapologistCheckbox,
       aggressiveCheckbox,
       assertiveCheckbox,
@@ -186,11 +306,14 @@ export default class App extends Component {
                 onCheck={this.handleCheck}
                 onSubmit={this.createNewDataSet}
                 preventDefault={this.preventDefault}
+                locationOptions={locationData}
                 displayValueCheckboxAdoptable={adoptableCheckbox}
                 displayValueSelectHouse={houseInput}
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
-                locationOptions={locationData}
+                displayValueInShelterSince={inShelterSinceInput}
+                displayValueCheckboxSpayedOrNeutered={spayedOrNeuteredCheckbox}
+                displayValueDateOfBirth={dateOfBirthInput}
                 displayValueCheckboxEscapologist={escapologistCheckbox}
                 displayValueCheckboxAggressive={aggressiveCheckbox}
                 displayValueCheckboxAssertive={assertiveCheckbox}
@@ -274,10 +397,28 @@ export default class App extends Component {
       nameInput,
       idInput,
       transponderNrInput,
+      adoptableCheckbox,
       houseInput,
       roomInput,
       kennelInput,
-      adoptableCheckbox
+      inShelterSinceInput,
+      raceInput,
+      colorInput,
+      dateOfBirthInput,
+      sexInput,
+      spayedOrNeuteredCheckbox,
+      escapologistCheckbox,
+      aggressiveCheckbox,
+      assertiveCheckbox,
+      nervousCheckbox,
+      outdoorCatCheckbox,
+      toiletTrainedCheckbox,
+      acuteDiseasesInput,
+      chronicDiseasesInput,
+      medicationInput,
+      nutritionInput,
+      otherTreatmentsInput,
+      freeTextInfoInput
     } = this.state
 
     const newDataSet = {
@@ -288,8 +429,24 @@ export default class App extends Component {
       house: houseInput,
       room: roomInput,
       kennel: kennelInput,
-      inShelterSince: new Date('2018.12.01'),
-      dateOfBirth: new Date('2017.01.01')
+      inShelterSince: new Date(inShelterSinceInput),
+      race: raceInput,
+      color: colorInput,
+      sex: sexInput,
+      spayedOrNeutered: spayedOrNeuteredCheckbox,
+      dateOfBirth: new Date(dateOfBirthInput),
+      escapologist: escapologistCheckbox,
+      aggressive: aggressiveCheckbox,
+      assertive: assertiveCheckbox,
+      nervous: nervousCheckbox,
+      outdoorCat: outdoorCatCheckbox,
+      toiletTrained: toiletTrainedCheckbox,
+      acuteDiseases: acuteDiseasesInput,
+      chronicDiseases: chronicDiseasesInput,
+      medication: medicationInput,
+      nutrition: nutritionInput,
+      otherTreatments: otherTreatmentsInput,
+      freeTextInfo: freeTextInfoInput
     }
 
     this.setState({
@@ -311,11 +468,23 @@ export default class App extends Component {
     this.setState({
       nameInput: '',
       idInput: '',
+      transponderNrInput: '',
       houseInput: '',
       roomInput: '',
       kennelInput: '',
-      transponderNrInput: '',
-      adoptableCheckbox: false
+      inShelterSinceInput: '',
+      adoptableCheckbox: false,
+      colorInput: '',
+      raceInput: '',
+      sexInput: '',
+      dateOfBirthInput: '',
+      spayedOrNeuteredCheckbox: false,
+      escapologistCheckbox: false,
+      aggressiveCheckbox: false,
+      assertiveCheckbox: false,
+      nervousCheckbox: false,
+      outdoorCatCheckbox: false,
+      toiletTrainedCheckbox: false
     })
   }
 
