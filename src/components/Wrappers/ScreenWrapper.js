@@ -5,7 +5,7 @@ const ScreenWrapper = styled.div`
   grid-gap: 20px;
   grid-template-rows: min-content min-content;
   overflow-y: scroll;
-  margin: 0 20px;
+  padding: 0 20px;
 `
 
 export default ScreenWrapper
