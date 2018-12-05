@@ -10,6 +10,7 @@ import FormWrapper from '../Wrappers/FormWrapper'
 import SeparatorAlignLeft from './SeparatorAlignLeft'
 import DatePicker from './DatePicker'
 import Radio from './Radio'
+import TextArea from './TextArea'
 
 export default class DataSetCreationForm extends Component {
   static propTypes = {
@@ -30,6 +31,11 @@ export default class DataSetCreationForm extends Component {
   constructor(props) {
     super(props)
     this.nameInputRef = React.createRef()
+    this.acuteDiseasesInputRef = React.createRef()
+    this.chronicDiseasesInputRef = React.createRef()
+    this.nutritionInputRef = React.createRef()
+    this.medicationInputRef = React.createRef()
+    this.otherTreatmentsInputRef = React.createRef()
     this.idInputRef = React.createRef()
     this.transponderNrInputRef = React.createRef()
     this.adoptableCheckboxRef = React.createRef()
@@ -37,6 +43,7 @@ export default class DataSetCreationForm extends Component {
     this.colorInputRef = React.createRef()
     this.dateOfBirthInputRef = React.createRef()
     this.sexInputRef = React.createRef()
+    this.spayedOrNeuteredCheckboxRef = React.createRef()
   }
 
   render() {
@@ -49,6 +56,7 @@ export default class DataSetCreationForm extends Component {
       displayValueSelectRoom,
       displayValueSelectKennel,
       locationOptions,
+      displayValueCheckboxSpayedOrNeutered,
       displayValueCheckboxAggressive,
       displayValueCheckboxEscapologist,
       displayValueCheckboxAssertive,
@@ -82,6 +90,13 @@ export default class DataSetCreationForm extends Component {
             label="Transponder: "
             inputRef={this.transponderNrInputRef}
           />
+          <Checkbox
+            onCheck={onCheck}
+            name="adoptable"
+            label="vermittelbar"
+            inputRef={this.adoptableCheckboxRef}
+            displayValue={displayValueCheckboxAdoptable}
+          />
         </section>
         <section>
           <SeparatorAlignLeft text="Unterbringung" />
@@ -108,8 +123,14 @@ export default class DataSetCreationForm extends Component {
             options={locationOptions[displayValueSelectHouse]}
             subset={displayValueSelectRoom}
           />
+          <DatePicker
+            onChange={onChange}
+            name="inShelterSince"
+            label="Im Tierheim seit: "
+            inputRef={this.inShelterSinceInputRef}
+          />
         </section>
-        <section>
+        <section className="description">
           <SeparatorAlignLeft text="Beschreibung" />
           <Input
             onChange={onChange}
@@ -152,16 +173,16 @@ export default class DataSetCreationForm extends Component {
             label="?"
             inputRef={this.sexInputRef}
           />
-        </section>
-        <section>
-          <SeparatorAlignLeft text="Verhalten" />
           <Checkbox
             onCheck={onCheck}
-            name="adoptable"
-            label="vermittelbar"
-            inputRef={this.adoptableCheckboxRef}
-            displayValue={displayValueCheckboxAdoptable}
+            name="spayedOrNeutered"
+            label="kastriert"
+            inputRef={this.spayedOrNeuteredCheckboxRef}
+            displayValue={displayValueCheckboxSpayedOrNeutered}
           />
+        </section>
+        <section className="behavior">
+          <SeparatorAlignLeft text="Verhalten" />
           <Checkbox
             onCheck={onCheck}
             name="escapologist"
@@ -206,18 +227,54 @@ export default class DataSetCreationForm extends Component {
           />
         </section>
         <section>
-          <SeparatorAlignLeft text="Sonstiges" />
-          <Checkbox
-            onCheck={onCheck}
-            name="adoptable"
-            label="vermittelbar"
-            inputRef={this.adoptableCheckboxRef}
-            displayValue={displayValueCheckboxAdoptable}
+          <SeparatorAlignLeft text="Gesundheitszustand" />
+          <Input
+            onChange={onChange}
+            name="acuteDiseases"
+            placeholder="..."
+            label="Akute Erkrankungen: "
+            inputRef={this.acuteDiseasesInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="chronicDiseases"
+            placeholder="..."
+            label="Chronische Erkrankungen: "
+            inputRef={this.chronicDiseasesInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="medication"
+            placeholder="..."
+            label="Medikamente: "
+            inputRef={this.medicationInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="nutrition"
+            placeholder="..."
+            label="Ernährung: "
+            inputRef={this.nutritionInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="otherTreatments"
+            placeholder="..."
+            label="Sonstige Behandlung: "
+            inputRef={this.otherTreatmentsInputRef}
           />
         </section>
-        <section>
-          <Button onClick={this.handleSubmit} text="Anlegen" />
+        <section className="freeTextInfo">
+          <SeparatorAlignLeft text="Sonstiges" />
+          <TextArea
+            onChange={onChange}
+            name="freeTextInfo"
+            placeholder="..."
+            label="Sonstiges: "
+            inputRef={this.transponderNrInputRef}
+          />
         </section>
+        <Button onClick={this.handleSubmit} text="Anlegen" />
       </FormWrapper>
     )
   }

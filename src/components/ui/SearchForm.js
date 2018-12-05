@@ -35,8 +35,7 @@ export default class SearchForm extends Component {
 
     return (
       <FormWrapper data-cy="SearchForm" onSubmit={onSubmit}>
-        <section>
-          <SeparatorAlignLeft text="Kopfdaten" />
+        <section className="search">
           <Input
             onChange={onChange}
             name="name"
@@ -56,8 +55,7 @@ export default class SearchForm extends Component {
             label="Transponder: "
           />
         </section>
-        <section>
-          <SeparatorAlignLeft text="Unterbringung" />
+        <section className="search">
           <Select
             onChange={onChange}
             name="house"

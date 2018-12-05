@@ -2,23 +2,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { palesecondary, darkerprimary } from '../colors'
+import { darkerprimary, palesecondary } from '../colors'
 
-const StyledInput = styled.input`
-  margin: 0.3em 0;
-  font-size: 16px;
-  display: block;
-  border: 1px inset ${darkerprimary};
-  border-radius: 3px;
-  padding: 1px 0.4em 1px 0.4em;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
-  }
-`
-
-export default class Input extends Component {
+export default class TextArea extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
@@ -31,14 +17,15 @@ export default class Input extends Component {
   }
 
   render() {
-    const { name, placeholder, label, onChange, inputRef } = this.props
+    const { name, placeholder, label, onChange, textAreaRef } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
-        <StyledInput
-          ref={inputRef}
+        <StyledTextArea
+          ref={textAreaRef}
           name={name}
+          rows="10"
           placeholder={placeholder}
           onChange={onChange}
         />
@@ -46,3 +33,17 @@ export default class Input extends Component {
     )
   }
 }
+
+const StyledTextArea = styled.textarea`
+  margin: 0.3em 0;
+  font-size: 16px;
+  display: block;
+  border: 1px inset ${darkerprimary};
+  border-radius: 3px;
+  padding: 1px 0.4em 1px 0.4em;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px ${palesecondary};
+  }
+`
