@@ -4,6 +4,22 @@ import PropType from 'prop-types'
 
 import { darkestprimary } from '../colors'
 
+export default class Separator extends Component {
+  static propTypes = {
+    text: PropType.string.isRequired
+  }
+
+  render() {
+    return (
+      <Wrapper data-cy="Separator">
+        <Line className="left" />
+        <Text>{this.props.text}</Text>
+        <Line className="right" />
+      </Wrapper>
+    )
+  }
+}
+
 const Wrapper = styled.section`
   display: flex;
   align-items: center;
@@ -28,19 +44,3 @@ const Text = styled.span`
   white-space: nowrap;
   margin: 0.75em 1em;
 `
-
-export default class Separator extends Component {
-  static propTypes = {
-    text: PropType.string.isRequired
-  }
-
-  render() {
-    return (
-      <Wrapper data-cy="Separator">
-        <Line className="left" />
-        <Text>{this.props.text}</Text>
-        <Line className="right" />
-      </Wrapper>
-    )
-  }
-}

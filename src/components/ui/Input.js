@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import PropType from 'prop-types'
 
 import { palesecondary, darkerprimary } from '../colors'
 
@@ -20,10 +20,11 @@ const StyledInput = styled.input`
 
 export default class Input extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
+    name: PropType.string.isRequired,
+    placeholder: PropType.string,
+    label: PropType.string.isRequired,
+    onChange: PropType.func.isRequired,
+    inputRef: PropType.object.isRequired
   }
 
   static defaultProps = {
@@ -31,12 +32,20 @@ export default class Input extends Component {
   }
 
   render() {
-    const { name, placeholder, label, onChange, inputRef } = this.props
+    const {
+      name,
+      placeholder,
+      label,
+      required,
+      onChange,
+      inputRef
+    } = this.props
 
     return (
       <label htmlFor={name}>
         {label}
         <StyledInput
+          required={required && 'required'}
           ref={inputRef}
           name={name}
           placeholder={placeholder}

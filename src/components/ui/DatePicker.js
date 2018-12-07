@@ -1,8 +1,33 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import PropType from 'prop-types'
 
 import { palesecondary, darkerprimary } from '../colors'
+
+export default class DatePicker extends Component {
+  static propTypes = {
+    name: PropType.string.isRequired,
+    label: PropType.string.isRequired,
+    onChange: PropType.func.isRequired,
+    displayValue: PropType.string.isRequired
+  }
+
+  render() {
+    const { name, label, onChange, displayValue } = this.props
+
+    return (
+      <label htmlFor={name}>
+        {label}
+        <StyledInput
+          value={displayValue}
+          type="date"
+          name={name}
+          onChange={onChange}
+        />
+      </label>
+    )
+  }
+}
 
 const StyledInput = styled.input`
   margin: 0.3em 0;
@@ -16,41 +41,3 @@ const StyledInput = styled.input`
     box-shadow: 0 0 2px 2px ${palesecondary};
   }
 `
-
-export default class DatePicker extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
-  }
-
-  static defaultProps = {
-    placeholder: 'Type here'
-  }
-
-  render() {
-    const {
-      name,
-      placeholder,
-      label,
-      onChange,
-      inputRef,
-      displayValue
-    } = this.props
-
-    return (
-      <label htmlFor={name}>
-        {label}
-        <StyledInput
-          value={displayValue}
-          ref={inputRef}
-          type="date"
-          name={name}
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-      </label>
-    )
-  }
-}

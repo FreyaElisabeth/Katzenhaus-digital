@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import PropType from 'prop-types'
 
 import { darkerprimary, palesecondary } from '../colors'
 
 export default class TextArea extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
+  static propType = {
+    name: PropType.string.isRequired,
+    label: PropType.string.isRequired,
+    onChange: PropType.func.isRequired,
+    placeholder: PropType.string,
+    inputRef: PropType.object.isRequired
   }
 
   static defaultProps = {
@@ -41,6 +42,7 @@ const StyledTextArea = styled.textarea`
   border: 1px inset ${darkerprimary};
   border-radius: 3px;
   padding: 1px 0.4em 1px 0.4em;
+  width: calc(50vw - 50px);
 
   &:focus {
     outline: none;

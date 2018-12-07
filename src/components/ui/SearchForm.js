@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import PropType from 'prop-types'
 
 import Input from './Input'
 import Select from './Select'
@@ -8,18 +8,26 @@ import ConditionalSelect from './ConditionalSelect'
 
 export default class SearchForm extends Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    resetInputValues: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    displayValueSelectHouse: PropTypes.string.isRequired,
-    displayValueSelectRoom: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
+    onChange: PropType.func.isRequired,
+    resetInputValues: PropType.func.isRequired,
+    onSubmit: PropType.func.isRequired,
+    displayValueSelectHouse: PropType.string.isRequired,
+    displayValueSelectRoom: PropType.oneOfType([
+      PropType.string,
+      PropType.number
     ]).isRequired,
-    displayValueSelectKennel: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired
+    displayValueSelectKennel: PropType.oneOfType([
+      PropType.string,
+      PropType.number
+    ]).isRequired,
+    locationOptions: PropType.object.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    this.nameInputRef = React.createRef()
+    this.idInputRef = React.createRef()
+    this.transponderNrInputRef = React.createRef()
   }
 
   render() {
@@ -40,18 +48,21 @@ export default class SearchForm extends Component {
             name="name"
             placeholder="Kitty"
             label="Name: "
+            inputRef={this.nameInputRef}
           />
           <Input
             onChange={onChange}
             name="id"
             placeholder="123_F_18"
             label="HTV-Nummer: "
+            inputRef={this.idInputRef}
           />
           <Input
             onChange={onChange}
             name="transponderNr"
             placeholder="...123"
             label="Transponder: "
+            inputRef={this.transponderNrInputRef}
           />
         </section>
         <section className="search">

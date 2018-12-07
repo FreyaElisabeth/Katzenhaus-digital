@@ -8,17 +8,17 @@ export default class Checkbox extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onCheck: PropTypes.func.isRequired
+    onCheck: PropTypes.func.isRequired,
+    displayValue: PropTypes.bool.isRequired
   }
 
   render() {
-    const { name, label, onCheck, inputRef, displayValue } = this.props
+    const { name, label, onCheck, displayValue } = this.props
 
     return (
       <StyledLabel htmlFor={name}>
         <input
           type="checkbox"
-          ref={inputRef}
           name={name}
           onChange={onCheck}
           checked={displayValue}
