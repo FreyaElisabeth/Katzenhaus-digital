@@ -14,8 +14,12 @@ const SectionWrapper = styled.section`
 
     span {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       word-break: break-all;
+    }
+
+    &:nth-child(even) {
+      align-items: flex-end;
     }
   }
 `

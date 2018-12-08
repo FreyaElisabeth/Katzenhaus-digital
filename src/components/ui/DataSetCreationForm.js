@@ -1,31 +1,44 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import PropType from 'prop-types'
 
+import FormWrapper from '../Wrappers/FormWrapper'
+import SeparatorAlignLeft from './SeparatorAlignLeft'
 import Input from './Input'
 import Select from './Select'
 import ConditionalSelect from './ConditionalSelect'
-import Button from './Button'
 import Checkbox from './Checkbox'
-import FormWrapper from '../Wrappers/FormWrapper'
-import SeparatorAlignLeft from './SeparatorAlignLeft'
 import DatePicker from './DatePicker'
 import Radio from './Radio'
 import TextArea from './TextArea'
+import SubmitBtn from './SubmitBtn'
 
 export default class DataSetCreationForm extends Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    preventDefault: PropTypes.func.isRequired,
-    displayValueSelectHouse: PropTypes.string.isRequired,
-    displayValueSelectRoom: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
+    onChange: PropType.func.isRequired,
+    onCheck: PropType.func.isRequired,
+    onSubmit: PropType.func.isRequired,
+    preventDefault: PropType.func.isRequired,
+    displayValueSelectHouse: PropType.string.isRequired,
+    displayValueSelectRoom: PropType.oneOfType([
+      PropType.string,
+      PropType.number
     ]).isRequired,
-    displayValueSelectKennel: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired
+    displayValueSelectKennel: PropType.oneOfType([
+      PropType.string,
+      PropType.number
+    ]).isRequired,
+    displayValueInShelterSince: PropType.oneOfType([
+      PropType.string,
+      PropType.date
+    ]).isRequired,
+    displayValueCheckboxAdoptable: PropType.bool.isRequired,
+    displayValueCheckboxSpayedOrNeutered: PropType.bool.isRequired,
+    displayValueCheckboxAggressive: PropType.bool.isRequired,
+    displayValueCheckboxEscapologist: PropType.bool.isRequired,
+    displayValueCheckboxAssertive: PropType.bool.isRequired,
+    displayValueCheckboxNervous: PropType.bool.isRequired,
+    displayValueCheckboxOutdoorCat: PropType.bool.isRequired,
+    displayValueCheckboxToiletTrained: PropType.bool.isRequired
   }
 
   constructor(props) {
@@ -49,7 +62,6 @@ export default class DataSetCreationForm extends Component {
     const {
       onChange,
       onCheck,
-      preventDefault,
       locationOptions,
       displayValueCheckboxAdoptable,
       displayValueSelectHouse,
@@ -67,12 +79,13 @@ export default class DataSetCreationForm extends Component {
     } = this.props
 
     return (
-      <FormWrapper data-cy="DataSetCreationForm" onSubmit={preventDefault}>
+      <FormWrapper data-cy="DataSetCreationForm" onSubmit={this.handleSubmit}>
         <section>
           <SeparatorAlignLeft text="Kopfdaten" />
           <Input
             onChange={onChange}
             name="name"
+            required={true}
             placeholder="Mieze"
             label="Name: "
             inputRef={this.nameInputRef}
@@ -80,6 +93,7 @@ export default class DataSetCreationForm extends Component {
           <Input
             onChange={onChange}
             name="id"
+            required={true}
             placeholder="123_F_18"
             label="HTV-Nummer: "
             inputRef={this.idInputRef}
@@ -104,32 +118,33 @@ export default class DataSetCreationForm extends Component {
           <Select
             onChange={onChange}
             name="house"
+            required={true}
             options={locationOptions}
             label="Haus: "
             displayValue={displayValueSelectHouse}
           />
           <ConditionalSelect
-            name="room"
-            label="Raum: "
             onChange={onChange}
-            displayValue={displayValueSelectRoom}
+            name="room"
+            required={true}
             options={locationOptions}
             subset={displayValueSelectHouse}
+            label="Raum: "
+            displayValue={displayValueSelectRoom}
           />
           <ConditionalSelect
-            name="kennel"
-            label="Kennel: "
             onChange={onChange}
-            displayValue={displayValueSelectKennel}
+            name="kennel"
             options={locationOptions[displayValueSelectHouse]}
             subset={displayValueSelectRoom}
+            label="Kennel: "
+            displayValue={displayValueSelectKennel}
           />
           <DatePicker
-            displayValue={displayValueInShelterSince}
             onChange={onChange}
             name="inShelterSince"
             label="Im Tierheim seit: "
-            inputRef={this.inShelterSinceInputRef}
+            displayValue={displayValueInShelterSince}
           />
         </section>
         <section className="description">
@@ -149,11 +164,10 @@ export default class DataSetCreationForm extends Component {
             inputRef={this.colorInputRef}
           />
           <DatePicker
-            displayValue={displayValueDateOfBirth}
             onChange={onChange}
             name="dateOfBirth"
             label="Geburtsdatum: "
-            inputRef={this.dateOfBirthInputRef}
+            displayValue={displayValueDateOfBirth}
           />
           <Radio
             onChange={onChange}
@@ -180,7 +194,6 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="spayedOrNeutered"
             label="kastriert"
-            inputRef={this.spayedOrNeuteredCheckboxRef}
             displayValue={displayValueCheckboxSpayedOrNeutered}
           />
         </section>
@@ -190,42 +203,36 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="escapologist"
             label="Fluchtneigung"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxEscapologist}
           />
           <Checkbox
             onCheck={onCheck}
             name="aggressive"
             label="aggressiv"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxAggressive}
           />
           <Checkbox
             onCheck={onCheck}
             name="assertive"
             label="selbstbewusst"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxAssertive}
           />
           <Checkbox
             onCheck={onCheck}
             name="nervous"
             label="ängstlich"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxNervous}
           />
           <Checkbox
             onCheck={onCheck}
             name="outdoorCat"
             label="Freigänger"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxOutdoorCat}
           />
           <Checkbox
             onCheck={onCheck}
             name="toiletTrained"
             label="stubenrein"
-            inputRef={this.escapologistCheckboxRef}
             displayValue={displayValueCheckboxToiletTrained}
           />
         </section>
@@ -234,35 +241,31 @@ export default class DataSetCreationForm extends Component {
           <Input
             onChange={onChange}
             name="acuteDiseases"
-            placeholder="..."
             label="Akute Erkrankungen: "
             inputRef={this.acuteDiseasesInputRef}
           />
           <Input
             onChange={onChange}
             name="chronicDiseases"
-            placeholder="..."
             label="Chronische Erkrankungen: "
             inputRef={this.chronicDiseasesInputRef}
           />
           <Input
             onChange={onChange}
             name="medication"
-            placeholder="..."
+            placeholder="Baytril 1mg 2xtgl."
             label="Medikamente: "
             inputRef={this.medicationInputRef}
           />
           <Input
             onChange={onChange}
             name="nutrition"
-            placeholder="..."
             label="Ernährung: "
             inputRef={this.nutritionInputRef}
           />
           <Input
             onChange={onChange}
             name="otherTreatments"
-            placeholder="..."
             label="Sonstige Behandlung: "
             inputRef={this.otherTreatmentsInputRef}
           />
@@ -272,17 +275,17 @@ export default class DataSetCreationForm extends Component {
           <TextArea
             onChange={onChange}
             name="freeTextInfo"
-            placeholder="..."
             label="Sonstiges: "
             inputRef={this.textAreaInputRef}
           />
         </section>
-        <Button onClick={this.handleSubmit} text="Anlegen" />
+        <SubmitBtn text="Datensatz anlegen" />
       </FormWrapper>
     )
   }
 
-  handleSubmit = () => {
+  handleSubmit = event => {
+    this.props.preventDefault(event)
     this.props.onSubmit()
     this.nameInputRef.current.value = ''
     this.idInputRef.current.value = ''
@@ -295,7 +298,6 @@ export default class DataSetCreationForm extends Component {
     this.medicationInputRef.current.value = ''
     this.otherTreatmentsInputRef.current.value = ''
     this.textAreaInputRef.current.value = ''
-    //this.sexInputRef.current.checked = false
   }
 
   componentDidMount() {

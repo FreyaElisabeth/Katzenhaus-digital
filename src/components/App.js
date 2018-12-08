@@ -350,8 +350,6 @@ export default class App extends Component {
     })
   }
 
-  handleSelect = event => {}
-
   renderSearchResults = () => {
     const {
       dataSets,
@@ -373,18 +371,9 @@ export default class App extends Component {
       .filter(dataSet =>
         dataSet.transponderNr.toString().includes(transponderNrInput)
       )
-      .filter(dataSet =>
-        dataSet.house.toLowerCase().includes(houseInput.toLowerCase())
-      )
-      .filter(dataSet =>
-        dataSet.room
-          .toString()
-          .toLowerCase()
-          .includes(roomInput.toLowerCase())
-      )
-      .filter(dataSet =>
-        dataSet.kennel.toString().includes(kennelInput.toString())
-      )
+      .filter(dataSet => dataSet.house.includes(houseInput))
+      .filter(dataSet => dataSet.room.includes(roomInput))
+      .filter(dataSet => dataSet.kennel.includes(kennelInput))
       .map(this.renderSingleDataSet)
   }
 

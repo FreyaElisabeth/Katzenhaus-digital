@@ -16,12 +16,12 @@ export default class ConditionalSelect extends Component {
 
   render() {
     const {
-      name,
+      displayValue,
       label,
+      name,
       onChange,
       options,
       required,
-      displayValue,
       subset
     } = this.props
 
@@ -29,10 +29,10 @@ export default class ConditionalSelect extends Component {
       <label htmlFor={name}>
         {label}
         <StyledSelect
-          name={name}
           onChange={onChange}
-          value={displayValue}
+          name={name}
           required={required && 'required'}
+          value={displayValue}
         >
           <option value="">Bitte wählen</option>
           {subset && this.renderOptions(options[subset])}
