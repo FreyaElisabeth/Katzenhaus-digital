@@ -443,7 +443,7 @@ export default class App extends Component {
     postCat(newDataSet)
       .then(newDataSet => {
         this.setState({
-          dataSets: [newDataSet, ...this.state.dataSet]
+          dataSets: [newDataSet, ...this.state.dataSets]
         })
       })
       .then(this.resetFormValues())

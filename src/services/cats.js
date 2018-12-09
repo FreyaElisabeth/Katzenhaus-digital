@@ -5,7 +5,6 @@ export function getCats() {
 }
 
 export function postCat(cat) {
-  console.log(baseUrl)
   return makeRequest('/cats', 'post', cat).catch(err => console.error(err))
 }
 
