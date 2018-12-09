@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { getCat, postCat, deleteCat, patchCat } from '../services/cats'
+
 import {
   paleprimary,
   palestprimary,
@@ -8,7 +11,6 @@ import {
   darkerprimary,
   darkestprimary
 } from './colors'
-
 import SearchScreen from './screens/SearchScreen'
 import DataSetCreationScreen from './screens/DataSetCreationScreen'
 import CatCard from './catCard/CatCard'
@@ -286,7 +288,7 @@ export default class App extends Component {
             exact
             render={() => (
               <SearchScreen
-                resetInputValues={this.resetInputValues}
+                resetFormValues={this.resetFormValues}
                 onChange={this.handleChange}
                 onSubmit={this.preventDefault}
                 displayValueSelectHouse={houseInput}
@@ -301,7 +303,7 @@ export default class App extends Component {
             path="/dataSetCreation"
             render={() => (
               <DataSetCreationScreen
-                resetInputValues={this.resetInputValues}
+                resetFormValues={this.resetFormValues}
                 onChange={this.handleChange}
                 onCheck={this.handleCheck}
                 onSubmit={this.createNewDataSet}
@@ -438,11 +440,13 @@ export default class App extends Component {
       freeTextInfo: freeTextInfoInput
     }
 
-    this.setState({
-      dataSets: [newDataSet, ...this.state.dataSets]
-    })
-
-    this.resetInputValues()
+    postCat(newDataSet)
+      .then(newDataSet => {
+        this.setState({
+          dataSets: [newDataSet, ...this.state.dataSet]
+        })
+      })
+      .then(this.resetFormValues())
   }
 
   componentDidUpdate() {
@@ -453,7 +457,7 @@ export default class App extends Component {
     this.saveToLocalStorage()
   }
 
-  resetInputValues = () => {
+  resetFormValues = () => {
     this.setState({
       nameInput: '',
       idInput: '',

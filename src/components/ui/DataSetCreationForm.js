@@ -301,6 +301,6 @@ export default class DataSetCreationForm extends Component {
   }
 
   componentDidMount() {
-    this.props.resetInputValues()
+    this.props.resetFormValues()
   }
 }
