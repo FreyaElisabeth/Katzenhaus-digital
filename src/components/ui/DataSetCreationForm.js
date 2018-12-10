@@ -27,12 +27,10 @@ export default class DataSetCreationForm extends Component {
       PropType.string,
       PropType.number
     ]).isRequired,
-    displayValueInShelterSince: PropType.oneOfType([
-      PropType.string,
-      PropType.date
-    ]).isRequired,
+    displayValueInShelterSince: PropType.string.isRequired,
     displayValueCheckboxAdoptable: PropType.bool.isRequired,
     displayValueCheckboxSpayedOrNeutered: PropType.bool.isRequired,
+    displayValueDateOfBirth: PropType.string.isRequired,
     displayValueCheckboxAggressive: PropType.bool.isRequired,
     displayValueCheckboxEscapologist: PropType.bool.isRequired,
     displayValueCheckboxAssertive: PropType.bool.isRequired,

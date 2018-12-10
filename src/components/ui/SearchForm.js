@@ -9,7 +9,7 @@ import ConditionalSelect from './ConditionalSelect'
 export default class SearchForm extends Component {
   static propTypes = {
     onChange: PropType.func.isRequired,
-    resetInputValues: PropType.func.isRequired,
+    resetFormValues: PropType.func.isRequired,
     onSubmit: PropType.func.isRequired,
     displayValueSelectHouse: PropType.string.isRequired,
     displayValueSelectRoom: PropType.oneOfType([

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getCat, postCat, deleteCat, patchCat } from '../services/cats'
+import { getCats, postCat, deleteCat, patchCat } from '../services/cats'
 
 import {
   paleprimary,
@@ -14,93 +14,6 @@ import {
 import SearchScreen from './screens/SearchScreen'
 import DataSetCreationScreen from './screens/DataSetCreationScreen'
 import CatCard from './catCard/CatCard'
-
-const dataSets = [
-  {
-    name: 'Nimue',
-    id: '848_A_17',
-    transponderNr: '276097200023868',
-    house: 'Neues Katzenhaus',
-    room: 'Raum 7',
-    kennel: 'Kennel 7',
-    sex: 'weiblich',
-    spayedOrNeutered: true,
-    adoptable: true,
-    race: 'Europäisch Kurzhaar',
-    color: 'braun-schwarz getigert',
-    dateOfBirth: new Date('2005.04.29'),
-    inShelterSince: new Date('2017.03.01'),
-    aggressive: false,
-    assertive: true,
-    nervous: false,
-    escapologist: true,
-    outdoorCat: false,
-    toiletTrained: true,
-    acuteDiseases: 'Schnupfen',
-    chronicDiseases: 'Übergewicht',
-    nutrition: 'nur Trockenfutter',
-    medication: '',
-    otherTreatments: '',
-    freeTextInfo:
-      'Nimue muss dringend abnehmen, am besten über mehrere Monate hinweg.'
-  },
-  {
-    name: 'Sir Maunzelot',
-    id: '849_A_17',
-    transponderNr: '276097200023869',
-    house: 'Neues Katzenhaus',
-    room: 'Raum 7',
-    kennel: 'Kennel 7',
-    sex: 'männlich',
-    spayedOrNeutered: true,
-    adoptable: true,
-    race: 'Norwegische Waldkatze x Sibirer x Europäisch Kurzhaar',
-    color: 'silbergrau getigert',
-    dateOfBirth: new Date('2008.03.21'),
-    inShelterSince: new Date('2017.03.01'),
-    aggressive: false,
-    assertive: false,
-    nervous: true,
-    escapologist: true,
-    outdoorCat: false,
-    toiletTrained: true,
-    acuteDiseases: 'Schnupfen',
-    chronicDiseases: 'leichtes Übergewicht',
-    nutrition: 'nur Trockenfutter',
-    medication: '',
-    otherTreatments: '',
-    freeTextInfo:
-      'Sir Maunzelot braucht viel Zuneigung, aber auch viel Zeit, um Vertrauen zu fassen.'
-  },
-  {
-    name: 'Elvis',
-    id: '327_F_01',
-    transponderNr: '276097200023855',
-    house: 'Altes Katzenhaus',
-    room: 'Raum 6',
-    kennel: 'Kennel 5',
-    sex: 'männlich',
-    spayedOrNeutered: false,
-    adoptable: true,
-    race: 'Europäisch Kurzhaar',
-    color: 'rot getigert, weiße Brust',
-    dateOfBirth: new Date('2001.07.01'),
-    inShelterSince: new Date('2001.08.01'),
-    aggressive: false,
-    assertive: true,
-    nervous: false,
-    escapologist: true,
-    outdoorCat: true,
-    toiletTrained: false,
-    acuteDiseases: 'Schnupfen, Flöhe',
-    chronicDiseases: '',
-    nutrition: 'Aufbaufütterung',
-    medication: 'Flohmittel',
-    otherTreatments: 'Wärmelampe',
-    freeTextInfo:
-      'Elvis wurde neben seiner toten Mutter und zwei toten Geschwistern aufgefunden, die wahrscheinlich Rattengift gefressen haben.'
-  }
-]
 
 const locationData = {
   'Altes Katzenhaus': {
@@ -235,7 +148,7 @@ const locationData = {
 
 export default class App extends Component {
   state = {
-    dataSets: this.loadFromLocalStorage() || dataSets,
+    dataSets: this.getData() || this.loadFromLocalStorage(),
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -336,6 +249,14 @@ export default class App extends Component {
         </Wrapper>
       </Router>
     )
+  }
+
+  getData() {
+    getCats().then(cats => {
+      this.setState({
+        dataSets: cats
+      })
+    })
   }
 
   handleChange = event => {
