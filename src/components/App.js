@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getCats, postCat, deleteCat, patchCat } from '../services/cats'
+import { getCats, postCat, patchCat } from '../services/cats'
 
 import {
   paleprimary,
@@ -148,7 +148,7 @@ const locationData = {
 
 export default class App extends Component {
   state = {
-    dataSets: this.getData() || this.loadFromLocalStorage(),
+    dataSets: this.loadFromLocalStorage(),
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -174,6 +174,10 @@ export default class App extends Component {
     nutritionInput: '',
     otherTreatmentsInput: '',
     freeTextInfoInput: ''
+  }
+
+  componentDidMount() {
+    this.getData()
   }
 
   render() {
@@ -411,9 +415,10 @@ export default class App extends Component {
 
   loadFromLocalStorage() {
     try {
-      return JSON.parse(localStorage.getItem('Katzenhaus-digital'))
+      return JSON.parse(localStorage.getItem('Katzenhaus-digital')) || []
     } catch (err) {
       console.log(err)
+      return []
     }
   }
 }
