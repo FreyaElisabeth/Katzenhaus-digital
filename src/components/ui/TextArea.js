@@ -40,12 +40,13 @@ const StyledTextArea = styled.textarea`
   font-size: 16px;
   display: block;
   border: 1px inset ${darkerprimary};
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 1px 0.4em 1px 0.4em;
-  width: calc(50vw - 50px);
+  width: 240px;
+  box-shadow: inset 1px 1px 2px ${darkerprimary};
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
+    box-shadow: 0 0 2px 2px ${palesecondary}, inset 1px 1px 2px ${darkerprimary};
   }
 `

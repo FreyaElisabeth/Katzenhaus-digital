@@ -53,13 +53,19 @@ export default class Select extends Component {
 }
 
 const StyledSelect = styled.select`
-  margin: 0.3em 0 1em 0;
+  background: white;
+  padding: 0 0.4em;
+  border: 1px inset ${darkerprimary};
+  box-shadow: inset 1px 1px 4px ${darkerprimary};
+  border-radius: 5px;
+  height: 30px;
+  width: 180px;
+  margin: 0.3em 0;
   font-size: 16px;
   display: block;
-  border: 1px inset ${darkerprimary};
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
+    box-shadow: 0 0 2px 2px ${palesecondary}, inset 1px 1px 4px ${darkerprimary};
   }
 `

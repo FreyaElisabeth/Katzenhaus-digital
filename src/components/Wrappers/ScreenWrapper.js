@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const ScreenWrapper = styled.div`
-  background-image: url('https://images.unsplash.com/photo-1506891536236-3e07892564b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80');
+  background-image: url('/img/orange-tabby-fur.jpg');
   background-size: cover;
   display: grid;
   grid-gap: 20px;

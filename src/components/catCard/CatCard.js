@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { darkestprimary } from '../colors'
+import { white, darkestprimary } from '../colors'
 import CardHead from './CardHead'
 import CardDescription from './CardDescription'
 import CardBehavior from './CardBehavior'
@@ -10,9 +10,10 @@ import CardFreeText from './CardFreeText'
 import Separator from '../ui/Separator'
 
 const CardWrapper = styled.div`
+  background: ${white};
   border: 1px solid ${darkestprimary};
   border-radius: 15px;
-  padding: 20px;
+  padding: 30px;
 `
 
 export default class CatCard extends Component {

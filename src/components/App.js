@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { getCats, postCat, patchCat } from '../services/cats'
 
@@ -14,6 +16,11 @@ import {
 import SearchScreen from './screens/SearchScreen'
 import DataSetCreationScreen from './screens/DataSetCreationScreen'
 import CatCard from './catCard/CatCard'
+
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
+library.add(faSearch)
+library.add(faFileUpload)
 
 const locationData = {
   'Altes Katzenhaus': {
@@ -244,10 +251,10 @@ export default class App extends Component {
           />
           <nav>
             <NavLink exact to="/" data-cy="navHome">
-              Suche
+              <FontAwesomeIcon icon="search" />
             </NavLink>
             <NavLink to="/dataSetCreation" data-cy="navCreate">
-              Datensatz anlegen
+              <FontAwesomeIcon icon="file-upload" />
             </NavLink>
           </nav>
         </Wrapper>
@@ -437,6 +444,7 @@ const Wrapper = styled.main`
 
     a:any-link {
       text-decoration: none;
+      font-size: 32px;
       color: white;
       background: ${darkerprimary};
       border: 1px solid ${darkestprimary};

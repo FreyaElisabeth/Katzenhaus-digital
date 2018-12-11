@@ -39,6 +39,7 @@ const StyledLabel = styled.label`
       width: 16px;
       height: 16px;
       border: 1px inset ${darkerprimary};
+      box-shadow: inset 1px 1px 2px ${darkerprimary};
       border-radius: 50%;
       background: white;
     }
@@ -68,7 +69,8 @@ const StyledLabel = styled.label`
     &:focus {
       &:before {
         outline: none;
-        box-shadow: 0 0 2px 2px ${palesecondary};
+        box-shadow: 0 0 2px 2px ${palesecondary},
+          inset 1px 1px 2px ${darkerprimary};
       }
     }
   }

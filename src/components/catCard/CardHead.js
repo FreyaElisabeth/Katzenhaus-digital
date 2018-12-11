@@ -9,7 +9,12 @@ const SectionWrapper = styled.section`
 
   div {
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 10px;
+    padding: 0 5px;
+
+    &:nth-child(odd) {
+      padding: 5px;
+    }
 
     &.right {
       text-align: right;
@@ -46,22 +51,22 @@ export default class CardHead extends Component {
         <h3>{name}</h3>
         <SectionWrapper data-cy="CardHead">
           <div className="left">
-            <div>HTV-Nr.: {id}</div>
-            <div>Transponder: {transponderNr}</div>
-            <div>
+            <span>HTV-Nr.: {id}</span>
+            <span>Transponder: {transponderNr}</span>
+            <span>
               im Tierheim seit{' '}
               {new Date(inShelterSince).toLocaleDateString('de')}
-            </div>
+            </span>
           </div>
           <div className="right">
-            <div>{house}</div>
-            <div>
+            <span>{house}</span>
+            <span>
               {room}
               {kennel && ', ' + kennel}
-            </div>
-            <div>
+            </span>
+            <span>
               {adoptable ? 'vermittelbar' : 'derzeit nicht vermittelbar'}
-            </div>
+            </span>
           </div>
         </SectionWrapper>
       </React.Fragment>

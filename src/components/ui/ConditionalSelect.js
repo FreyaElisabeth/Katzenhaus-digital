@@ -55,13 +55,18 @@ export default class ConditionalSelect extends Component {
 }
 
 const StyledSelect = styled.select`
+  background: white;
+  box-shadow: inset 1px 1px 2px ${darkerprimary};
   margin: 0.3em 0 1em 0;
+  padding: 0 0.4em;
+  height: 30px;
+  width: 180px;
   font-size: 16px;
   display: block;
   border: 1px inset ${darkerprimary};
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
+    box-shadow: 0 0 2px 2px ${palesecondary}, inset 1px 1px 2px ${darkerprimary};
   }
 `

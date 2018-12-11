@@ -30,14 +30,18 @@ export default class DatePicker extends Component {
 }
 
 const StyledInput = styled.input`
+  border: 1px inset ${darkerprimary};
+  border-radius: 5px;
+  height: 30px;
+  width: 180px;
   margin: 0.3em 0;
+  padding: 0 0.4em;
   font-size: 16px;
   display: block;
-  border: 1px inset ${darkerprimary};
-  border-radius: 3px;
+  box-shadow: inset 1px 1px 2px ${darkerprimary};
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
+    box-shadow: 0 0 2px 2px ${palesecondary}, inset 1px 1px 2px ${darkerprimary};
   }
 `

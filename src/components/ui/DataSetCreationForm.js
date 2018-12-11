@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropType from 'prop-types'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FormWrapper from '../Wrappers/FormWrapper'
 import SeparatorAlignLeft from './SeparatorAlignLeft'
@@ -195,6 +197,40 @@ export default class DataSetCreationForm extends Component {
             displayValue={displayValueCheckboxSpayedOrNeutered}
           />
         </section>
+        <section>
+          <SeparatorAlignLeft text="Gesundheitszustand" />
+          <Input
+            onChange={onChange}
+            name="acuteDiseases"
+            label="Akute Erkrankungen: "
+            inputRef={this.acuteDiseasesInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="chronicDiseases"
+            label="Chronische Erkrankungen: "
+            inputRef={this.chronicDiseasesInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="medication"
+            placeholder="Baytril 1mg 2xtgl."
+            label="Medikamente: "
+            inputRef={this.medicationInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="nutrition"
+            label="Ernährung: "
+            inputRef={this.nutritionInputRef}
+          />
+          <Input
+            onChange={onChange}
+            name="otherTreatments"
+            label="Sonstige Behandlung: "
+            inputRef={this.otherTreatmentsInputRef}
+          />
+        </section>
         <section className="behavior">
           <SeparatorAlignLeft text="Verhalten" />
           <Checkbox
@@ -234,50 +270,18 @@ export default class DataSetCreationForm extends Component {
             displayValue={displayValueCheckboxToiletTrained}
           />
         </section>
-        <section>
-          <SeparatorAlignLeft text="Gesundheitszustand" />
-          <Input
-            onChange={onChange}
-            name="acuteDiseases"
-            label="Akute Erkrankungen: "
-            inputRef={this.acuteDiseasesInputRef}
-          />
-          <Input
-            onChange={onChange}
-            name="chronicDiseases"
-            label="Chronische Erkrankungen: "
-            inputRef={this.chronicDiseasesInputRef}
-          />
-          <Input
-            onChange={onChange}
-            name="medication"
-            placeholder="Baytril 1mg 2xtgl."
-            label="Medikamente: "
-            inputRef={this.medicationInputRef}
-          />
-          <Input
-            onChange={onChange}
-            name="nutrition"
-            label="Ernährung: "
-            inputRef={this.nutritionInputRef}
-          />
-          <Input
-            onChange={onChange}
-            name="otherTreatments"
-            label="Sonstige Behandlung: "
-            inputRef={this.otherTreatmentsInputRef}
-          />
-        </section>
         <section className="freeTextInfo">
           <SeparatorAlignLeft text="Sonstiges" />
           <TextArea
             onChange={onChange}
             name="freeTextInfo"
-            label="Sonstiges: "
+            label="Zusatzinformationen: "
             inputRef={this.textAreaInputRef}
           />
         </section>
-        <SubmitBtn text="Datensatz anlegen" />
+        <div className="submit">
+          <SubmitBtn text="Datensatz anlegen" />
+        </div>
       </FormWrapper>
     )
   }

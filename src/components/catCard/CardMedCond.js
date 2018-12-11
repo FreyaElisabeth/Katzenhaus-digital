@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropType from 'prop-types'
 
+import { offwhite } from '../colors'
+
 const SectionWrapper = styled.section`
   display: grid;
   grid-gap: 5px;
@@ -9,8 +11,15 @@ const SectionWrapper = styled.section`
 
   div {
     display: grid;
-    grid-template-columns: 35% auto;
+    grid-template-columns: 240px auto;
     grid-gap: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+
+    &:nth-child(odd) {
+      background: ${offwhite};
+      padding: 5px;
+    }
 
     span {
       display: flex;

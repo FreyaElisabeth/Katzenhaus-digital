@@ -5,16 +5,19 @@ import PropType from 'prop-types'
 import { palesecondary, darkerprimary } from '../colors'
 
 const StyledInput = styled.input`
+  padding: 0 0.4em;
+  border: 1px inset ${darkerprimary};
+  border-radius: 5px;
+  height: 30px;
+  width: 240px;
   margin: 0.3em 0;
   font-size: 16px;
   display: block;
-  border: 1px inset ${darkerprimary};
-  border-radius: 3px;
-  padding: 1px 0.4em 1px 0.4em;
+  box-shadow: inset 1px 1px 2px ${darkerprimary};
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 2px 2px ${palesecondary};
+    box-shadow: 0 0 2px 2px ${palesecondary}, inset 1px 1px 2px ${darkerprimary};
   }
 `
 

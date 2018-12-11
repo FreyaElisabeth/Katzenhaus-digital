@@ -1,14 +1,34 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropType from 'prop-types'
-import { darkerprimary } from '../colors'
+import { offwhite, darkerprimary } from '../colors'
 
 const SectionWrapper = styled.section`
   margin: 10px 0;
+  display: grid;
+  grid-template-columns: 240px auto;
+  grid-gap: 5px;
 
-  div.false {
-    color: ${darkerprimary};
-    text-decoration: line-through;
+  div {
+    display: grid;
+    grid-gap: 10px;
+    border-radius: 5px;
+    padding: 5px;
+
+    &.false {
+      color: ${darkerprimary};
+      text-decoration: line-through;
+    }
+
+    span {
+      display: flex;
+      align-items: flex-start;
+      word-break: break-all;
+
+      &:nth-child(even) {
+        align-items: flex-end;
+      }
+    }
   }
 `
 

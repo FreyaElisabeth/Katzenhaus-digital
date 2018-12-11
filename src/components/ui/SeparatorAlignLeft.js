@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 
 const Line = styled.div`
   width: 100%;
-  margin: 0 0 0.75em 0;
+  margin: 0 0 0.75em;
   border-bottom: 1px solid ${darkestprimary};
 `
 

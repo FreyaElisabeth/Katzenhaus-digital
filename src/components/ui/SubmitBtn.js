@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropType from 'prop-types'
 
-import { palesecondary, brightprimary } from '../colors'
+import { brightsecondary, darkersecondary, palesecondary } from '../colors'
 
 const StyledFormSubmit = styled.input`
-  font-size: 16px;
-  background: ${brightprimary};
+  font-size: 24px;
+  font-weight: bold;
+  background: ${brightsecondary};
   color: white;
-  border-radius: 5px;
-  border: none;
-  padding: 0.5em;
+  border-radius: 15px;
+  border: 1px outset ${darkersecondary};
+  padding: 0.5em 1em;
+  margin-top: 20px;
 
   &:focus {
     outline: none;
