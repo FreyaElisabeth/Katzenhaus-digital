@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { getCats, postCat, patchCat } from '../services/cats'
+import { getCats, postCat } from '../services/cats'
 
 import {
   paleprimary,
@@ -156,6 +156,7 @@ const locationData = {
 export default class App extends Component {
   state = {
     dataSets: [],
+    formValues: {},
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -189,6 +190,7 @@ export default class App extends Component {
 
   render() {
     const {
+      formValues,
       houseInput,
       roomInput,
       kennelInput,
@@ -215,6 +217,7 @@ export default class App extends Component {
                 resetFormValues={this.resetFormValues}
                 onChange={this.handleChange}
                 onSubmit={this.preventDefault}
+                formValues={formValues}
                 displayValueSelectHouse={houseInput}
                 displayValueSelectRoom={roomInput}
                 displayValueSelectKennel={kennelInput}
@@ -227,6 +230,7 @@ export default class App extends Component {
             path="/dataSetCreation"
             render={() => (
               <DataSetCreationScreen
+                formValues={formValues}
                 resetFormValues={this.resetFormValues}
                 onChange={this.handleChange}
                 onCheck={this.handleCheck}
@@ -273,8 +277,11 @@ export default class App extends Component {
   }
 
   handleChange = event => {
+    const input = [event.target.name + 'Input']
+    const value = event.target.value
+
     this.setState({
-      [event.target.name + 'Input']: event.target.value
+      input: value
     })
   }
 
