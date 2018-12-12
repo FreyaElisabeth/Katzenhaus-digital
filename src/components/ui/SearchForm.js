@@ -11,15 +11,7 @@ export default class SearchForm extends Component {
     onChange: PropType.func.isRequired,
     resetFormValues: PropType.func.isRequired,
     onSubmit: PropType.func.isRequired,
-    displayValueSelectHouse: PropType.string.isRequired,
-    displayValueSelectRoom: PropType.oneOfType([
-      PropType.string,
-      PropType.number
-    ]).isRequired,
-    displayValueSelectKennel: PropType.oneOfType([
-      PropType.string,
-      PropType.number
-    ]).isRequired,
+    formValues: PropType.object.isRequired,
     locationOptions: PropType.object.isRequired
   }
 
@@ -31,14 +23,13 @@ export default class SearchForm extends Component {
   }
 
   render() {
+    const { onChange, onSubmit, locationOptions } = this.props
+
     const {
-      onChange,
-      onSubmit,
       displayValueSelectHouse,
       displayValueSelectRoom,
-      displayValueSelectKennel,
-      locationOptions
-    } = this.props
+      displayValueSelectKennel
+    } = this.props.formValues
 
     return (
       <FormWrapper data-cy="SearchForm" onSubmit={onSubmit}>

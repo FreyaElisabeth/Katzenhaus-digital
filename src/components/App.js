@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { configureStore } from 'redux-starter-kit'
+import reducer from '../duck/reducer'
 
 import { getCats, postCat } from '../services/cats'
 
@@ -21,6 +23,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 library.add(faSearch)
 library.add(faFileUpload)
+
+const store = configureStore({ reducer })
 
 const locationData = {
   'Altes Katzenhaus': {
@@ -154,61 +158,14 @@ const locationData = {
 }
 
 export default class App extends Component {
-  state = {
-<<<<<<< HEAD
-    dataSets: [],
-    formValues: {},
-=======
-    dataSets: this.loadFromLocalStorage(),
->>>>>>> master
-    nameInput: '',
-    idInput: '',
-    transponderNrInput: '',
-    adoptableCheckbox: false,
-    houseInput: '',
-    roomInput: '',
-    kennelInput: '',
-    inShelterSinceInput: '',
-    raceInput: '',
-    colorInput: '',
-    dateOfBirthInput: '',
-    sexInput: '',
-    spayedOrNeuteredCheckbox: false,
-    escapologistCheckbox: false,
-    aggressiveCheckbox: false,
-    assertiveCheckbox: false,
-    nervousCheckbox: false,
-    outdoorCatCheckbox: false,
-    toiletTrainedCheckbox: false,
-    acuteDiseasesInput: '',
-    chronicDiseasesInput: '',
-    medicationInput: '',
-    nutritionInput: '',
-    otherTreatmentsInput: '',
-    freeTextInfoInput: ''
-  }
-
   componentDidMount() {
+    store.subscribe(() => this.forceUpdate())
     this.getData()
   }
 
   render() {
-    const {
-      formValues,
-      houseInput,
-      roomInput,
-      kennelInput,
-      inShelterSinceInput,
-      adoptableCheckbox,
-      spayedOrNeuteredCheckbox,
-      dateOfBirthInput,
-      escapologistCheckbox,
-      aggressiveCheckbox,
-      assertiveCheckbox,
-      nervousCheckbox,
-      outdoorCatCheckbox,
-      toiletTrainedCheckbox
-    } = this.state
+    const state = store.getState()
+    const { formValues } = state
 
     return (
       <Router>
@@ -222,9 +179,6 @@ export default class App extends Component {
                 onChange={this.handleChange}
                 onSubmit={this.preventDefault}
                 formValues={formValues}
-                displayValueSelectHouse={houseInput}
-                displayValueSelectRoom={roomInput}
-                displayValueSelectKennel={kennelInput}
                 searchResults={this.renderSearchResults}
                 locationOptions={locationData}
               />
@@ -241,19 +195,6 @@ export default class App extends Component {
                 onSubmit={this.createNewDataSet}
                 preventDefault={this.preventDefault}
                 locationOptions={locationData}
-                displayValueCheckboxAdoptable={adoptableCheckbox}
-                displayValueSelectHouse={houseInput}
-                displayValueSelectRoom={roomInput}
-                displayValueSelectKennel={kennelInput}
-                displayValueInShelterSince={inShelterSinceInput}
-                displayValueCheckboxSpayedOrNeutered={spayedOrNeuteredCheckbox}
-                displayValueDateOfBirth={dateOfBirthInput}
-                displayValueCheckboxEscapologist={escapologistCheckbox}
-                displayValueCheckboxAggressive={aggressiveCheckbox}
-                displayValueCheckboxAssertive={assertiveCheckbox}
-                displayValueCheckboxNervous={nervousCheckbox}
-                displayValueCheckboxOutdoorCat={outdoorCatCheckbox}
-                displayValueCheckboxToiletTrained={toiletTrainedCheckbox}
               />
             )}
           />
@@ -281,32 +222,30 @@ export default class App extends Component {
   }
 
   handleChange = event => {
-    const input = [event.target.name + 'Input']
+    const input = event.target.name + 'Input'
     const value = event.target.value
 
-    this.setState({
-      input: value
-    })
+    store.dispatch(handleChange(input, value))
   }
 
   handleCheck = event => {
-    const checkBoxChecked = event.target.checked ? true : false
+    const input = event.target.name + 'Checkbox'
+    const value = event.target.checked ? true : false
 
-    this.setState({
-      [event.target.name + 'Checkbox']: checkBoxChecked
-    })
+    store.dispatch(handleChange(input, value))
   }
 
   renderSearchResults = () => {
+    const { dataSets } = this.state
+
     const {
-      dataSets,
       nameInput,
       idInput,
       transponderNrInput,
       houseInput,
       roomInput,
       kennelInput
-    } = this.state
+    } = this.state.formValues
 
     return dataSets
       .filter(dataSet =>
@@ -355,7 +294,7 @@ export default class App extends Component {
       nutritionInput,
       otherTreatmentsInput,
       freeTextInfoInput
-    } = this.state
+    } = this.state.formValues
 
     const newDataSet = {
       name: nameInput,
@@ -404,25 +343,27 @@ export default class App extends Component {
 
   resetFormValues = () => {
     this.setState({
-      nameInput: '',
-      idInput: '',
-      transponderNrInput: '',
-      houseInput: '',
-      roomInput: '',
-      kennelInput: '',
-      inShelterSinceInput: '',
-      adoptableCheckbox: false,
-      colorInput: '',
-      raceInput: '',
-      sexInput: '',
-      dateOfBirthInput: '',
-      spayedOrNeuteredCheckbox: false,
-      escapologistCheckbox: false,
-      aggressiveCheckbox: false,
-      assertiveCheckbox: false,
-      nervousCheckbox: false,
-      outdoorCatCheckbox: false,
-      toiletTrainedCheckbox: false
+      formValues: {
+        nameInput: '',
+        idInput: '',
+        transponderNrInput: '',
+        houseInput: '',
+        roomInput: '',
+        kennelInput: '',
+        inShelterSinceInput: '',
+        adoptableCheckbox: false,
+        colorInput: '',
+        raceInput: '',
+        sexInput: '',
+        dateOfBirthInput: '',
+        spayedOrNeuteredCheckbox: false,
+        escapologistCheckbox: false,
+        aggressiveCheckbox: false,
+        assertiveCheckbox: false,
+        nervousCheckbox: false,
+        outdoorCatCheckbox: false,
+        toiletTrainedCheckbox: false
+      }
     })
   }
 

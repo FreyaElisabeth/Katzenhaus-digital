@@ -18,25 +18,7 @@ export default class DataSetCreationForm extends Component {
     onCheck: PropType.func.isRequired,
     onSubmit: PropType.func.isRequired,
     preventDefault: PropType.func.isRequired,
-    displayValueSelectHouse: PropType.string.isRequired,
-    displayValueSelectRoom: PropType.oneOfType([
-      PropType.string,
-      PropType.number
-    ]).isRequired,
-    displayValueSelectKennel: PropType.oneOfType([
-      PropType.string,
-      PropType.number
-    ]).isRequired,
-    displayValueInShelterSince: PropType.string.isRequired,
-    displayValueCheckboxAdoptable: PropType.bool.isRequired,
-    displayValueCheckboxSpayedOrNeutered: PropType.bool.isRequired,
-    displayValueDateOfBirth: PropType.string.isRequired,
-    displayValueCheckboxAggressive: PropType.bool.isRequired,
-    displayValueCheckboxEscapologist: PropType.bool.isRequired,
-    displayValueCheckboxAssertive: PropType.bool.isRequired,
-    displayValueCheckboxNervous: PropType.bool.isRequired,
-    displayValueCheckboxOutdoorCat: PropType.bool.isRequired,
-    displayValueCheckboxToiletTrained: PropType.bool.isRequired
+    formValues: PropType.object.isRequired
   }
 
   constructor(props) {
@@ -57,24 +39,22 @@ export default class DataSetCreationForm extends Component {
   }
 
   render() {
+    const { onChange, onCheck, locationOptions } = this.props
     const {
-      onChange,
-      onCheck,
-      locationOptions,
-      displayValueCheckboxAdoptable,
-      displayValueSelectHouse,
-      displayValueSelectRoom,
-      displayValueSelectKennel,
-      displayValueInShelterSince,
-      displayValueCheckboxSpayedOrNeutered,
-      displayValueDateOfBirth,
-      displayValueCheckboxAggressive,
-      displayValueCheckboxEscapologist,
-      displayValueCheckboxAssertive,
-      displayValueCheckboxNervous,
-      displayValueCheckboxOutdoorCat,
-      displayValueCheckboxToiletTrained
-    } = this.props
+      adoptableCheckbox,
+      houseInput,
+      roomInput,
+      kennelInput,
+      inShelterSinceInput,
+      spayedOrNeuteredCheckbox,
+      dateOfBirthInput,
+      aggressiveCheckbox,
+      escapologistCheckbox,
+      assertiveCheckbox,
+      nervousCheckbox,
+      outdoorCatCheckbox,
+      toiletTrainedCheckbox
+    } = this.props.formValues
 
     return (
       <FormWrapper data-cy="DataSetCreationForm" onSubmit={this.handleSubmit}>
@@ -108,7 +88,7 @@ export default class DataSetCreationForm extends Component {
             name="adoptable"
             label="vermittelbar"
             inputRef={this.adoptableCheckboxRef}
-            displayValue={displayValueCheckboxAdoptable}
+            displayValue={adoptableCheckbox}
           />
         </section>
         <section>
@@ -119,30 +99,30 @@ export default class DataSetCreationForm extends Component {
             required={true}
             options={locationOptions}
             label="Haus: "
-            displayValue={displayValueSelectHouse}
+            displayValue={houseInput}
           />
           <ConditionalSelect
             onChange={onChange}
             name="room"
             required={true}
             options={locationOptions}
-            subset={displayValueSelectHouse}
+            subset={houseInput}
             label="Raum: "
-            displayValue={displayValueSelectRoom}
+            displayValue={roomInput}
           />
           <ConditionalSelect
             onChange={onChange}
             name="kennel"
-            options={locationOptions[displayValueSelectHouse]}
-            subset={displayValueSelectRoom}
+            options={locationOptions[houseInput]}
+            subset={roomInput}
             label="Kennel: "
-            displayValue={displayValueSelectKennel}
+            displayValue={kennelInput}
           />
           <DatePicker
             onChange={onChange}
             name="inShelterSince"
             label="Im Tierheim seit: "
-            displayValue={displayValueInShelterSince}
+            displayValue={inShelterSinceInput}
           />
         </section>
         <section className="description">
@@ -165,7 +145,7 @@ export default class DataSetCreationForm extends Component {
             onChange={onChange}
             name="dateOfBirth"
             label="Geburtsdatum: "
-            displayValue={displayValueDateOfBirth}
+            displayValue={dateOfBirthInput}
           />
           <Radio
             onChange={onChange}
@@ -192,7 +172,7 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="spayedOrNeutered"
             label="kastriert"
-            displayValue={displayValueCheckboxSpayedOrNeutered}
+            displayValue={spayedOrNeuteredCheckbox}
           />
         </section>
         <section>
@@ -235,37 +215,37 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="escapologist"
             label="Fluchtneigung"
-            displayValue={displayValueCheckboxEscapologist}
+            displayValue={escapologistCheckbox}
           />
           <Checkbox
             onCheck={onCheck}
             name="aggressive"
             label="aggressiv"
-            displayValue={displayValueCheckboxAggressive}
+            displayValue={aggressiveCheckbox}
           />
           <Checkbox
             onCheck={onCheck}
             name="assertive"
             label="selbstbewusst"
-            displayValue={displayValueCheckboxAssertive}
+            displayValue={assertiveCheckbox}
           />
           <Checkbox
             onCheck={onCheck}
             name="nervous"
             label="ängstlich"
-            displayValue={displayValueCheckboxNervous}
+            displayValue={nervousCheckbox}
           />
           <Checkbox
             onCheck={onCheck}
             name="outdoorCat"
             label="Freigänger"
-            displayValue={displayValueCheckboxOutdoorCat}
+            displayValue={outdoorCatCheckbox}
           />
           <Checkbox
             onCheck={onCheck}
             name="toiletTrained"
             label="stubenrein"
-            displayValue={displayValueCheckboxToiletTrained}
+            displayValue={toiletTrainedCheckbox}
           />
         </section>
         <section className="freeTextInfo">

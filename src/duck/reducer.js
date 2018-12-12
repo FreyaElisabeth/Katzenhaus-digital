@@ -2,16 +2,43 @@ import { createReducer } from 'redux-starter-kit'
 import initialState from './initialState'
 
 const handleChange = (state, action) => {
-  const value = action.payload
+  const input = action.payload.input
+  const value = action.payload.value
 
   return {
     ...state,
-    formInput: value
+    [input]: value
+  }
+}
+
+const resetFormValues = state => {
+  return {
+    ...state,
+    nameInput: '',
+    idInput: '',
+    transponderNrInput: '',
+    houseInput: '',
+    roomInput: '',
+    kennelInput: '',
+    inShelterSinceInput: '',
+    adoptableCheckbox: false,
+    colorInput: '',
+    raceInput: '',
+    sexInput: '',
+    dateOfBirthInput: '',
+    spayedOrNeuteredCheckbox: false,
+    escapologistCheckbox: false,
+    aggressiveCheckbox: false,
+    assertiveCheckbox: false,
+    nervousCheckbox: false,
+    outdoorCatCheckbox: false,
+    toiletTrainedCheckbox: false
   }
 }
 
 export default createReducer(initialState, {
-  handleChange: handleChange
+  handleChange: handleChange,
+  resetFormValues
 })
 
 /* function getData(state, action) {

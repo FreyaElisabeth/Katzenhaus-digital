@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { white, darkestprimary, palesecondary } from '../colors'
+import { white, darkestprimary } from '../colors'
 
 export default class Header extends Component {
   render() {
