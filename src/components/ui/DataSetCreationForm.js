@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropType from 'prop-types'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FormWrapper from '../Wrappers/FormWrapper'
 import SeparatorAlignLeft from './SeparatorAlignLeft'
@@ -60,6 +58,7 @@ export default class DataSetCreationForm extends Component {
 
   render() {
     const {
+      alert,
       onChange,
       onCheck,
       locationOptions,
@@ -77,6 +76,15 @@ export default class DataSetCreationForm extends Component {
       displayValueCheckboxOutdoorCat,
       displayValueCheckboxToiletTrained
     } = this.props
+
+    if (alert.type && alert.message) {
+      const classString = 'alert alert-' + alert.type
+      var postStatus = (
+        <div id="postStatus" className={classString} ref="status">
+          {alert.message}
+        </div>
+      )
+    }
 
     return (
       <FormWrapper data-cy="DataSetCreationForm" onSubmit={this.handleSubmit}>
@@ -282,6 +290,7 @@ export default class DataSetCreationForm extends Component {
         <div className="submit">
           <SubmitBtn text="Datensatz anlegen" />
         </div>
+        {postStatus}
       </FormWrapper>
     )
   }

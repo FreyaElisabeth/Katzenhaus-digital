@@ -156,6 +156,7 @@ const locationData = {
 export default class App extends Component {
   state = {
     dataSets: this.loadFromLocalStorage(),
+    alert: { type: null, message: null },
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -189,6 +190,7 @@ export default class App extends Component {
 
   render() {
     const {
+      alert,
       houseInput,
       roomInput,
       kennelInput,
@@ -227,6 +229,7 @@ export default class App extends Component {
             path="/dataSetCreation"
             render={() => (
               <DataSetCreationScreen
+                alert={alert}
                 resetFormValues={this.resetFormValues}
                 onChange={this.handleChange}
                 onCheck={this.handleCheck}
@@ -376,10 +379,26 @@ export default class App extends Component {
       .then(newDataSet => {
         this.setState({
           dataSets: [newDataSet, ...this.state.dataSets]
+          /*  alert: { type: 'info', message: 'Wird gesendet ...' } */
         })
       })
       .then(this.resetFormValues())
   }
+
+  /* 
+  const response = JSON.parse(req.responseText)
+  if (req.status === 200 && response.status === 'OK') {
+    return this.setState({
+      type: 'success',
+      message: 'Datensatz angelegt. Vielen Dank!'
+    })
+  } else {
+    return this.setState({
+      type: 'danger',
+      message:
+        'Da hat leider etwas nicht funktioniert. Probier es doch später noch einmal.'
+    })
+  } */
 
   componentDidUpdate() {
     this.saveToLocalStorage()
