@@ -155,7 +155,7 @@ const locationData = {
 
 export default class App extends Component {
   state = {
-    dataSets: [],
+    dataSets: this.loadFromLocalStorage(),
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
