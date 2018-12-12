@@ -10,7 +10,6 @@ export default class SearchForm extends Component {
   static propTypes = {
     onChange: PropType.func.isRequired,
     resetFormValues: PropType.func.isRequired,
-    onSubmit: PropType.func.isRequired,
     formValues: PropType.object.isRequired,
     locationOptions: PropType.object.isRequired
   }
@@ -22,17 +21,16 @@ export default class SearchForm extends Component {
     this.transponderNrInputRef = React.createRef()
   }
 
-  render() {
-    const { onChange, onSubmit, locationOptions } = this.props
+  componentDidMount() {
+    this.props.resetFormValues()
+  }
 
-    const {
-      displayValueSelectHouse,
-      displayValueSelectRoom,
-      displayValueSelectKennel
-    } = this.props.formValues
+  render() {
+    const { onChange, locationOptions } = this.props
+    const { houseInput, roomInput, kennelInput } = this.props.formValues
 
     return (
-      <FormWrapper data-cy="SearchForm" onSubmit={onSubmit}>
+      <FormWrapper data-cy="SearchForm" onSubmit={this.preventDefault}>
         <section className="search">
           <Input
             onChange={onChange}
@@ -62,30 +60,28 @@ export default class SearchForm extends Component {
             name="house"
             options={locationOptions}
             label="Haus: "
-            displayValue={displayValueSelectHouse}
+            displayValue={houseInput}
           />
           <ConditionalSelect
             name="room"
             label="Raum: "
             onChange={onChange}
-            displayValue={displayValueSelectRoom}
+            displayValue={roomInput}
             options={locationOptions}
-            subset={displayValueSelectHouse}
+            subset={houseInput}
           />
           <ConditionalSelect
             name="kennel"
             label="Kennel: "
             onChange={onChange}
-            displayValue={displayValueSelectKennel}
-            options={locationOptions[displayValueSelectHouse]}
-            subset={displayValueSelectRoom}
+            displayValue={kennelInput}
+            options={locationOptions[houseInput]}
+            subset={roomInput}
           />
         </section>
       </FormWrapper>
     )
   }
 
-  componentDidMount() {
-    this.props.resetFormValues()
-  }
+  preventDefault = event => event.preventDefault()
 }

@@ -39,8 +39,22 @@ const resetFormValues = state => {
       assertiveCheckbox: false,
       nervousCheckbox: false,
       outdoorCatCheckbox: false,
-      toiletTrainedCheckbox: false
+      toiletTrainedCheckbox: false,
+      acuteDiseases: '',
+      chronicDiseases: '',
+      medication: '',
+      nutrition: '',
+      otherTreatments: '',
+      freeTextInfo: ''
     }
+  }
+}
+
+const addNewDataSet = (state, { payload }) => {
+  return {
+    ...state,
+    dataSets: { ...state.dataSets },
+    payload
   }
 }
 

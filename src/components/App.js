@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { configureStore } from 'redux-starter-kit'
 import reducer from '../duck/reducer'
 import * as Actions from '../duck/actions'
+import { Provider } from 'react-redux'
 
 import { getCats, postCat } from '../services/cats'
-
 import {
   paleprimary,
   palestprimary,
@@ -16,147 +16,15 @@ import {
   darkerprimary,
   darkestprimary
 } from './colors'
-import SearchScreen from './screens/SearchScreen'
-import DataSetCreationScreen from './screens/DataSetCreationScreen'
-import CatCard from './catCard/CatCard'
-
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
+import SearchScreen from './screens/SearchScreen'
+import DataSetCreationScreen from './screens/DataSetCreationScreen'
+
 library.add(faSearch)
 library.add(faFileUpload)
 
 const store = configureStore({ reducer })
-
-const locationData = {
-  'Altes Katzenhaus': {
-    'Raum 1': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 2': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 3': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 4': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 5': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 6': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    Außengehege: {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    Küche: { '-': '-' }
-  },
-  'Neues Katzenhaus': {
-    'Raum 1': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 2': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 3': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 4': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 5': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 6': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 7': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    'Raum 8': {
-      'Kennel 1': 'Kennel 1',
-      'Kennel 2': 'Kennel 2',
-      'Kennel 3': 'Kennel 3',
-      'Kennel 4': 'Kennel 4',
-      'Kennel 5': 'Kennel 5',
-      'Kennel 6': 'Kennel 6'
-    },
-    Spielzimmer: { '-': '-' },
-    Büro: { '-': '-' },
-    Umkleide: { '-': '-' }
-  }
-}
 
 export default class App extends Component {
   componentDidMount() {
@@ -166,49 +34,38 @@ export default class App extends Component {
 
   render() {
     const state = store.getState()
-    const { formValues } = state
+    const { formValues, locationData } = state
 
     return (
-      <Router>
-        <Wrapper>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <SearchScreen
-                resetFormValues={this.resetFormValues}
-                onChange={this.handleChange}
-                onSubmit={this.preventDefault}
-                formValues={formValues}
-                searchResults={() => this.renderSearchResults(state)}
-                locationOptions={locationData}
-              />
-            )}
-          />
-          <Route
-            path="/dataSetCreation"
-            render={() => (
-              <DataSetCreationScreen
-                formValues={formValues}
-                resetFormValues={() => this.resetFormValues(state)}
-                onChange={this.handleChange}
-                onCheck={this.handleCheck}
-                onSubmit={this.createNewDataSet}
-                preventDefault={this.preventDefault}
-                locationOptions={locationData}
-              />
-            )}
-          />
-          <nav>
-            <NavLink exact to="/" data-cy="navHome">
-              <FontAwesomeIcon icon="search" />
-            </NavLink>
-            <NavLink to="/dataSetCreation" data-cy="navCreate">
-              <FontAwesomeIcon icon="file-upload" />
-            </NavLink>
-          </nav>
-        </Wrapper>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Wrapper>
+            <Route path="/" exact component={SearchScreen} />
+            <Route
+              path="/dataSetCreation"
+              render={() => (
+                <DataSetCreationScreen
+                  formValues={formValues}
+                  resetFormValues={() => this.resetFormValues(state)}
+                  onChange={this.handleChange}
+                  onCheck={this.handleCheck}
+                  onSubmit={this.createNewDataSet}
+                  preventDefault={this.preventDefault}
+                  locationOptions={locationData}
+                />
+              )}
+            />
+            <nav>
+              <NavLink exact to="/" data-cy="navHome">
+                <FontAwesomeIcon icon="search" />
+              </NavLink>
+              <NavLink to="/dataSetCreation" data-cy="navCreate">
+                <FontAwesomeIcon icon="file-upload" />
+              </NavLink>
+            </nav>
+          </Wrapper>
+        </Router>
+      </Provider>
     )
   }
 
@@ -234,7 +91,7 @@ export default class App extends Component {
     store.dispatch(Actions.handleChange({ input, value }))
   }
 
-  renderSearchResults = state => {
+  /* renderSearchResults = state => {
     const { dataSets } = state
 
     const {
@@ -263,7 +120,7 @@ export default class App extends Component {
   }
 
   renderSingleDataSet = dataSet => <CatCard key={dataSet.id} {...dataSet} />
-
+ */
   preventDefault = event => event.preventDefault()
 
   createNewDataSet = () => {
@@ -325,9 +182,7 @@ export default class App extends Component {
 
     postCat(newDataSet)
       .then(newDataSet => {
-        this.setState({
-          dataSets: [newDataSet, ...this.state.dataSets]
-        })
+        store.dispatch(Actions.createNewDataSet(newDataSet))
       })
       .then(this.resetFormValues())
   }
