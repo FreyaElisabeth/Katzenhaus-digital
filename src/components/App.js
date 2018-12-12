@@ -375,14 +375,15 @@ export default class App extends Component {
       freeTextInfo: freeTextInfoInput
     }
 
+    /*  alert: { type: 'info', message: 'Wird gesendet ...' } */
     postCat(newDataSet)
-      .then(newDataSet => {
+      .then(({ data: newDataSet, res }) => {
         this.setState({
           dataSets: [newDataSet, ...this.state.dataSets]
-          /*  alert: { type: 'info', message: 'Wird gesendet ...' } */
         })
       })
       .then(this.resetFormValues())
+      .catch(err => console.error(err))
   }
 
   /* 
