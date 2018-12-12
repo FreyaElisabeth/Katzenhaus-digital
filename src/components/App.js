@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { configureStore } from 'redux-starter-kit'
 import reducer from '../duck/reducer'
+import * as Actions from '../duck/actions'
 
 import { getCats, postCat } from '../services/cats'
 
@@ -179,7 +180,7 @@ export default class App extends Component {
                 onChange={this.handleChange}
                 onSubmit={this.preventDefault}
                 formValues={formValues}
-                searchResults={this.renderSearchResults}
+                searchResults={() => this.renderSearchResults(state)}
                 locationOptions={locationData}
               />
             )}
@@ -189,7 +190,7 @@ export default class App extends Component {
             render={() => (
               <DataSetCreationScreen
                 formValues={formValues}
-                resetFormValues={this.resetFormValues}
+                resetFormValues={() => this.resetFormValues(state)}
                 onChange={this.handleChange}
                 onCheck={this.handleCheck}
                 onSubmit={this.createNewDataSet}
@@ -214,9 +215,7 @@ export default class App extends Component {
   getData() {
     getCats()
       .then(cats => {
-        this.setState({
-          dataSets: cats
-        })
+        store.dispatch(Actions.replaceCats(cats))
       })
       .catch(err => console.error(err))
   }
@@ -225,18 +224,18 @@ export default class App extends Component {
     const input = event.target.name + 'Input'
     const value = event.target.value
 
-    store.dispatch(handleChange(input, value))
+    store.dispatch(Actions.handleChange({ input, value }))
   }
 
   handleCheck = event => {
     const input = event.target.name + 'Checkbox'
     const value = event.target.checked ? true : false
 
-    store.dispatch(handleChange(input, value))
+    store.dispatch(Actions.handleChange({ input, value }))
   }
 
-  renderSearchResults = () => {
-    const { dataSets } = this.state
+  renderSearchResults = state => {
+    const { dataSets } = state
 
     const {
       nameInput,
@@ -245,7 +244,7 @@ export default class App extends Component {
       houseInput,
       roomInput,
       kennelInput
-    } = this.state.formValues
+    } = state.formValues
 
     return dataSets
       .filter(dataSet =>
@@ -334,37 +333,15 @@ export default class App extends Component {
   }
 
   componentDidUpdate() {
-    this.saveToLocalStorage()
+    //this.saveToLocalStorage()
   }
 
   componentWillUnmount() {
-    this.saveToLocalStorage()
+    //this.saveToLocalStorage()
   }
 
   resetFormValues = () => {
-    this.setState({
-      formValues: {
-        nameInput: '',
-        idInput: '',
-        transponderNrInput: '',
-        houseInput: '',
-        roomInput: '',
-        kennelInput: '',
-        inShelterSinceInput: '',
-        adoptableCheckbox: false,
-        colorInput: '',
-        raceInput: '',
-        sexInput: '',
-        dateOfBirthInput: '',
-        spayedOrNeuteredCheckbox: false,
-        escapologistCheckbox: false,
-        aggressiveCheckbox: false,
-        assertiveCheckbox: false,
-        nervousCheckbox: false,
-        outdoorCatCheckbox: false,
-        toiletTrainedCheckbox: false
-      }
-    })
+    store.dispatch(Actions.resetFormValues())
   }
 
   saveToLocalStorage = () => {
