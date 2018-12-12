@@ -155,7 +155,7 @@ const locationData = {
 
 export default class App extends Component {
   state = {
-    dataSets: this.loadFromLocalStorage(),
+    dataSets: [],
     nameInput: '',
     idInput: '',
     transponderNrInput: '',
@@ -263,11 +263,13 @@ export default class App extends Component {
   }
 
   getData() {
-    getCats().then(cats => {
-      this.setState({
-        dataSets: cats
+    getCats()
+      .then(cats => {
+        this.setState({
+          dataSets: cats
+        })
       })
-    })
+      .catch(err => console.error(err))
   }
 
   handleChange = event => {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropType from 'prop-types'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import FormWrapper from '../Wrappers/FormWrapper'
 import SeparatorAlignLeft from './SeparatorAlignLeft'
