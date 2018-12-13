@@ -77,7 +77,7 @@ export default class App extends Component {
       .catch(err => console.error(err))
   }
 
-  handleChange = event => {
+  /* handleChange = event => {
     const input = event.target.name + 'Input'
     const value = event.target.value
 
@@ -89,95 +89,65 @@ export default class App extends Component {
     const value = event.target.checked ? true : false
 
     store.dispatch(Actions.handleChange({ input, value }))
-  }
+  } */
 
-  /* renderSearchResults = state => {
-    const { dataSets } = state
-
-    const {
-      nameInput,
-      idInput,
-      transponderNrInput,
-      houseInput,
-      roomInput,
-      kennelInput
-    } = state.formValues
-
-    return dataSets
-      .filter(dataSet =>
-        dataSet.name.toLowerCase().includes(nameInput.toLowerCase())
-      )
-      .filter(dataSet =>
-        dataSet.id.toLowerCase().includes(idInput.toLowerCase())
-      )
-      .filter(dataSet =>
-        dataSet.transponderNr.toString().includes(transponderNrInput)
-      )
-      .filter(dataSet => dataSet.house.includes(houseInput))
-      .filter(dataSet => dataSet.room.includes(roomInput))
-      .filter(dataSet => dataSet.kennel.includes(kennelInput))
-      .map(this.renderSingleDataSet)
-  }
-
-  renderSingleDataSet = dataSet => <CatCard key={dataSet.id} {...dataSet} />
- */
   preventDefault = event => event.preventDefault()
 
   createNewDataSet = () => {
     const {
-      nameInput,
-      idInput,
-      transponderNrInput,
-      adoptableCheckbox,
-      houseInput,
-      roomInput,
-      kennelInput,
-      inShelterSinceInput,
-      raceInput,
-      colorInput,
-      dateOfBirthInput,
-      sexInput,
-      spayedOrNeuteredCheckbox,
-      escapologistCheckbox,
-      aggressiveCheckbox,
-      assertiveCheckbox,
-      nervousCheckbox,
-      outdoorCatCheckbox,
-      toiletTrainedCheckbox,
-      acuteDiseasesInput,
-      chronicDiseasesInput,
-      medicationInput,
-      nutritionInput,
-      otherTreatmentsInput,
-      freeTextInfoInput
+      name,
+      id,
+      transponderNr,
+      adoptable,
+      house,
+      room,
+      kennel,
+      inShelterSince,
+      race,
+      color,
+      dateOfBirth,
+      sex,
+      spayedOrNeutered,
+      escapologist,
+      aggressive,
+      assertive,
+      nervous,
+      outdoorCat,
+      toiletTrained,
+      acuteDiseases,
+      chronicDiseases,
+      medication,
+      nutrition,
+      otherTreatments,
+      freeTextInfo
     } = this.state.formValues
 
     const newDataSet = {
-      name: nameInput,
-      id: idInput,
-      transponderNr: transponderNrInput,
-      adoptable: adoptableCheckbox,
-      house: houseInput,
-      room: roomInput,
-      kennel: kennelInput,
-      inShelterSince: new Date(inShelterSinceInput),
-      race: raceInput,
-      color: colorInput,
-      sex: sexInput,
-      spayedOrNeutered: spayedOrNeuteredCheckbox,
-      dateOfBirth: new Date(dateOfBirthInput),
-      escapologist: escapologistCheckbox,
-      aggressive: aggressiveCheckbox,
-      assertive: assertiveCheckbox,
-      nervous: nervousCheckbox,
-      outdoorCat: outdoorCatCheckbox,
-      toiletTrained: toiletTrainedCheckbox,
-      acuteDiseases: acuteDiseasesInput,
-      chronicDiseases: chronicDiseasesInput,
-      medication: medicationInput,
-      nutrition: nutritionInput,
-      otherTreatments: otherTreatmentsInput,
-      freeTextInfo: freeTextInfoInput
+      name: name,
+      id: id,
+      transponderNr: transponderNr,
+      adoptable: adoptable,
+      house: house,
+      room: room,
+      kennel: kennel,
+      inShelterSince: new Date(inShelterSince),
+      race: race,
+      color: color,
+      sex: sex,
+      spayedOrNeutered: spayedOrNeutered,
+      dateOfBirth: new Date(dateOfBirth),
+      escapologist: escapologist,
+      aggressive: aggressive,
+      assertive: assertive,
+      nervous: nervous,
+      outdoorCat: outdoorCat,
+      toiletTrained: toiletTrained,
+      acuteDiseases: acuteDiseases,
+      chronicDiseases: chronicDiseases,
+      medication: medication,
+      nutrition: nutrition,
+      otherTreatments: otherTreatments,
+      freeTextInfo: freeTextInfo
     }
 
     postCat(newDataSet)
