@@ -77,20 +77,6 @@ export default class App extends Component {
       .catch(err => console.error(err))
   }
 
-  /* handleChange = event => {
-    const input = event.target.name + 'Input'
-    const value = event.target.value
-
-    store.dispatch(Actions.handleChange({ input, value }))
-  }
-
-  handleCheck = event => {
-    const input = event.target.name + 'Checkbox'
-    const value = event.target.checked ? true : false
-
-    store.dispatch(Actions.handleChange({ input, value }))
-  } */
-
   preventDefault = event => event.preventDefault()
 
   createNewDataSet = () => {
