@@ -41,19 +41,19 @@ export default class DataSetCreationForm extends Component {
   render() {
     const { onChange, onCheck, locationOptions } = this.props
     const {
-      adoptableCheckbox,
-      houseInput,
-      roomInput,
-      kennelInput,
-      inShelterSinceInput,
-      spayedOrNeuteredCheckbox,
-      dateOfBirthInput,
-      aggressiveCheckbox,
-      escapologistCheckbox,
-      assertiveCheckbox,
-      nervousCheckbox,
-      outdoorCatCheckbox,
-      toiletTrainedCheckbox
+      adoptable,
+      house,
+      room,
+      kennel,
+      inShelterSince,
+      spayedOrNeutered,
+      dateOfBirth,
+      aggressive,
+      escapologist,
+      assertive,
+      nervous,
+      outdoorCat,
+      toiletTrained
     } = this.props.formValues
 
     return (
@@ -88,7 +88,7 @@ export default class DataSetCreationForm extends Component {
             name="adoptable"
             label="vermittelbar"
             inputRef={this.adoptableCheckboxRef}
-            displayValue={adoptableCheckbox}
+            displayValue={adoptable}
           />
         </section>
         <section>
@@ -99,30 +99,30 @@ export default class DataSetCreationForm extends Component {
             required={true}
             options={locationOptions}
             label="Haus: "
-            displayValue={houseInput}
+            displayValue={house}
           />
           <ConditionalSelect
             onChange={onChange}
             name="room"
             required={true}
             options={locationOptions}
-            subset={houseInput}
+            subset={house}
             label="Raum: "
-            displayValue={roomInput}
+            displayValue={room}
           />
           <ConditionalSelect
             onChange={onChange}
             name="kennel"
-            options={locationOptions[houseInput]}
-            subset={roomInput}
+            options={locationOptions[house]}
+            subset={room}
             label="Kennel: "
-            displayValue={kennelInput}
+            displayValue={kennel}
           />
           <DatePicker
             onChange={onChange}
             name="inShelterSince"
             label="Im Tierheim seit: "
-            displayValue={inShelterSinceInput}
+            displayValue={inShelterSince}
           />
         </section>
         <section className="description">
@@ -145,7 +145,7 @@ export default class DataSetCreationForm extends Component {
             onChange={onChange}
             name="dateOfBirth"
             label="Geburtsdatum: "
-            displayValue={dateOfBirthInput}
+            displayValue={dateOfBirth}
           />
           <Radio
             onChange={onChange}
@@ -172,7 +172,7 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="spayedOrNeutered"
             label="kastriert"
-            displayValue={spayedOrNeuteredCheckbox}
+            displayValue={spayedOrNeutered}
           />
         </section>
         <section>
@@ -215,37 +215,37 @@ export default class DataSetCreationForm extends Component {
             onCheck={onCheck}
             name="escapologist"
             label="Fluchtneigung"
-            displayValue={escapologistCheckbox}
+            displayValue={escapologist}
           />
           <Checkbox
             onCheck={onCheck}
             name="aggressive"
             label="aggressiv"
-            displayValue={aggressiveCheckbox}
+            displayValue={aggressive}
           />
           <Checkbox
             onCheck={onCheck}
             name="assertive"
             label="selbstbewusst"
-            displayValue={assertiveCheckbox}
+            displayValue={assertive}
           />
           <Checkbox
             onCheck={onCheck}
             name="nervous"
             label="ängstlich"
-            displayValue={nervousCheckbox}
+            displayValue={nervous}
           />
           <Checkbox
             onCheck={onCheck}
             name="outdoorCat"
             label="Freigänger"
-            displayValue={outdoorCatCheckbox}
+            displayValue={outdoorCat}
           />
           <Checkbox
             onCheck={onCheck}
             name="toiletTrained"
             label="stubenrein"
-            displayValue={toiletTrainedCheckbox}
+            displayValue={toiletTrained}
           />
         </section>
         <section className="freeTextInfo">

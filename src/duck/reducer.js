@@ -6,14 +6,10 @@ const handleChange = (state, action) => {
 
   return {
     ...state,
-    [input]: value
-  }
-}
-
-const replaceCats = (state, { payload }) => {
-  return {
-    ...state,
-    dataSets: payload
+    formValues: {
+      ...state.formValues,
+      [input]: value
+    }
   }
 }
 
@@ -21,25 +17,25 @@ const resetFormValues = state => {
   return {
     ...state,
     formValues: {
-      nameInput: '',
-      idInput: '',
-      transponderNrInput: '',
-      houseInput: '',
-      roomInput: '',
-      kennelInput: '',
-      inShelterSinceInput: '',
-      adoptableCheckbox: false,
-      colorInput: '',
-      raceInput: '',
-      sexInput: '',
-      dateOfBirthInput: '',
-      spayedOrNeuteredCheckbox: false,
-      escapologistCheckbox: false,
-      aggressiveCheckbox: false,
-      assertiveCheckbox: false,
-      nervousCheckbox: false,
-      outdoorCatCheckbox: false,
-      toiletTrainedCheckbox: false,
+      name: '',
+      id: '',
+      transponderNr: '',
+      house: '',
+      room: '',
+      kennel: '',
+      inShelterSince: '',
+      adoptable: false,
+      color: '',
+      race: '',
+      sex: '',
+      dateOfBirth: '',
+      spayedOrNeutered: false,
+      escapologist: false,
+      aggressive: false,
+      assertive: false,
+      nervous: false,
+      outdoorCat: false,
+      toiletTrained: false,
       acuteDiseases: '',
       chronicDiseases: '',
       medication: '',
@@ -47,6 +43,13 @@ const resetFormValues = state => {
       otherTreatments: '',
       freeTextInfo: ''
     }
+  }
+}
+
+const replaceCats = (state, { payload }) => {
+  return {
+    ...state,
+    dataSets: payload
   }
 }
 
@@ -61,7 +64,8 @@ const addNewDataSet = (state, { payload }) => {
 export default createReducer(initialState, {
   handleChange,
   resetFormValues,
-  replaceCats
+  replaceCats,
+  addNewDataSet
 })
 
 /* function getData(state, action) {

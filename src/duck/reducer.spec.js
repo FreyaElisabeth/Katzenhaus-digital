@@ -10,73 +10,73 @@ describe('reducer', () => {
     const state = {}
     const newState = reducer(
       state,
-      Actions.handleChange({ input: 'nameInput', value: 'Mieze' })
+      Actions.handleChange({ input: 'name', value: 'Mieze' })
     )
-    expect(newState).toEqual({ nameInput: 'Mieze' })
+    expect(newState).toEqual({ formValues: { name: 'Mieze' } })
   })
 
   it('can handleCheck', () => {
-    const state = { adoptable: false }
+    const state = { formValues: { adoptable: false } }
     const newState = reducer(
       state,
       Actions.handleChange({ input: 'adoptable', value: true })
     )
-    expect(newState).toEqual({ adoptable: true })
+    expect(newState).toEqual({ formValues: { adoptable: true } })
   })
 
   it('can resetFormValues', () => {
     const state = {
       formValues: {
-        nameInput: 'Mr Mews',
-        idInput: 'id',
-        transponderNrInput: '123',
-        houseInput: 'Neu',
-        roomInput: '1',
-        kennelInput: '2',
-        inShelterSinceInput: 'yesterday',
-        adoptableCheckbox: true,
-        colorInput: 'black',
-        raceInput: 'European Shorthair',
-        sexInput: 'male',
-        dateOfBirthInput: '2 years ago',
-        spayedOrNeuteredCheckbox: true,
-        escapologistCheckbox: true,
-        aggressiveCheckbox: true,
-        assertiveCheckbox: true,
-        nervousCheckbox: true,
-        outdoorCatCheckbox: true,
-        toiletTrainedCheckbox: true,
-        acuteDiseases: 'acuteDiseasesInput',
-        chronicDiseases: 'chronicDiseasesInput',
-        medication: 'medicationInput',
-        nutrition: 'nutritionInput',
-        otherTreatments: 'otherTreatmentsInput',
-        freeTextInfo: 'freeTextInfoInput'
+        name: 'Mr Mews',
+        id: 'id',
+        transponderNr: '123',
+        house: 'Neu',
+        room: '1',
+        kennel: '2',
+        inShelterSince: 'yesterday',
+        adoptable: true,
+        color: 'black',
+        race: 'European Shorthair',
+        sex: 'male',
+        dateOfBirth: '2 years ago',
+        spayedOrNeutered: true,
+        escapologist: true,
+        aggressive: true,
+        assertive: true,
+        nervous: true,
+        outdoorCat: true,
+        toiletTrained: true,
+        acuteDiseases: 'acuteDiseases',
+        chronicDiseases: 'chronicDiseases',
+        medication: 'medication',
+        nutrition: 'nutrition',
+        otherTreatments: 'otherTreatments',
+        freeTextInfo: 'freeTextInfo'
       }
     }
     const newState = reducer(state, Actions.resetFormValues())
 
     expect(newState).toEqual({
       formValues: {
-        nameInput: '',
-        idInput: '',
-        transponderNrInput: '',
-        houseInput: '',
-        roomInput: '',
-        kennelInput: '',
-        inShelterSinceInput: '',
-        adoptableCheckbox: false,
-        colorInput: '',
-        raceInput: '',
-        sexInput: '',
-        dateOfBirthInput: '',
-        spayedOrNeuteredCheckbox: false,
-        escapologistCheckbox: false,
-        aggressiveCheckbox: false,
-        assertiveCheckbox: false,
-        nervousCheckbox: false,
-        outdoorCatCheckbox: false,
-        toiletTrainedCheckbox: false,
+        name: '',
+        id: '',
+        transponderNr: '',
+        house: '',
+        room: '',
+        kennel: '',
+        inShelterSince: '',
+        adoptable: false,
+        color: '',
+        race: '',
+        sex: '',
+        dateOfBirth: '',
+        spayedOrNeutered: false,
+        escapologist: false,
+        aggressive: false,
+        assertive: false,
+        nervous: false,
+        outdoorCat: false,
+        toiletTrained: false,
         acuteDiseases: '',
         chronicDiseases: '',
         medication: '',

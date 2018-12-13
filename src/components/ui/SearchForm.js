@@ -27,27 +27,33 @@ export default class SearchForm extends Component {
 
   render() {
     const { onChange, locationOptions } = this.props
-    const { houseInput, roomInput, kennelInput } = this.props.formValues
+    const { house, room, kennel } = this.props.formValues
 
     return (
       <FormWrapper data-cy="SearchForm" onSubmit={this.preventDefault}>
         <section className="search">
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="name"
             placeholder="Kitty"
             label="Name: "
             inputRef={this.nameInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="id"
             placeholder="123_F_18"
             label="HTV-Nummer: "
             inputRef={this.idInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="transponderNr"
             placeholder="...123"
             label="Transponder: "
@@ -56,27 +62,33 @@ export default class SearchForm extends Component {
         </section>
         <section className="search">
           <Select
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="house"
             options={locationOptions}
             label="Haus: "
-            displayValue={houseInput}
+            displayValue={house}
           />
           <ConditionalSelect
             name="room"
             label="Raum: "
-            onChange={onChange}
-            displayValue={roomInput}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
+            displayValue={room}
             options={locationOptions}
-            subset={houseInput}
+            subset={house}
           />
           <ConditionalSelect
             name="kennel"
             label="Kennel: "
-            onChange={onChange}
-            displayValue={kennelInput}
-            options={locationOptions[houseInput]}
-            subset={roomInput}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
+            displayValue={kennel}
+            options={locationOptions[house]}
+            subset={room}
           />
         </section>
       </FormWrapper>

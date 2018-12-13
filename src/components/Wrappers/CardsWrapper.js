@@ -18,27 +18,25 @@ export default class CardsWrapper extends Component {
     const { dataSets } = this.props
 
     const {
-      nameInput,
-      idInput,
-      transponderNrInput,
-      houseInput,
-      roomInput,
-      kennelInput
+      name,
+      id,
+      transponderNr,
+      house,
+      room,
+      kennel
     } = this.props.formValues
 
     return dataSets
       .filter(dataSet =>
-        dataSet.name.toLowerCase().includes(nameInput.toLowerCase())
+        dataSet.name.toLowerCase().includes(name.toLowerCase())
       )
+      .filter(dataSet => dataSet.id.toLowerCase().includes(id.toLowerCase()))
       .filter(dataSet =>
-        dataSet.id.toLowerCase().includes(idInput.toLowerCase())
+        dataSet.transponderNr.toString().includes(transponderNr)
       )
-      .filter(dataSet =>
-        dataSet.transponderNr.toString().includes(transponderNrInput)
-      )
-      .filter(dataSet => dataSet.house.includes(houseInput))
-      .filter(dataSet => dataSet.room.includes(roomInput))
-      .filter(dataSet => dataSet.kennel.includes(kennelInput))
+      .filter(dataSet => dataSet.house.includes(house))
+      .filter(dataSet => dataSet.room.includes(room))
+      .filter(dataSet => dataSet.kennel.includes(kennel))
       .map(this.renderSingleDataSet)
   }
 
