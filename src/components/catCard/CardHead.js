@@ -22,6 +22,10 @@ const SectionWrapper = styled.section`
   }
 `
 
+const StyledH3 = styled.h3`
+  padding-left: 5px;
+`
+
 export default class CardHead extends Component {
   static propTypes = {
     adoptable: PropType.bool.isRequired,
@@ -48,7 +52,7 @@ export default class CardHead extends Component {
 
     return (
       <React.Fragment>
-        <h3>{name}</h3>
+        <StyledH3>{name}</StyledH3>
         <SectionWrapper data-cy="CardHead">
           <div className="left">
             <span>HTV-Nr.: {id}</span>

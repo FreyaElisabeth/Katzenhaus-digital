@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { getCats, postCat, patchCat } from '../services/cats'
+import { getCats, postCat } from '../services/cats'
 
 import {
   paleprimary,

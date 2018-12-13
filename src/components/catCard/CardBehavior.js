@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropType from 'prop-types'
-import { offwhite, darkerprimary } from '../colors'
+import { darkerprimary } from '../colors'
 
 const SectionWrapper = styled.section`
   margin: 10px 0;
