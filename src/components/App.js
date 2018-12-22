@@ -45,10 +45,6 @@ export default class App extends Component {
               path="/dataSetCreation"
               render={() => (
                 <DataSetCreationScreen
-                  formValues={formValues}
-                  resetFormValues={() => this.resetFormValues(state)}
-                  onChange={this.handleChange}
-                  onCheck={this.handleCheck}
                   onSubmit={this.createNewDataSet}
                   preventDefault={this.preventDefault}
                   locationOptions={locationData}

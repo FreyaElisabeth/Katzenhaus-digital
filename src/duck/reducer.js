@@ -67,17 +67,3 @@ export default createReducer(initialState, {
   replaceCats,
   addNewDataSet
 })
-
-/* function getData(state, action) {
-  const { type, payload } = action
-  const cats = payload
-
-  getCats()
-    .then(cats => {
-      this.setState({
-        dataSets: cats,
-        ...state
-      })
-    })
-    .catch(err => console.error(err))
-} */
