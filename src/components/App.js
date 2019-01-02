@@ -33,24 +33,12 @@ export default class App extends Component {
   }
 
   render() {
-    const state = store.getState()
-    const { formValues, locationData } = state
-
     return (
       <Provider store={store}>
         <Router>
           <Wrapper>
             <Route path="/" exact component={SearchScreen} />
-            <Route
-              path="/dataSetCreation"
-              render={() => (
-                <DataSetCreationScreen
-                  onSubmit={this.createNewDataSet}
-                  preventDefault={this.preventDefault}
-                  locationOptions={locationData}
-                />
-              )}
-            />
+            <Route path="/dataSetCreation" component={DataSetCreationScreen} />
             <nav>
               <NavLink exact to="/" data-cy="navHome">
                 <FontAwesomeIcon icon="search" />
@@ -72,8 +60,6 @@ export default class App extends Component {
       })
       .catch(err => console.error(err))
   }
-
-  preventDefault = event => event.preventDefault()
 
   createNewDataSet = () => {
     const {

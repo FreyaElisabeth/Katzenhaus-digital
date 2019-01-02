@@ -265,8 +265,8 @@ export default class DataSetCreationForm extends Component {
   }
 
   handleSubmit = event => {
-    this.props.preventDefault(event)
-    this.props.onSubmit()
+    event.preventDefault()
+    this.props.createNewDataSet()
     this.nameInputRef.current.value = ''
     this.idInputRef.current.value = ''
     this.transponderNrInputRef.current.value = ''

@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   resetFormValues,
   onChange: handleChange,
-  onSubmit: addNewDataSet //when to post to server?
+  onSubmit: addNewDataSet
 }
 
 export default connect(
