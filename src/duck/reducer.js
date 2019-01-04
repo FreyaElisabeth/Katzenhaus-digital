@@ -53,7 +53,7 @@ const replaceCats = (state, { payload }) => {
   }
 }
 
-const addNewDataSet = (state, { payload }) => {
+const createNewCat = (state, { payload }) => {
   return {
     ...state,
     dataSets: { ...state.dataSets },
@@ -65,5 +65,5 @@ export default createReducer(initialState, {
   handleChange,
   resetFormValues,
   replaceCats,
-  addNewDataSet
+  createNewCat
 })

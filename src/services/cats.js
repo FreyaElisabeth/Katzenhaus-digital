@@ -5,17 +5,15 @@ export function getCats() {
 }
 
 export function postCat(cat) {
-  return makeRequest('/cats', 'post', cat).catch(err => console.error(err))
+  return makeRequest('/cats', 'post', cat)
 }
 
 export function patchCat(cat) {
-  return makeRequest(`/cats/${cat._id}`, 'patch', cat).catch(err =>
-    console.error(err)
-  )
+  return makeRequest(`/cats/${cat._id}`, 'patch', cat)
 }
 
 export function deleteCat(id) {
-  return makeRequest(`/cats/${id}`, 'delete').catch(err => console.error(err))
+  return makeRequest(`/cats/${id}`, 'delete')
 }
 
 function makeRequest(path, method = 'get', body) {

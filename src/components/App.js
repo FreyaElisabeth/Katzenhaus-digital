@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
-import styled from 'styled-components'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { configureStore } from 'redux-starter-kit'
-import reducer from '../duck/reducer'
-import * as Actions from '../duck/actions'
 import { Provider } from 'react-redux'
 
-import { getCats, postCat } from '../services/cats'
+import reducer from '../duck/reducer'
+import * as Actions from '../duck/actions'
+import SearchScreen from './screens/SearchScreen'
+import DataSetCreationScreen from './screens/DataSetCreationScreen'
+
 import {
   paleprimary,
   palestprimary,
@@ -16,10 +15,11 @@ import {
   darkerprimary,
   darkestprimary
 } from './colors'
+import styled from 'styled-components'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
-import SearchScreen from './screens/SearchScreen'
-import DataSetCreationScreen from './screens/DataSetCreationScreen'
 
 library.add(faSearch)
 library.add(faFileUpload)
@@ -29,7 +29,7 @@ const store = configureStore({ reducer })
 export default class App extends Component {
   componentDidMount() {
     store.subscribe(() => this.forceUpdate())
-    this.getData()
+    this.getCats()
   }
 
   render() {
@@ -53,76 +53,8 @@ export default class App extends Component {
     )
   }
 
-  getData() {
-    getCats()
-      .then(cats => {
-        store.dispatch(Actions.replaceCats(cats))
-      })
-      .catch(err => console.error(err))
-  }
-
-  createNewDataSet = () => {
-    const {
-      name,
-      id,
-      transponderNr,
-      adoptable,
-      house,
-      room,
-      kennel,
-      inShelterSince,
-      race,
-      color,
-      dateOfBirth,
-      sex,
-      spayedOrNeutered,
-      escapologist,
-      aggressive,
-      assertive,
-      nervous,
-      outdoorCat,
-      toiletTrained,
-      acuteDiseases,
-      chronicDiseases,
-      medication,
-      nutrition,
-      otherTreatments,
-      freeTextInfo
-    } = this.state.formValues
-
-    const newDataSet = {
-      name: name,
-      id: id,
-      transponderNr: transponderNr,
-      adoptable: adoptable,
-      house: house,
-      room: room,
-      kennel: kennel,
-      inShelterSince: new Date(inShelterSince),
-      race: race,
-      color: color,
-      sex: sex,
-      spayedOrNeutered: spayedOrNeutered,
-      dateOfBirth: new Date(dateOfBirth),
-      escapologist: escapologist,
-      aggressive: aggressive,
-      assertive: assertive,
-      nervous: nervous,
-      outdoorCat: outdoorCat,
-      toiletTrained: toiletTrained,
-      acuteDiseases: acuteDiseases,
-      chronicDiseases: chronicDiseases,
-      medication: medication,
-      nutrition: nutrition,
-      otherTreatments: otherTreatments,
-      freeTextInfo: freeTextInfo
-    }
-
-    postCat(newDataSet)
-      .then(newDataSet => {
-        store.dispatch(Actions.createNewDataSet(newDataSet))
-      })
-      .then(this.resetFormValues())
+  getCats() {
+    store.dispatch(Actions.fetchCats())
   }
 
   componentDidUpdate() {
