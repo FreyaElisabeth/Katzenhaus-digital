@@ -14,11 +14,11 @@ import SubmitBtn from './SubmitBtn'
 
 export default class DataSetCreationForm extends Component {
   static propTypes = {
+    resetFormValues: PropType.func.isRequired,
     onChange: PropType.func.isRequired,
-    onCheck: PropType.func.isRequired,
-    onSubmit: PropType.func.isRequired,
-    preventDefault: PropType.func.isRequired,
-    formValues: PropType.object.isRequired
+    createNewCat: PropType.func.isRequired,
+    formValues: PropType.object.isRequired,
+    locationOptions: PropType.object.isRequired
   }
 
   constructor(props) {
@@ -39,7 +39,7 @@ export default class DataSetCreationForm extends Component {
   }
 
   render() {
-    const { onChange, onCheck, locationOptions } = this.props
+    const { onChange, locationOptions, formValues } = this.props
     const {
       adoptable,
       house,
@@ -54,22 +54,32 @@ export default class DataSetCreationForm extends Component {
       nervous,
       outdoorCat,
       toiletTrained
-    } = this.props.formValues
+    } = formValues
 
     return (
-      <FormWrapper data-cy="DataSetCreationForm" onSubmit={this.handleSubmit}>
+      <FormWrapper
+        data-cy="DataSetCreationForm"
+        onSubmit={(event, { formValues }) => {
+          console.log(formValues)
+          this.handleSubmit(event, formValues)
+        }}
+      >
         <section>
           <SeparatorAlignLeft text="Kopfdaten" />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="name"
             required={true}
             placeholder="Mieze"
-            label="Name: "
+            label="Name:* "
             inputRef={this.nameInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="id"
             required={true}
             placeholder="123_F_18"
@@ -77,14 +87,21 @@ export default class DataSetCreationForm extends Component {
             inputRef={this.idInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="transponderNr"
             placeholder="276097200023868"
             label="Transponder: "
             inputRef={this.transponderNrInputRef}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="adoptable"
             label="vermittelbar"
             inputRef={this.adoptableCheckboxRef}
@@ -94,7 +111,9 @@ export default class DataSetCreationForm extends Component {
         <section>
           <SeparatorAlignLeft text="Unterbringung" />
           <Select
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="house"
             required={true}
             options={locationOptions}
@@ -102,7 +121,9 @@ export default class DataSetCreationForm extends Component {
             displayValue={house}
           />
           <ConditionalSelect
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="room"
             required={true}
             options={locationOptions}
@@ -111,7 +132,9 @@ export default class DataSetCreationForm extends Component {
             displayValue={room}
           />
           <ConditionalSelect
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="kennel"
             options={locationOptions[house]}
             subset={room}
@@ -119,7 +142,9 @@ export default class DataSetCreationForm extends Component {
             displayValue={kennel}
           />
           <DatePicker
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="inShelterSince"
             label="Im Tierheim seit: "
             displayValue={inShelterSince}
@@ -128,48 +153,65 @@ export default class DataSetCreationForm extends Component {
         <section className="description">
           <SeparatorAlignLeft text="Beschreibung" />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="race"
             placeholder="Europäisch Kurzhaar"
             label="Rasse: "
             inputRef={this.raceInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="color"
             placeholder="schwarz-braun getigert"
             label="Farbe: "
             inputRef={this.colorInputRef}
           />
           <DatePicker
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="dateOfBirth"
             label="Geburtsdatum: "
             displayValue={dateOfBirth}
           />
           <Radio
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="sex"
             value="männlich"
             label="männlich"
             inputRef={this.sexInputRef}
           />
           <Radio
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="sex"
             value="weiblich"
             label="weiblich"
             inputRef={this.sexInputRef}
           />
           <Radio
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="sex"
             value="?"
             label="?"
             inputRef={this.sexInputRef}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="spayedOrNeutered"
             label="kastriert"
             displayValue={spayedOrNeutered}
@@ -178,32 +220,42 @@ export default class DataSetCreationForm extends Component {
         <section>
           <SeparatorAlignLeft text="Gesundheitszustand" />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="acuteDiseases"
             label="Akute Erkrankungen: "
             inputRef={this.acuteDiseasesInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="chronicDiseases"
             label="Chronische Erkrankungen: "
             inputRef={this.chronicDiseasesInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="medication"
             placeholder="Baytril 1mg 2xtgl."
             label="Medikamente: "
             inputRef={this.medicationInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="nutrition"
             label="Ernährung: "
             inputRef={this.nutritionInputRef}
           />
           <Input
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="otherTreatments"
             label="Sonstige Behandlung: "
             inputRef={this.otherTreatmentsInputRef}
@@ -212,37 +264,67 @@ export default class DataSetCreationForm extends Component {
         <section className="behavior">
           <SeparatorAlignLeft text="Verhalten" />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="escapologist"
             label="Fluchtneigung"
             displayValue={escapologist}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="aggressive"
             label="aggressiv"
             displayValue={aggressive}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="assertive"
             label="selbstbewusst"
             displayValue={assertive}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="nervous"
             label="ängstlich"
             displayValue={nervous}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="outdoorCat"
             label="Freigänger"
             displayValue={outdoorCat}
           />
           <Checkbox
-            onCheck={onCheck}
+            onCheck={event =>
+              onChange({
+                input: event.target.name,
+                value: event.target.checked
+              })
+            }
             name="toiletTrained"
             label="stubenrein"
             displayValue={toiletTrained}
@@ -251,7 +333,9 @@ export default class DataSetCreationForm extends Component {
         <section className="freeTextInfo">
           <SeparatorAlignLeft text="Sonstiges" />
           <TextArea
-            onChange={onChange}
+            onChange={event =>
+              onChange({ input: event.target.name, value: event.target.value })
+            }
             name="freeTextInfo"
             label="Zusatzinformationen: "
             inputRef={this.textAreaInputRef}
@@ -264,9 +348,9 @@ export default class DataSetCreationForm extends Component {
     )
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event, formValues) => {
     event.preventDefault()
-    this.props.createNewDataSet()
+    //this.props.createNewCat(formValues)
     this.nameInputRef.current.value = ''
     this.idInputRef.current.value = ''
     this.transponderNrInputRef.current.value = ''
