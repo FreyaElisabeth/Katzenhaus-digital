@@ -59,9 +59,9 @@ export default class DataSetCreationForm extends Component {
     return (
       <FormWrapper
         data-cy="DataSetCreationForm"
-        onSubmit={(event, { formValues }) => {
-          console.log(formValues)
+        onSubmit={(event, formValues) => {
           this.handleSubmit(event, formValues)
+          console.table(formValues)
         }}
       >
         <section>
@@ -83,7 +83,7 @@ export default class DataSetCreationForm extends Component {
             name="id"
             required={true}
             placeholder="123_F_18"
-            label="HTV-Nummer: "
+            label="HTV-Nummer:* "
             inputRef={this.idInputRef}
           />
           <Input
@@ -117,7 +117,7 @@ export default class DataSetCreationForm extends Component {
             name="house"
             required={true}
             options={locationOptions}
-            label="Haus: "
+            label="Haus:* "
             displayValue={house}
           />
           <ConditionalSelect
@@ -128,7 +128,7 @@ export default class DataSetCreationForm extends Component {
             required={true}
             options={locationOptions}
             subset={house}
-            label="Raum: "
+            label="Raum:* "
             displayValue={room}
           />
           <ConditionalSelect
@@ -350,7 +350,64 @@ export default class DataSetCreationForm extends Component {
 
   handleSubmit = (event, formValues) => {
     event.preventDefault()
-    //this.props.createNewCat(formValues)
+
+    const {
+      name,
+      id,
+      transponderNr,
+      adoptable,
+      house,
+      room,
+      kennel,
+      inShelterSince,
+      race,
+      color,
+      sex,
+      spayedOrNeutered,
+      dateOfBirth,
+      escapologist,
+      aggressive,
+      assertive,
+      nervous,
+      outdoorCat,
+      toiletTrained,
+      acuteDiseases,
+      chronicDiseases,
+      medication,
+      nutrition,
+      otherTreatments,
+      freeTextInfo
+    } = formValues
+
+    console.log(name)
+
+    this.props.createNewCat({
+      name,
+      id,
+      transponderNr,
+      adoptable,
+      house,
+      room,
+      kennel,
+      inShelterSince,
+      race,
+      color,
+      sex,
+      spayedOrNeutered,
+      dateOfBirth,
+      escapologist,
+      aggressive,
+      assertive,
+      nervous,
+      outdoorCat,
+      toiletTrained,
+      acuteDiseases,
+      chronicDiseases,
+      medication,
+      nutrition,
+      otherTreatments,
+      freeTextInfo
+    })
     this.nameInputRef.current.value = ''
     this.idInputRef.current.value = ''
     this.transponderNrInputRef.current.value = ''

@@ -7,6 +7,7 @@ export const resetFormValues = createAction('resetFormValues')
 export const getCatsDone = createAction('getCatsDone')
 export const getCatsError = createAction('getCatsError')
 export const fetchCats = () => dispatch => {
+  console.log('fetchCats')
   catService
     .getCats()
     .then(fetchedCats => dispatch(getCatsDone(fetchedCats)))

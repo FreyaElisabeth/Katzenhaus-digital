@@ -54,6 +54,7 @@ export default class App extends Component {
   }
 
   getCats() {
+    console.log('getCats')
     store.dispatch(Actions.fetchCats())
   }
 
